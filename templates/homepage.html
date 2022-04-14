@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<html>
+
+<head>
+    <!--link js-->
+    <script type="text/javascript" src="{{ url_for('static', filename = 'homepage.js') }}"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
+
+    <script>
+        let data = {{ data| tojson}} 
+    </script>
+
+    <style>
+        .title {
+            text-align: center;
+        }
+
+        .padButtons{
+            padding: 25px; 
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class='title'>
+        Mushroom Lessons
+    </div>
+
+    <div id='Overview'>
+        <div class='row'>
+            <div class='col-md-4'></div>
+            <div class='col-md-4 padButtons'>
+                <button class="button">Lesson 1: Differentiating edible from poisonous mushrooms</button>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-md-4'></div>
+            <div class='col-md-4 title padButtons'>
+                <button class="button">Lesson 2: Psychedelic Mushrooms</button>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div class='col-md-4'></div>
+            <div class='col-md-4 title padButtons'>
+                <button class="button">Adventure Time!</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+{% endblock %}
