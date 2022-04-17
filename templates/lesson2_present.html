@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<html>
+
+<head>
+    <!--link js-->
+    <script type="text/javascript" src="{{ url_for('static', filename = 'homepage.js') }}"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
+
+    <script>
+        let data = {{ data| tojson}} 
+    </script>
+
+    <style>
+        .top_ofPage {
+            text-align: center;
+        }
+
+        .lesson_img {
+            width: 300px;
+            height: auto;
+        }
+
+        .comparison_padding {
+            padding-top: 50px;
+        }
+
+        .nextButton {
+            position: fixed;
+            bottom: 50px;
+            right: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top_ofPage">
+        <div title="name_ofLesson"> Lesson 2: Identifying Psychedelic Mushrooms </div>
+        <div title="small_descript">There are 227 known and classified species of psychedelic mushrooms.</div>
+    </div>
+
+    <div title="left_image_right" class='comparison_padding'>
+        <div class="row" id="row">
+            <div class='col-md-4'></div>
+            <div class='col-md-4'>
+                <img class='lesson_img'
+                    src='https://cdn-s-www.bienpublic.com/images/8DF87B22-AADD-4FC0-8FC7-8632C3480795/NW_raw/les-champignons-tels-que-les-quot-psilocybe-semilanceata-quot-sont-inscrits-sur-la-liste-des-stupefiants-depuis-1990-en-france-photo-d-illustration-pixabay-domaine-public-1507911226.jpg'>
+            </div>
+            <div class='col-md-4'>
+</div>
+        </div>
+    </div>
+
+    <div>
+        <button class = 'nextButton'>Next</button>
+    </div>
+
+</body>
+
+</html>
+
+{% endblock %}

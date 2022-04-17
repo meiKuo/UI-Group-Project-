@@ -28,5 +28,13 @@ def homepage():
     top_three = [data["1"], data["2"], data["3"]]
     return render_template('homepage.html', data=top_three)
 
+@app.route('/lesson1')
+def lesson():
+    return render_template('lesson1_compare.html', data=data)
+
+@app.route('/lesson2')
+def lesson2():
+    return render_template('lesson2_present.html', data=data)
+
 if __name__ == '__main__':
     app.run(debug=True)
