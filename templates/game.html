@@ -57,7 +57,7 @@
 </style>
 
 <script>
-    let questions = {{ questions | tojson }} 
+    let question = {{ question | tojson }} 
 </script>
 
 <script type="text/javascript" src="{{ url_for('static', filename = 'game/game.js') }}"></script>
@@ -70,29 +70,27 @@
     <div class="game-bar my-5 d-inline-flex">
         <div class="lives-container mr-3 d-flex">
             <h2>Lives:</h2>
+            {% for l in range(lives) %}
             <img src="{{ url_for('static', filename='game/assets/heart.png') }}"/>
-            <img src="{{ url_for('static', filename='game/assets/heart.png') }}"/>
-            <img src="{{ url_for('static', filename='game/assets/heart.png') }}"/>
-            <img src="{{ url_for('static', filename='game/assets/heart.png') }}"/>
+            {% endfor %}
         </div>
         <div class="lives-container">
-            <h2>Hunger: 0/100</h2>
+            <h2>Hunger: {{ hunger }}/100</h2>
         </div>
     </div>
     <div class="game-container">
         <div class="dialogue-box">
-            <span id="dialogue">You've encountered a mushroom. What will you do?</span>
+            <span id="dialogue">{{ question.question }}</span>
         </div>
         <div class="game-area my-5">
             <img class="character-img" src="{{ url_for('static', filename='game/assets/MC.png') }}"/>
             <div class="game-img">
-                <img class="img-fluid" src="{{ url_for('static', filename='images/morel_1.png') }}" />
+                <img class="img-fluid" src="{{ url_for('static', filename=mushroom.img_url) }}" />
             </div>
             <img class="character-img" src="{{ url_for('static', filename='game/assets/TG.png') }}"/>
         </div>
         <div class="button-box">
-            <a type="button" class="game-button">Let's eat it!</a>
-            <a type="button" class="game-button">Nah, it's toxic</a>
+            <a type="button" id="skip" href="/game/{{ question.id + 1 }}" class="game-button">Hmm, let's skip this.</a>
         </div>
     </div>
 </div>

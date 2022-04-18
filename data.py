@@ -1,8 +1,6 @@
-
-
 mushrooms = {
     "0": {
-        "id": 0,
+        "id": "0",
         "name": "Black Morel",
         "edible": True,
         "img_url": 'images/morel_1.png',
@@ -19,6 +17,7 @@ mushrooms = {
 # Questions for quiz
 questions = [
     {
+        "id": 1,
         "question": "You've encountered a mushroom! What will you do?",
         "mushroom": "0", # ID from mushrooms[]
         "health_cost": 1,
@@ -33,6 +32,7 @@ questions = [
                 "dialogue": "Oh no! You ate a super poisonous mushroom."
             }
         ],
+        "cut_dialogue": "It looks like the mushroom is hollow from tip to stem.",
         "correct_choice": 0,
     }
 ]

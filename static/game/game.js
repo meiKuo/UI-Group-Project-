@@ -1,28 +1,39 @@
-let curQuestion = 0;
-
-function emptyFields() {
-
+function submitUserAnswer(idx) {
+    $.ajax({
+        type: "POST",
+        url: "/update",                
+        dataType : "json",
+        contentType: "application/json; charset=utf-8",
+        data : JSON.stringify(idx),
+        success: function(result) {
+            console.log(result)
+        },
+        error: function(request, status, error){
+            console.log("Error");
+            console.log(request)
+            console.log(status)
+            console.log(error)
+        }
+    });
 }
 
 function updateCurrentState() {
-    const q = questions[curQuestion];
-
-    $("#dialogue").text(q.question)
-    $(".button-box").empty()
-    $.each(q.choices, (i, val) => {
+    $.each(question.choices, (i, val) => {
         $(".button-box").append($(
             `<a type="button" class="game-button" data-idx=${i}>${val.text}</a>`
         ))
     })
-
-    $.post("/game", { id: q.mushroom }, function (data) {
-        //img.src = `/static/${data.img_url}`
-        console.log(data)
-    }, "json")
-
-    console.log(q);
 }
 
 $(document).ready(() => {
     updateCurrentState()
+
+
+    $(document).on("click", ".game-button", function() {
+        const idx = $(this).data("idx")
+        if (idx !== undefined){
+            submitUserAnswer(idx)
+        }
+    })
+    $(".game-button")
 })
