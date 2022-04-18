@@ -6,7 +6,7 @@
         --game-width: 700px;
         --game-height: 100px;
     }
-   
+
     .character-img {
         width: 15em;
     }
@@ -47,17 +47,17 @@
         display: flex;
         justify-content: space-evenly;
         font-size: 20px;
-        
+
     }
 
     .game-button:hover {
         text-decoration: underline !important;
         cursor: pointer !important;
-    }   
+    }
 </style>
 
 <script>
-    let question = {{ question | tojson }} 
+    let question = {{ question | tojson }}
 </script>
 
 <script type="text/javascript" src="{{ url_for('static', filename = 'game/game.js') }}"></script>
@@ -67,8 +67,8 @@
 {% block content %}
 <div class="mt-5">
     <h1>Eat the edible mushrooms and get out of the forest (alive)!</h1>
-    <div class="game-bar my-5 d-inline-flex">
-        <div class="lives-container mr-3 d-flex">
+    <div class="game-bar row">
+        <div class="livesContainer col-md-3 row">
             <h2>Lives:</h2>
             <div id="heart-container">
             {% for l in range(lives) %}
@@ -76,7 +76,10 @@
             {% endfor %}
             </div>
         </div>
-        <div class="lives-container">
+        <div class="healthContainer col-md-3">
+            <h2>Health: {{ health }}/100</h2>
+        </div>
+        <div class="hungerContainer col-md-4">
             <h2>Hunger: {{ hunger }}/100</h2>
         </div>
     </div>
@@ -92,9 +95,8 @@
             <img class="character-img" src="{{ url_for('static', filename='game/assets/TG.png') }}"/>
         </div>
         <div class="button-box">
-            <a type="button" id="skip" href="/game/{{ question.id + 1 }}" class="game-button">Hmm, let's skip this.</a>
+            <a type="button" id="skip" href="/game/{{ question.id + 1 }}" class="game-button">Hmm, not sure</a>
         </div>
     </div>
 </div>
 {% endblock %}
-
