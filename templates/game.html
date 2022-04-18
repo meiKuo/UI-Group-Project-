@@ -16,12 +16,6 @@
         justify-content: space-between;
     }
 
-    .game-container {
-        max-width: var(--game-width);
-        height: var(--game-height);
-        margin: auto;
-    }
-
     .none {
         display: none;
     }
@@ -95,7 +89,9 @@
             <img class="character-img" src="{{ url_for('static', filename='game/assets/TG.png') }}"/>
         </div>
         <div class="button-box">
-            <a type="button" id="skip" href="/game/{{ question.id + 1 }}" class="game-button">Hmm, not sure</a>
+            <a type="button" id="skip" href="/game/{{ question.id + 1 }}" class="noEatButton">This looks dangerous. Let's stay away.</a>
+            <a type="button" id="skip" href="/game/{{ question.id + 1 }}" class="notSureButton">Hmm, not sure</a>
+            <a type="button" id="skip" href="/game/{{ question.id + 1 }}" class="eatButton">Looks edible! Let's eat it!</a>
         </div>
     </div>
 </div>
