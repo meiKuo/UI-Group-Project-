@@ -20,7 +20,7 @@ data = {
     },
 }
 
-lives = 4
+lives = 3
 hunger = 0
 cur_question = 1
 
@@ -39,7 +39,7 @@ def game(q_idx):
     global cur_question
 
     if int(q_idx) == 1:
-        lives = 4
+        lives = 3
         hunger = 0
 
     if int(q_idx) == len(questions) + 1:
