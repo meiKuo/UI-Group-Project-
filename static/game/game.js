@@ -1,7 +1,7 @@
 function submitUserAnswer(idx) {
     $.ajax({
         type: "POST",
-        url: "/update",                
+        url: "/update",
         dataType : "json",
         contentType: "application/json; charset=utf-8",
         data : JSON.stringify(idx),
@@ -29,12 +29,27 @@ function updateLives(nLives) {
 }
 
 function updateOnAnswer(idx) {
-    $("#dialogue").text(question.choices[idx].dialogue)
-
+    // $("#dialogue").text(question.choices[idx].dialogue)
+    console.log('idx', idx);
     $(".button-box").empty()
-    $(".button-box").append($(
-        `<a type="button" class="game-button" href="/game/${question.id + 1}">Continue</a>`
-    ))
+    if (idx == 0){
+      $(".button-box").append($(
+          `<a type="button" class="game-button" href="/game/">Continue</a>`
+      ))
+    }
+    else if (idx == 1){
+      $(".button-box").append($(
+          `<a type="button" class="game-button" href="/game/">Let's cut it open</a>
+          <a type="button" class="game-button" href="/game/">Let's refer to the mushroom guidebook!</a>`
+      ))
+    }
+    else if (idx == 2){
+      $(".button-box").append($(
+          `<button id="eatButton2" class="eatButton">Yes, let's eat it</button>
+          <button id="noEatButton2" class="noEatButton">No, I'm not sure.</button>`
+      ))
+    }
+
 }
 
 
@@ -55,5 +70,21 @@ $(document).ready(() => {
             submitUserAnswer(idx)
         }
     })
-    $(".game-button")
+    $("#noEatButton").click(function(){
+        updateOnAnswer(0)
+    })
+    $("#notSureButton").click(function(){
+        updateOnAnswer(1)
+    })
+    $("#eatButton").click(function(){
+        updateOnAnswer(2)
+    })
+
+    $("#eatButton2").click(function(){
+        updateOnAnswer(2)
+    })
+    $("#noEatButton2").click(function(){
+      console.log('2 pressed')
+        // window.location.href = "https://www.google.com";
+    })
 })
