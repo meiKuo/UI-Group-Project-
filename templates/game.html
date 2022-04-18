@@ -70,9 +70,11 @@
     <div class="game-bar my-5 d-inline-flex">
         <div class="lives-container mr-3 d-flex">
             <h2>Lives:</h2>
+            <div id="heart-container">
             {% for l in range(lives) %}
             <img src="{{ url_for('static', filename='game/assets/heart.png') }}"/>
             {% endfor %}
+            </div>
         </div>
         <div class="lives-container">
             <h2>Hunger: {{ hunger }}/100</h2>

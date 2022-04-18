@@ -66,7 +66,9 @@ def update():
     global hunger
     idx = request.get_json()
 
-    if idx != questions[cur_question - 1]["correct_choice"]:
+    correct = idx == questions[cur_question - 1]["correct_choice"]
+
+    if not correct:
         if lives > 0:
             lives -= 1
     else:
@@ -77,6 +79,8 @@ def update():
         "hunger": hunger,
         "score": score,
     }
+
     return jsonify(user_stats)
+
 if __name__ == '__main__':
     app.run(debug=True)

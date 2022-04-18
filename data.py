@@ -29,7 +29,7 @@ questions = [
             },
             {
                 "text": "Nah, it's toxic",
-                "dialogue": "Oh no! You ate a super poisonous mushroom."
+                "dialogue": "Actually, you could have eaten this mushroom."
             }
         ],
         "cut_dialogue": "It looks like the mushroom is hollow from tip to stem.",
