@@ -28,25 +28,32 @@ function updateLives(nLives) {
     }
 }
 
+function updateHunger(){
+
+}
+
 function updateOnAnswer(idx) {
     // $("#dialogue").text(question.choices[idx].dialogue)
     console.log('idx', idx);
     $(".button-box").empty()
     if (idx == 0){
+      $("#dialogue").text("No problem, let's move on to another mushroom.")
       $(".button-box").append($(
-          `<a type="button" class="game-button" href="/game/">Continue</a>`
+          `<button id="toMapButton">Back to map</button>`
       ))
     }
     else if (idx == 1){
+      $("#dialogue").text("Always good to be cautious. What should we do to help us decide?")
       $(".button-box").append($(
-          `<a type="button" class="game-button" href="/game/">Let's cut it open</a>
-          <a type="button" class="game-button" href="/game/">Let's refer to the mushroom guidebook!</a>`
+          `<button id="cutButton">Let's cut it open</button>
+          <button id="guidebookButton">Let's refer to the mushroom guidebook!</button>`
       ))
     }
     else if (idx == 2){
+      $("#dialogue").text("Are you sure it's safe to eat?")
       $(".button-box").append($(
-          `<button id="eatButton2" class="eatButton">Yes, let's eat it</button>
-          <button id="noEatButton2" class="noEatButton">No, I'm not sure.</button>`
+          `<button id="noEatButton2" class="noEatButton">No, I'm not sure.</button>
+          <button id="eatButton2" class="eatButton">Yes, let's eat it</button>`
       ))
     }
 
@@ -80,11 +87,25 @@ $(document).ready(() => {
         updateOnAnswer(2)
     })
 
-    $("#eatButton2").click(function(){
-        updateOnAnswer(2)
+    $("#toMapButton").click(function(){
+        console.log('back to map')
     })
-    $("#noEatButton2").click(function(){
-      console.log('2 pressed')
-        // window.location.href = "https://www.google.com";
+
+    $(document).on("click", "#noEatButton2", function() {
+        window.location.href = "/game/1"
     })
+
+    $(document).on("click", "#eatButton2", function() {
+        window.location.href = "/game/1"
+    })
+
+    $(document).on("click", "#toMapButton", function() {
+        window.location.href = "/game/1"
+    })
+
+    $(document).on("click", "#cutButton", function() {
+        window.location.href = "/game/1"
+    })
+
+
 })
