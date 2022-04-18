@@ -20,6 +20,9 @@
     <script type="text/javascript" src="{{ url_for('static', filename = 'layout.js') }}"></script>
 
     <title>Survival Scavenging Prototype</title>
+
+    {% block head %}
+    {% endblock %}
 </head>
 
 <style>
@@ -29,18 +32,15 @@
 </style>
 
 <body>
-
-
-
     <nav class="navbar navbar-expand-lg navbar-light bg-light bigNavBar navbar-custom ">
         <div class="container">
             <a class="navbar-brand" href="/">Survival Scavenging Prototype</a>
            
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class = 'eachLink'href="#">Home</a>
-                    <a class = 'eachLink'href="#">Lesson</a>
-                    <a class = 'eachLink'href="#">Game</a>
+                    <a class='eachLink'href="#">Home</a>
+                    <a class='eachLink'href="#">Lesson</a>
+                    <a class='eachLink'href="/game">Game</a>
                 </div>
             </div>
         </div>
