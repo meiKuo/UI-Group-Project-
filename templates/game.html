@@ -66,6 +66,7 @@
 
 {% block content %}
 <div class="mt-5">
+    {% if not end %}
     <h1>Eat the edible mushrooms and get out of the forest (alive)!</h1>
     <div class="game-bar my-5 d-inline-flex">
         <div class="lives-container mr-3 d-flex">
@@ -95,6 +96,12 @@
             <a type="button" id="skip" href="/game/{{ question.id + 1 }}" class="game-button">Hmm, let's skip this.</a>
         </div>
     </div>
+    {% else %}
+        <h1>You've reached the end of the quiz. Here are your stats.</h1>
+        <h2>Lives: {{ lives }}</h2>
+        <h2>Score: {{ score }}</h2>
+        <h2>Hunger: {{ hunger }}</h2>
+    {% endif %}
 </div>
 {% endblock %}
 

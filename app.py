@@ -37,25 +37,30 @@ def game(q_idx):
     global lives
     global hunger
     global cur_question
+    global score
+
+    end = False 
 
     if int(q_idx) == 1:
         lives = 4
         hunger = 0
 
-    if int(q_idx) == len(questions) + 1:
-        return "You've reached the end of the quiz."
-
-    if int(q_idx) > len(questions):
-        return "Error: Out of question range."
-
     cur_question = int(q_idx)
 
+    if int(q_idx) == len(questions) + 1:
+        end = True
+
+    if int(q_idx) > len(questions) + 1:
+        return "Error: Out of question range."
+
+    cur_question = cur_question if cur_question <= len(questions) else 1
     m_id = questions[cur_question - 1]["mushroom"]
-    print(mushrooms[m_id])
 
     game_params = {
         "lives": lives,
         "hunger": hunger,
+        "score": score,
+        "end": end,
         "question": questions[cur_question - 1],
         "mushroom": mushrooms[m_id]
     }
@@ -76,6 +81,8 @@ def update():
             lives -= 1
     else:
         score += 1
+    
+    hunger += 10
 
     user_stats = {
         "lives": lives,
