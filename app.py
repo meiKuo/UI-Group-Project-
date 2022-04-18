@@ -20,6 +20,10 @@ data = {
     },
 }
 
+
+lessons = ["Differentiating edible from poisonous mushrooms","Psychedelic Mushrooms"]
+
+
 health = 100
 lives = 3
 hunger = 0
@@ -31,7 +35,7 @@ score = 0
 @app.route('/')
 def homepage():
     top_three = [data["1"], data["2"], data["3"]]
-    return render_template('homepage.html', data=top_three)
+    return render_template('homepage.html', data=[top_three, lessons])
 
 @app.route('/game/<q_idx>', methods=['GET', 'POST'])
 def game(q_idx):
