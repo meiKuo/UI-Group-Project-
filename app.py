@@ -42,6 +42,9 @@ def game(q_idx):
         lives = 4
         hunger = 0
 
+    if int(q_idx) == len(questions) + 1:
+        return "You've reached the end of the quiz."
+
     if int(q_idx) > len(questions):
         return "Error: Out of question range."
 
@@ -81,6 +84,14 @@ def update():
     }
 
     return jsonify(user_stats)
+
+@app.route('/lesson1')
+def lesson():
+    return render_template('lesson1_compare.html', data=data)
+
+@app.route('/lesson2')
+def lesson2():
+    return render_template('lesson2_present.html', data=data)
 
 if __name__ == '__main__':
     app.run(debug=True)

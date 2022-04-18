@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<html>
+
+<head>
+    <!--link js-->
+    <script type="text/javascript" src="{{ url_for('static', filename = 'homepage.js') }}"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
+
+    <script>
+        let data = {{ data| tojson}} 
+    </script>
+
+    <style>
+        .top_ofPage {
+            text-align: center;
+        }
+
+        .lesson_img {
+            width: 300px;
+            height: auto;
+        }
+
+        .comparison_padding {
+            padding-top: 50px;
+        }
+
+        .nextButton {
+            position: fixed;
+            bottom: 50px;
+            right: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top_ofPage">
+        <div title="name_ofLesson"> Lesson 1: Differentiating Edible and Poisonous Mushrooms</div>
+        <div title="small_descript">On the left we have true morel mushrooms and on the right we have false morel
+            mushrooms.</div>
+    </div>
+
+    <div title="left_image_right" class='comparison_padding'>
+        <div class="row" id="row">
+            <div class='col-md-4'>
+                <!-- can be done dynamically -->
+                <li>True morel mushrooms are edible.</li>
+                <li>Uniformly shaped cap</li>
+                <li>Pitted intwards</li>
+                <li>Covered in pits and ridges</li>
+                <li>Attached directly to stem</li>
+            </div>
+            <div class='col-md-4'>
+                <img class='lesson_img'
+                    src='http://www.wideopenspaces.com/wp-content/uploads/2017/03/morel-mushroom-real-fake.jpg'>
+            </div>
+            <div class='col-md-4'>
+                <!-- can be done dynamically -->
+                <li>False morel mushrooms are not edible.</li>
+                <li>Irregularly shaped</li>
+                <li>Bulging outwards</li>
+                <li>Wavy and lobed</li>
+                <li>Hangs freely from the stem</li>
+                <li>When sliced in half, a false morel mushroom will not be hollow, it is filled with cotton-like white
+                    fibers inside.</li>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <a class="right" href="/lesson2"><button class = 'nextButton'>Next</button></a>
+    </div>
+
+</body>
+
+</html>
+
+{% endblock %}
