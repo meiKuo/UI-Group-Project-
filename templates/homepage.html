@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
 
     <script>
-        let data = {{ data | tojson}} 
+        let data = {{ data | tojson}}
     </script>
 
     <style>
@@ -22,7 +22,7 @@
         }
 
         .padButtons{
-            padding: 25px; 
+            padding: 25px;
         }
     </style>
 
@@ -51,7 +51,7 @@
         <div class='row'>
             <div class='col-md-4'></div>
             <div class='col-md-4 title padButtons'>
-                <button class="button">Adventure Time!</button>
+                <a class="right" href="/game/1"><button class="button">Adventure Time!</button></a>
             </div>
         </div>
     </div>
