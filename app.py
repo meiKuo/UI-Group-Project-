@@ -20,6 +20,7 @@ data = {
     },
 }
 
+health = 100
 lives = 3
 hunger = 0
 cur_question = 1
@@ -35,10 +36,12 @@ def homepage():
 @app.route('/game/<q_idx>', methods=['GET', 'POST'])
 def game(q_idx):
     global lives
+    global health
     global hunger
     global cur_question
 
     if int(q_idx) == 1:
+        health = 100
         lives = 3
         hunger = 0
 
@@ -55,6 +58,7 @@ def game(q_idx):
 
     game_params = {
         "lives": lives,
+        "health": health,
         "hunger": hunger,
         "question": questions[cur_question - 1],
         "mushroom": mushrooms[m_id]
@@ -65,6 +69,7 @@ def game(q_idx):
 @app.route('/update', methods=['POST'])
 def update():
     global lives
+    global health
     global score
     global hunger
     idx = request.get_json()
@@ -79,6 +84,7 @@ def update():
 
     user_stats = {
         "lives": lives,
+        "health": health,
         "hunger": hunger,
         "score": score,
     }
