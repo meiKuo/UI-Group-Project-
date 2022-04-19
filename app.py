@@ -52,7 +52,9 @@ def game(path=None):
 
         return render_template('game_map.html', **game_params)
     else:
-        mushroom = quizMushrooms[int(path)]
+        for mush in quizMushrooms:
+            if path == mush['id']:
+                mushroom = mush
         return render_template('game_ind_mushroom.html', mushroom=mushroom)
 
 
@@ -61,7 +63,11 @@ def update():
     global health
     global score
     global hunger
-    idx = request.get_json()
+    global quizMushrooms
+    data = request.get_json()
+    print(data)
+
+    quizMushrooms.remove(data['mushroom'])
 
     # correct = idx == questions[cur_question - 1]["correct_choice"]
 
@@ -75,6 +81,7 @@ def update():
         "health": health,
         "hunger": hunger,
         "score": score,
+
     }
 
     return jsonify(user_stats)

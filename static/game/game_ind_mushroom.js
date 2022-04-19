@@ -37,9 +37,10 @@ function updateOnAnswer(idx) {
     console.log('idx', idx);
     $(".button_row").empty()
     if (idx == 0){
-      $("#dialog").text("No problem, let's move on to another mushroom.")
+      $("#dialog").text("Are you sure you don't want to eat the mushroom?")
       $(".button_row").append($(
-          `<button id="toMapButton">Back to map</button>`
+          `<button id="backButton" class="noEatButton">No, I'm not sure.</button>
+          <button id="toMapButton" class="eatButton">Stay Away. Back to Map</button>`
       ))
     }
     else if (idx == 1){
@@ -67,6 +68,33 @@ function resetChoices() {
             `<a type="button" class="game-button" data-idx=${i}>${val.text}</a>`
         ))
     })
+}
+
+function choiceMade(choice, mushroom){
+  console.log('choice', choice, mushroom);
+
+  let data = {
+    "choice": choice,
+    "mushroom": mushroom
+  }
+
+  $.ajax({
+      type: "POST",
+      url: "/update",
+      dataType : "json",
+      contentType: "application/json; charset=utf-8",
+      data : JSON.stringify(data),
+      success: function(result){
+          console.log('result', result);
+          window.location.href = "/game/map"
+      },
+      error: function(request, status, error){
+          console.log("Error");
+          console.log('request', request)
+          console.log('status', status)
+          console.log('error', error)
+      }
+  });
 }
 
 $(document).ready(function(){
@@ -102,7 +130,8 @@ $(document).ready(function(){
     })
 
     $(document).on("click", "#toMapButton", function() {
-        window.location.href = "/game/map"
+        choiceMade("notEat", mushroom);
+
     })
 
     $(document).on("click", "#backButton", function() {
