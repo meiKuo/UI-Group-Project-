@@ -43,10 +43,15 @@
 }
 
 /* game main */
-body{
+.background_game_map{
   background-image: url('images/background_game_map.png');
   background-repeat: no-repeat;
-  background-position: top center;
+  /* background-position: top center; */
+  height: 1000px;
+  width: 1500px;
+}
+.button_row{
+  display: none;
 }
 .noEatButton{
   background-color: red;
