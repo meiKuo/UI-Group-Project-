@@ -35,3 +35,21 @@ questions = [
         "correct_choice": 0,
     }
 ]
+
+#lessons 
+lessons = {
+    "1": {
+        "lesson_id": "1",
+        "lesson_name": "Differentiating Edible and Poisonous Mushrooms", 
+        "type": "compare", 
+        "mushroom1": "0",
+        "mushrrom2": "0" , 
+    }, 
+    "2": {
+        "lesson_id": "2",
+        "lesson_name": "2Differentiating Edible and Poisonous Mushrooms", 
+        "type": "compare", 
+        "mushroom1": "0",
+        "mushrrom2": "0" , 
+    },
+}

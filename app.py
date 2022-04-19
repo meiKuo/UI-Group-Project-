@@ -6,6 +6,7 @@ app = Flask(__name__)
 
 from data import questions
 from data import mushrooms
+from data import lessons
 
 # add to data
 data = {
@@ -21,7 +22,7 @@ data = {
 }
 
 
-lessons = ["Differentiating edible from poisonous mushrooms","Psychedelic Mushrooms"]
+#essons = ["Differentiating edible from poisonous mushrooms","Psychedelic Mushrooms"]
 
 
 health = 100
@@ -34,8 +35,10 @@ score = 0
 # ROUTES
 @app.route('/')
 def homepage():
-    top_three = [data["1"], data["2"], data["3"]]
-    return render_template('homepage.html', data=[top_three, lessons])
+    lesson_name1 = lessons["1"]
+    lesson_name2 = lessons["2"]
+    print(lesson_name1)
+    return render_template('homepage.html', lesson_name1=lesson_name1, lesson_name2=lesson_name2)
 
 @app.route('/game/<q_idx>', methods=['GET', 'POST'])
 def game(q_idx):

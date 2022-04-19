@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
 
     <script>
-        let data = {{ data| tojson}}[0]
-        let lessons = {{ data| tojson}}[1]
+        let lesson_name1 = {{lesson_name1 | tojson}}
+        let lesson_name2 = {{lesson_name2 | tojson}}
     </script>
 
     <style>
@@ -40,15 +40,14 @@
         <div class='row'>
             <div class='col-md-4'></div>
             <div class='col-md-4 padButtons'>
-                <a class="right" href="/lesson1"><button class="button">Lesson 1: Differentiating edible from poisonous
-                        mushrooms</button></a>
+                <a class="right" href="/lesson1"><button class="button">{{lesson_name1.lesson_name}}</button></a>
             </div>
         </div>
 
         <div class='row'>
             <div class='col-md-4'></div>
             <div class='col-md-4 title padButtons'>
-                <a class="right" href="/lesson2"><button class="button">Lesson 2: Psychedelic Mushrooms</button></a>
+                <a class="right" href="/lesson2"><button class="button">{{lesson_name2.lesson_name}}</button></a>
             </div>
         </div>
 
