@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block head %}
+<script>
+
+</script>
+
+<script type="text/javascript" src="{{ url_for('static', filename = 'game/game_home.js') }}"></script>
+
+{% endblock %}
+
+{% block content %}
+<div>
+    <!-- <h1>Eat the edible mushrooms and get out of the forest (alive)!</h1> -->
+    <div class="game-container">
+        <img class="dialog_box" src="{{ url_for('static', filename='images/dialog_box.png') }}"/>
+        <div id="it1" class="introText it1">Welcome to the Scavenging</div>
+        <div id="it2" class="introText it2">Survival Game! Here we will be</div>
+        <div id="it3" class="introText it3">testing the knowledge you learned</div>
+        <div id="it4" class="introText it4">in the lessons and applying that to the</div>
+        <div id="it5" class="introText it5">wild wild wilderness. Best of luck!</div>
+
+        <button id="home_play_button">Play</button>
+
+        <img class="home_character" src="{{ url_for('static', filename='game/assets/MC.png') }}"/>
+
+    </div>
+</div>
+{% endblock %}

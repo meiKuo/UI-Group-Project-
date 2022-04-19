@@ -25,9 +25,7 @@ lessons = ["Differentiating edible from poisonous mushrooms","Psychedelic Mushro
 
 
 health = 100
-lives = 3
 hunger = 0
-cur_question = 1
 
 score = 0
 
@@ -37,16 +35,17 @@ def homepage():
     top_three = [data["1"], data["2"], data["3"]]
     return render_template('homepage.html', data=[top_three, lessons])
 
+@app.route('/game/home')
+def game_home():
+    return render_template('game_home.html')
+
 @app.route('/game/<q_idx>', methods=['GET', 'POST'])
 def game(q_idx):
-    global lives
     global health
     global hunger
-    global cur_question
 
     if int(q_idx) == 1:
         health = 100
-        lives = 3
         hunger = 0
 
     if int(q_idx) == len(questions) + 1:
@@ -55,39 +54,29 @@ def game(q_idx):
     if int(q_idx) > len(questions):
         return "Error: Out of question range."
 
-    cur_question = int(q_idx)
-
-    m_id = questions[cur_question - 1]["mushroom"]
-    print(mushrooms[m_id])
-
     game_params = {
-        "lives": lives,
         "health": health,
-        "hunger": hunger,
-        "question": questions[cur_question - 1],
-        "mushroom": mushrooms[m_id]
+        "hunger": hunger
     }
 
     return render_template('game.html', **game_params )
 
 @app.route('/update', methods=['POST'])
 def update():
-    global lives
     global health
     global score
     global hunger
     idx = request.get_json()
 
-    correct = idx == questions[cur_question - 1]["correct_choice"]
+    # correct = idx == questions[cur_question - 1]["correct_choice"]
 
-    if not correct:
-        if lives > 0:
-            lives -= 1
-    else:
-        score += 1
+    # if not correct:
+    #     if lives > 0:
+    #         lives -= 1
+    # else:
+    #     score += 1
 
     user_stats = {
-        "lives": lives,
         "health": health,
         "hunger": hunger,
         "score": score,
