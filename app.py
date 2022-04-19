@@ -4,8 +4,7 @@ from flask import render_template
 from flask import Response, request, jsonify, request
 app = Flask(__name__)
 
-from data import questions
-from data import mushrooms
+from data import questions, mushrooms, quizMushrooms
 
 # add to data
 data = {
@@ -42,6 +41,7 @@ def game(path=None):
     elif path == "main":
         global health
         global hunger
+        global quizMushrooms
 
         # if int(q_idx) == 1:
         #     health = 100
@@ -55,7 +55,8 @@ def game(path=None):
 
         game_params = {
             "health": health,
-            "hunger": hunger
+            "hunger": hunger,
+            "mushrooms": quizMushrooms,
         }
 
         return render_template('game.html', **game_params)

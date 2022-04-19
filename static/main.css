@@ -49,9 +49,39 @@
   /* background-position: top center; */
   height: 1000px;
   width: 1500px;
+  position: absolute;
+  margin-left: -200px;
+}
+.character{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 300px;
+}
+.mushroom_grid{
+  padding-top: 200px;
+  /* background-color: blue;
+  text-align: center;
+  align-self: center; */
+}
+.mushroom_row{
+  /* background-color: blue; */
+  text-align: center;
+  margin-bottom: 100px;
+}
+.mushroom_icon{
+  height: 200px;
+  padding: 0 50px;
+}
+.button_row_cont{
+  display: none;
 }
 .button_row{
-  display: none;
+  display: flex;
+  position: absolute;
+  bottom: 0px;
+  justify-content: space-evenly;
+  width: 1500px;
 }
 .noEatButton{
   background-color: red;

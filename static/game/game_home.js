@@ -7,7 +7,7 @@ $(document).ready(() => {
   });
 
   $("#home_play_button").click(function(){
-
+    window.location.href = "/game/main"
   });
 
 
