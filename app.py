@@ -36,30 +36,26 @@ def homepage():
 
 @app.route('/game/<path>')
 def game(path=None):
+    print(path)
+    global health
+    global hunger
+    global quizMushrooms
+    global game_params
+
     if path == "home":
         return render_template('game_home.html')
-    elif path == "main":
-        global health
-        global hunger
-        global quizMushrooms
-
-        # if int(q_idx) == 1:
-        #     health = 100
-        #     hunger = 0
-
-        # if int(q_idx) == len(questions) + 1:
-        #     return "You've reached the end of the quiz."
-        #
-        # if int(q_idx) > len(questions):
-        #     return "Error: Out of question range."
-
+    elif path == "map":
         game_params = {
             "health": health,
             "hunger": hunger,
             "mushrooms": quizMushrooms,
         }
 
-        return render_template('game.html', **game_params)
+        return render_template('game_map.html', **game_params)
+    else:
+        mushroom = quizMushrooms[int(path)]
+        return render_template('game_ind_mushroom.html', mushroom=mushroom)
+
 
 @app.route('/update', methods=['POST'])
 def update():

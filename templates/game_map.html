@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block head %}
+
+<script>
+    let mushrooms = {{ mushrooms | tojson }}
+</script>
+
+<script type="text/javascript" src="{{ url_for('static', filename = 'game/game.js') }}"></script>
+
+{% endblock %}
+
+{% block content %}
+<div class="background_game_map">
+  <img class="character" src="{{ url_for('static', filename='game/assets/MC.png') }}"/>
+
+  <div class="game-bar row">
+      <div class="healthContainer col-md-3">
+          <h2>Health: {{ health }}/100</h2>
+      </div>
+      <div class="hungerContainer col-md-4">
+          <h2>Hunger: {{ hunger }}/100</h2>
+      </div>
+  </div>
+
+  <div class="mushroom_grid">
+    <div class="mushroom_row row justify-content-center">
+      <div id="heart-container">
+        {% for mushroom in mushrooms %}
+          <a href="/game/{{mushroom['id']}}">
+            <img src="{{ url_for('static', filename=mushroom['img_url'] ) }}" class="mushroom_icon"/>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

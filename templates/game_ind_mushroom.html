@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block head %}
+
+<script>
+    let mushroom = {{ mushroom | tojson }}
+</script>
+
+<script type="text/javascript" src="{{ url_for('static', filename = 'game/game.js') }}"></script>
+
+{% endblock %}
+
+{% block content %}
+<div class="background_no_map">
+  <img class="character" src="{{ url_for('static', filename='game/assets/MC.png') }}"/>
+
+  <div class="main_mushroom_cont">
+    <img src="{{ url_for('static', filename=mushroom['img_url'] ) }}" class="main_mushroom"/>
+  </div>
+
+  <div class="button_row">
+      <button id="noEatButton" class="noEatButton">This looks dangerous. Let's stay away.</button>
+      <button id="notSureButton" class="notSureButton">Hmm, not sure</button>
+      <button id="eatButton" class="eatButton">Looks edible! Let's eat it!</button>
+  </div>
+
+</div>
+{% endblock %}

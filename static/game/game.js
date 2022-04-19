@@ -68,8 +68,8 @@ function resetChoices() {
     })
 }
 
-$(document).ready(() => {
-    resetChoices()
+$(document).ready(function(){
+    // resetChoices()
 
     $(document).on("click", ".game-button", function() {
         const idx = $(this).data("idx")

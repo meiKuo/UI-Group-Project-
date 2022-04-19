@@ -42,7 +42,7 @@
   margin-top: 330px;
 }
 
-/* game main */
+/* game map */
 .background_game_map{
   background-image: url('images/background_game_map.png');
   background-repeat: no-repeat;
@@ -52,6 +52,7 @@
   position: absolute;
   margin-left: -200px;
 }
+
 .character{
   position: absolute;
   bottom: 0;
@@ -73,8 +74,22 @@
   height: 200px;
   padding: 0 50px;
 }
-.button_row_cont{
-  display: none;
+
+/* game mushroom */
+.background_no_map{
+  height: 1000px;
+  width: 1500px;
+  position: absolute;
+  margin-left: -200px;
+}
+.main_mushroom_cont{
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.main_mushroom{
+  height: 700px;
+  padding-top: 100px;
 }
 .button_row{
   display: flex;
