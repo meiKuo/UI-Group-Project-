@@ -35,31 +35,30 @@ def homepage():
     top_three = [data["1"], data["2"], data["3"]]
     return render_template('homepage.html', data=[top_three, lessons])
 
-@app.route('/game/home')
-def game_home():
-    return render_template('game_home.html')
+@app.route('/game/<path>')
+def game(path=None):
+    if path == "home":
+        return render_template('game_home.html')
+    elif path == "main":
+        global health
+        global hunger
 
-@app.route('/game/<q_idx>', methods=['GET', 'POST'])
-def game(q_idx):
-    global health
-    global hunger
+        # if int(q_idx) == 1:
+        #     health = 100
+        #     hunger = 0
 
-    if int(q_idx) == 1:
-        health = 100
-        hunger = 0
+        # if int(q_idx) == len(questions) + 1:
+        #     return "You've reached the end of the quiz."
+        #
+        # if int(q_idx) > len(questions):
+        #     return "Error: Out of question range."
 
-    if int(q_idx) == len(questions) + 1:
-        return "You've reached the end of the quiz."
+        game_params = {
+            "health": health,
+            "hunger": hunger
+        }
 
-    if int(q_idx) > len(questions):
-        return "Error: Out of question range."
-
-    game_params = {
-        "health": health,
-        "hunger": hunger
-    }
-
-    return render_template('game.html', **game_params )
+        return render_template('game.html', **game_params)
 
 @app.route('/update', methods=['POST'])
 def update():
