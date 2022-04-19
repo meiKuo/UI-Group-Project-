@@ -1,11 +1,10 @@
+/* game_home */
 .dialog_box{
   height: 500px;
   width: 700px;
   position: absolute;
   margin-left: 100px;
 }
-
-/* game_home */
 .it1{
   margin-left: 215px;
   margin-top: 70px;
@@ -76,8 +75,28 @@
 }
 
 /* game mushroom */
+.dialog{
+  height: 250px;
+  width: 620px;
+  position: absolute;
+  margin-top: 180px;
+  margin-left: -10px;
+  color: black;
+  font-size: 50px;
+  vertical-align: center;
+  text-align: center;
+  word-wrap: break-word;
+  /* background-color: pink; */
+}
+.square_dialog_box{
+  height: 400px;
+  width: 700px;
+  position: absolute;
+  margin-top: 150px;
+  margin-left: -50px;
+}
 .background_no_map{
-  height: 1000px;
+  height: 900px;
   width: 1500px;
   position: absolute;
   margin-left: -200px;
@@ -88,8 +107,9 @@
   text-align: center;
 }
 .main_mushroom{
-  height: 700px;
-  padding-top: 100px;
+  height: 600px;
+  padding-top: 150px;
+  padding-left: 600px;
 }
 .button_row{
   display: flex;

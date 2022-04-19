@@ -6,13 +6,18 @@
     let mushroom = {{ mushroom | tojson }}
 </script>
 
-<script type="text/javascript" src="{{ url_for('static', filename = 'game/game.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename = 'game/game_ind_mushroom.js') }}"></script>
 
 {% endblock %}
 
 {% block content %}
 <div class="background_no_map">
   <img class="character" src="{{ url_for('static', filename='game/assets/MC.png') }}"/>
+  <img class="square_dialog_box" src="{{ url_for('static', filename='images/square_dialog_box.png') }}"/>
+
+  <div id="dialog" class="dialog">
+  </div>
+
 
   <div class="main_mushroom_cont">
     <img src="{{ url_for('static', filename=mushroom['img_url'] ) }}" class="main_mushroom"/>

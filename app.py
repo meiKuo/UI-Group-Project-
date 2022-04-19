@@ -36,7 +36,6 @@ def homepage():
 
 @app.route('/game/<path>')
 def game(path=None):
-    print(path)
     global health
     global hunger
     global quizMushrooms
