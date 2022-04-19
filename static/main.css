@@ -42,14 +42,12 @@
   margin-top: 330px;
 }
 
-
-.game-container {
-    /* max-width: var(--game-width);
-    height: var(--game-height);
-    margin: auto; */
+/* game main */
+body{
+  background-image: url('images/background_game_map.png');
+  background-repeat: no-repeat;
+  background-position: top center;
 }
-
-
 .noEatButton{
   background-color: red;
   color: black;

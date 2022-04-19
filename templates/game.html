@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block head %}
-<style>
+<!-- <style>
     :root {
         --game-width: 700px;
         --game-height: 100px;
@@ -41,7 +41,6 @@
         display: flex;
         justify-content: space-evenly;
         font-size: 20px;
-
     }
 
     .game-button:hover {
@@ -51,48 +50,14 @@
 </style>
 
 <script>
-    let question = {{ question | tojson }}
-</script>
+</script> -->
 
 <script type="text/javascript" src="{{ url_for('static', filename = 'game/game.js') }}"></script>
 
 {% endblock %}
 
 {% block content %}
-<div class="mt-5">
-    <h1>Eat the edible mushrooms and get out of the forest (alive)!</h1>
-    <div class="game-bar row">
-        <div class="livesContainer col-md-3 row">
-            <h2>Lives:</h2>
-            <div id="heart-container">
-            {% for l in range(lives) %}
-            <img src="{{ url_for('static', filename='game/assets/heart.png') }}"/>
-            {% endfor %}
-            </div>
-        </div>
-        <div class="healthContainer col-md-3">
-            <h2>Health: {{ health }}/100</h2>
-        </div>
-        <div class="hungerContainer col-md-4">
-            <h2>Hunger: {{ hunger }}/100</h2>
-        </div>
-    </div>
-    <div class="game-container">
-        <div class="dialogue-box">
-            <span id="dialogue">{{ question.question }}</span>
-        </div>
-        <div class="game-area my-5">
-            <img class="character-img" src="{{ url_for('static', filename='game/assets/MC.png') }}"/>
-            <div class="game-img">
-                <img class="img-fluid" src="{{ url_for('static', filename=mushroom.img_url) }}" />
-            </div>
-            <img class="character-img" src="{{ url_for('static', filename='game/assets/TG.png') }}"/>
-        </div>
-        <div class="button-box">
-            <button id="noEatButton" class="noEatButton">This looks dangerous. Let's stay away.</button>
-            <button id="notSureButton" class="notSureButton">Hmm, not sure</button>
-            <button id="eatButton" class="eatButton">Looks edible! Let's eat it!</button>
-        </div>
-    </div>
+<div class="game_background">
+
 </div>
 {% endblock %}
