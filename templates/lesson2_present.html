@@ -12,10 +12,6 @@
 
     <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
 
-    <script>
-        let lesson = {{ lesson| tojson}} 
-        let mushroom = {{ mushroom| tojson}} 
-    </script>
 
     <style>
         .top_ofPage {
@@ -54,21 +50,20 @@
 
 <body>
     <div class="top_ofPage">
-        <div title="name_ofLesson" class = 'lessonName'> Lesson 2: {{lesson.lesson_name}} </div>
-        <div title="small_descript">{{lesson.description}}</div>
+        <div title="name_ofLesson" class = 'lessonName'> Lesson 2: {{lesson_name}} </div>
+        <div title="small_descript">{{description}}</div>
     </div>
 
     <div class="card">
         <div class='top_ofPage'>
-            <h4><b>{{mushroom.name}}</b></h4>
-            <img class='lesson_img' src='{{mushroom.img_url}}'>
+            <h4><b>{{mushroom1.name}}</b></h4>
+            <img class='lesson_img' src='{{mushroom1.img_url}}'>
         </div>
 
         <div class="container">
-            <li>{{mushroom.features[0]}}</li>
-            <li>{{mushroom.features[1]}}</li>
-            <li>{{mushroom.features[2]}}</li>
-            <li>{{mushroom.features[3]}}</li>
+            {% for f in mushroom1.features %}
+                <li>{{ f }}</li>
+            {% endfor %}
         </div>
     </div>
 
