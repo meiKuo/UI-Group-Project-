@@ -3,7 +3,7 @@ mushrooms = {
         "id": "0",
         "name": "Black Morel",
         "edible": True,
-        "img_url": 'images/morel_1.png',
+        "img_url": 'https://cdn.dribbble.com/users/2860422/screenshots/9385109/media/dc407522c3ef84385e1c7cdcb01d90e6.png?compress=1&resize=400x300',
         "cut_img_url": "images/morel_1.png",
         "features": [
             "Irregularly shaped",
@@ -16,10 +16,10 @@ mushrooms = {
         "id": "0",
         "name": "False Morel",
         "edible": True,
-        "img_url": 'images/morel_1.png',
+        "img_url": 'https://as1.ftcdn.net/v2/jpg/02/94/34/30/1000_F_294343087_4w1GR3vVswC4RoOslk9VxORUxiRb20Rw.jpg',
         "cut_img_url": "images/morel_1.png",
         "features": [
-            "Irregularly shaped",
+            "2Irregularly shaped",
             "Bulging outwards",
             "Wavy and lobed",
             "Hangs freely from the stem"
