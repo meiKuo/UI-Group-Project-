@@ -133,3 +133,19 @@
   color: black;
   padding: 10px 20px;
 }
+
+/* End game */
+#end_game_title{
+  font-size: 100px;
+  word-wrap: break-word;
+  color: black;
+  text-align: center;
+  margin-top: 50px;
+}
+#end_game_sub{
+  font-size: 70px;
+  word-wrap: break-word;
+  color: #616161;
+  text-align: center;
+  margin-top: 50px;
+}

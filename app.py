@@ -1,7 +1,7 @@
 import json
 from flask import Flask
 from flask import render_template
-from flask import Response, request, jsonify, request
+from flask import Response, request, jsonify, request, redirect
 app = Flask(__name__)
 
 from data import questions, mushrooms, quizMushrooms
@@ -40,10 +40,11 @@ def game(path=None):
     global hunger
     global quizMushrooms
     global game_params
+    global mushroom
 
     if path == "home":
         return render_template('game_home.html')
-    elif path == "map":
+    elif path == "map" and len(quizMushrooms):
         game_params = {
             "health": health,
             "hunger": hunger,
@@ -51,11 +52,20 @@ def game(path=None):
         }
 
         return render_template('game_map.html', **game_params)
-    else:
+    elif len(quizMushrooms) and health > 0:
+        print(len(quizMushrooms), health)
         for mush in quizMushrooms:
             if path == mush['id']:
-                mushroom = mush
-        return render_template('game_ind_mushroom.html', mushroom=mushroom)
+                return render_template('game_ind_mushroom.html', mushroom=mush)
+        return 'End of game!'
+    else:
+        data = {
+            'health': health,
+            'hunger': hunger,
+            'quizMushrooms': quizMushrooms,
+        }
+
+        return render_template('end_game.html', data=data)
 
 
 @app.route('/update', methods=['POST'])
