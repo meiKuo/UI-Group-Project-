@@ -24,9 +24,7 @@ lessons = ["Differentiating edible from poisonous mushrooms","Psychedelic Mushro
 
 
 health = 100
-hunger = 0
-
-score = 0
+hunger = 10
 
 # ROUTES
 @app.route('/')
@@ -71,27 +69,42 @@ def game(path=None):
 @app.route('/update', methods=['POST'])
 def update():
     global health
-    global score
     global hunger
     global quizMushrooms
     data = request.get_json()
     print(data)
 
+    if data['choice'] == 'eat' and data['mushroom']['edible']:
+        # user ate and mushroom edible
+        # reduce hunger and increase health
+        if hunger > 10:
+            hunger = hunger - 10
+        else:
+            hunger = 0
+
+        if health < 95:
+            health = health + 5
+        else:
+            health = 100
+    elif data['choice'] == 'eat' and not data['mushroom']['edible']:
+        # user ate but mushroom not edible
+        # reduce health and increase hunger
+        if health > 10:
+            health = health - 10
+        else:
+            health = 0
+        if hunger < 95:
+            hunger = hunger + 5
+        else:
+            hunger = 100
+            health = health - 10
+
+
     quizMushrooms.remove(data['mushroom'])
-
-    # correct = idx == questions[cur_question - 1]["correct_choice"]
-
-    # if not correct:
-    #     if lives > 0:
-    #         lives -= 1
-    # else:
-    #     score += 1
 
     user_stats = {
         "health": health,
         "hunger": hunger,
-        "score": score,
-
     }
 
     return jsonify(user_stats)

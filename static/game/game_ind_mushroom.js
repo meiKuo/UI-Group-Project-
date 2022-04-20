@@ -55,7 +55,7 @@ function updateOnAnswer(idx) {
       $("#dialog").text("Are you sure it's safe to eat?")
       $(".button_row").append($(
           `<button id="backButton" class="noEatButton">No, I'm not sure.</button>
-          <button id="eatButton2" class="eatButton">Yes, let's eat it</button>`
+          <button id="finalEatButton" class="eatButton">Yes, let's eat it</button>`
       ))
     }
 
@@ -71,8 +71,34 @@ function resetChoices() {
 }
 
 function choiceMade(choice, mushroom){
-  console.log('choice', choice, mushroom);
+  if (choice == 'eat'){
+    $("#dialog").text("You just ate a " + mushroom['name'] + " mushroom!")
+    setTimeout(
+      function(){
+        if (mushroom['edible']){
+          $("#dialog").text("Congratulations! It was an edible mushroom :)")
+          setTimeout(function(){
+            console.log('changing screens now')
+            choicePostReq(choice, mushroom);
+          }, 2500);
+        }
+        else{
+          $("#dialog").text("Unfortunately it was poisonous so you lost 10 health :(")
+          setTimeout(function(){
+            console.log('changing screens now')
+            choicePostReq(choice, mushroom);
+          }, 3000);
+        }
+      }, 2500);
 
+  }
+  else {
+    choicePostReq(choice, mushroom)
+  }
+}
+
+function choicePostReq(choice, mushroom){
+  console.log('choicePostReq', choice, mushroom)
   let data = {
     "choice": choice,
     "mushroom": mushroom
@@ -131,7 +157,9 @@ $(document).ready(function(){
 
     $(document).on("click", "#toMapButton", function() {
         choiceMade("notEat", mushroom);
-
+    })
+    $(document).on("click", "#finalEatButton", function() {
+        choiceMade("eat", mushroom);
     })
 
     $(document).on("click", "#backButton", function() {
@@ -142,9 +170,9 @@ $(document).ready(function(){
             <button id="notSureButton" class="notSureButton">Hmm, not sure</button>
             <button id="eatButton" class="eatButton">Looks edible! Let's eat it!</button>`
         ))
-
-
     })
+
+
     //
     // $(document).on("click", "#eatButton2", function() {
     //     window.location.href = "/game/1"
