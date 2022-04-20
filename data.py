@@ -19,7 +19,7 @@ mushrooms = {
         "img_url": 'https://as1.ftcdn.net/v2/jpg/02/94/34/30/1000_F_294343087_4w1GR3vVswC4RoOslk9VxORUxiRb20Rw.jpg',
         "cut_img_url": "images/morel_1.png",
         "features": [
-            "2Irregularly shaped",
+            "Irregularly shaped",
             "Bulging outwards",
             "Wavy and lobed",
             "Hangs freely from the stem"
@@ -32,7 +32,21 @@ mushrooms = {
         "img_url": 'https://cdn-s-www.bienpublic.com/images/8DF87B22-AADD-4FC0-8FC7-8632C3480795/NW_raw/les-champignons-tels-que-les-quot-psilocybe-semilanceata-quot-sont-inscrits-sur-la-liste-des-stupefiants-depuis-1990-en-france-photo-d-illustration-pixabay-domaine-public-1507911226.jpg',
         "cut_img_url": "images/morel_1.png",
         "features": [
-            "3Irregularly shaped",
+            "Irregularly shaped",
+            "Bulging outwards",
+            "Wavy and lobed",
+            "Hangs freely from the stem"
+        ]
+    },
+    "3": {
+        "id": "3",
+        "name": "Giant Puffball",
+        "edible": True,
+        "poisonous": False,
+        "img_url": 'images/puffball_mushroom_1.png',
+        "cut_img_url": "images/puffball_mushroom_open_1.png",
+        "features": [
+            "Irregularly shaped",
             "Bulging outwards",
             "Wavy and lobed",
             "Hangs freely from the stem"
@@ -115,6 +129,8 @@ quizMushrooms = [
     },
 
 ]
+
+"""
 questions = [
     {
         "id": 1,
@@ -135,31 +151,28 @@ questions = [
         "correct_choice": 0,
     }
 ]
+"""
 
 #lessons 
-lessons = {
-    "1": {
-        "lesson_id": "1",
+lessons = [
+    {
         "lesson_name": "Differentiating Edible and Poisonous Mushrooms", 
         "description": "On the left we have true morel mushrooms and on the right we have false morel mushrooms.",
         "type": "compare", 
         "mushroom1": "0",
-        "mushrrom2": "0" , 
+        "mushroom2": "1" , 
     }, 
-    "2": {
-        "lesson_id": "2",
-        "lesson_name": "2Differentiating Edible and Poisonous Mushrooms",
+    {
+        "lesson_name": "Differentiating Edible and Poisonous Mushrooms",
         "description": "On the left we have true morel mushrooms and on the right we have false morel mushrooms.",
-        "type": "description", 
+        "type": "compare", 
         "mushroom1": "0",
-        "mushrrom2": "0" , 
+        "mushroom2": "2" , 
     },
-    "3": {
-        "lesson_id": "3",
+    {
         "lesson_name": "Identifying Psychedelic Mushrooms",
         "description": "There are 227 known and classified species of psychedelic mushrooms.",
         "type": "description", 
-        "mushroom1": "0",
-        "mushrrom2": "0" , 
+        "mushroom1": "2",
     },
-}
+]

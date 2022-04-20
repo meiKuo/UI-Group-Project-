@@ -1,27 +1,11 @@
 import json
+from operator import le
 from flask import Flask
 from flask import render_template
 from flask import Response, request, jsonify, request, redirect
 app = Flask(__name__)
 
-from data import questions, mushrooms, quizMushrooms, lessons
-
-# add to data
-data = {
-    "1": {
-        "mushroom": "1"
-    },
-    "2": {
-        "mushroom": "2"
-    },
-    "3": {
-        "mushroom": "3"
-    },
-}
-
-
-#essons = ["Differentiating edible from poisonous mushrooms","Psychedelic Mushrooms"]
-
+from data import mushrooms, quizMushrooms, lessons
 
 health = 100
 hunger = 10
@@ -29,8 +13,8 @@ hunger = 10
 # ROUTES
 @app.route('/')
 def homepage():
-    lesson_name1 = lessons["1"]
-    lesson_name3 = lessons["3"]
+    lesson_name1 = lessons[0]
+    lesson_name3 = lessons[2]
     print(lesson_name1)
     return render_template('homepage.html', lesson_name1=lesson_name1, lesson_name3=lesson_name3)
 
@@ -119,18 +103,31 @@ def update():
 
     return jsonify(user_stats)
 
-@app.route('/lesson1')
-def lesson():
-    mushroom1 = mushrooms["0"]
-    mushroom2 = mushrooms["1"]   
-    lesson_name1 = lessons["1"]
-    return render_template('lesson1_compare.html', mushroom1 = mushroom1, mushroom2 = mushroom2, lesson_name1 = lesson_name1)
+@app.route('/lesson/<id>')
+def lesson(id):
+    global lessons
+    lesson_id = int(id) - 1
+    if lesson_id >= len(lessons) or lesson_id < 0:
+        return "Error: Invalid lesson number."
 
-@app.route('/lesson2')
-def lesson2():
-    lesson = lessons["3"]
-    mushroom = mushrooms['2']
-    return render_template('lesson2_present.html', lesson=lesson, mushroom = mushroom)
+    
+    cur_lesson = lessons[lesson_id]
+    if cur_lesson["type"] == "compare":
+        lesson_params = {
+            "lesson_name": cur_lesson["lesson_name"],
+            "description": cur_lesson["description"],
+            "mushroom1": mushrooms[cur_lesson["mushroom1"]],
+            "mushroom2": mushrooms[cur_lesson["mushroom2"]]
+        }
+        return render_template('lesson1_compare.html', **lesson_params)
+    
+    else:
+        lesson_params = {
+            "lesson_name": cur_lesson["lesson_name"],
+            "description": cur_lesson["description"],
+            "mushroom1": mushrooms[cur_lesson["mushroom1"]],
+        }
+        return render_template('lesson2_present.html', **lesson_params)
 
 if __name__ == '__main__':
     app.run(debug=True)
