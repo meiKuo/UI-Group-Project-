@@ -68,10 +68,14 @@ function choiceMade(choice, mushroom){
           }, 3000);
         }
       }, 2500);
-
   }
   else {
-    choicePostReq(choice, mushroom);
+    $(".button_row").empty()
+    $("#dialog").text("By choosing not to eat a mushroom you have gotten hungier.")
+    setTimeout(
+      function(){
+        choicePostReq(choice, mushroom);
+      }, 3000);
   }
 }
 
