@@ -74,11 +74,11 @@ quizMushrooms = [
     },
     {
         "id": "4",
-        "name": "Psilocybe Semilanceata",
-        "edible": False,
-        "poisonous": True,
-        "img_url": 'images/psychedelic_1.png',
-        "cut_img_url": "images/psychedelic_1.png",
+        "name": "Giant Puffball",
+        "edible": True,
+        "poisonous": False,
+        "img_url": 'images/puffball_mushroom_1.png',
+        "cut_img_url": "images/puffball_mushroom_open_1.png",
         "features": [
             "Irregularly shaped",
             "Bulging outwards",
