@@ -82,8 +82,8 @@ def update():
         else:
             hunger = 0
 
-        if health < 95:
-            health = health + 5
+        if health < 90:
+            health = health + 10
         else:
             health = 100
     elif data['choice'] == 'eat' and not data['mushroom']['edible']:
@@ -93,8 +93,16 @@ def update():
             health = health - 10
         else:
             health = 0
-        if hunger < 95:
-            hunger = hunger + 5
+        if hunger < 90:
+            hunger = hunger + 10
+        else:
+            hunger = 100
+            health = health - 10
+    elif data['choice'] != 'eat':
+        # user chose not to eat
+        # increase hunger
+        if hunger < 90:
+            hunger = hunger + 10
         else:
             hunger = 100
             health = health - 10

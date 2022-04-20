@@ -1,40 +1,26 @@
-function submitUserAnswer(idx) {
-    $.ajax({
-        type: "POST",
-        url: "/update",
-        dataType : "json",
-        contentType: "application/json; charset=utf-8",
-        data : JSON.stringify(idx),
-        success: function(result) {
-            console.log(result)
-            updateLives(result["lives"])
-            updateOnAnswer(idx)
-        },
-        error: function(request, status, error){
-            console.log("Error");
-            console.log(request)
-            console.log(status)
-            console.log(error)
-        }
-    });
-}
-
-function updateLives(nLives) {
-    $("#heart-container").empty()
-    for (let i = 0; i < nLives; i++) {
-        $("#heart-container").append($(
-            `<img src='/static/game/assets/heart.png' />`
-        ))
-    }
-}
-
-function updateHunger(){
-
-}
+// function submitUserAnswer(idx) {
+//     $.ajax({
+//         type: "POST",
+//         url: "/update",
+//         dataType : "json",
+//         contentType: "application/json; charset=utf-8",
+//         data : JSON.stringify(idx),
+//         success: function(result) {
+//             console.log(result)
+//             updateLives(result["lives"])
+//             updateOnAnswer(idx)
+//         },
+//         error: function(request, status, error){
+//             console.log("Error");
+//             console.log(request)
+//             console.log(status)
+//             console.log(error)
+//         }
+//     });
+// }
 
 function updateOnAnswer(idx) {
     // $("#dialogue").text(question.choices[idx].dialogue)
-    console.log('idx', idx);
     $(".button_row").empty()
     if (idx == 0){
       $("#dialog").text("Are you sure you don't want to eat the mushroom?")
@@ -61,15 +47,6 @@ function updateOnAnswer(idx) {
 
 }
 
-
-// function resetChoices() {
-//     $.each(question.choices, (i, val) => {
-//         $(".button-box").append($(
-//             `<a type="button" class="game-button" data-idx=${i}>${val.text}</a>`
-//         ))
-//     })
-// }
-
 function choiceMade(choice, mushroom){
   if (choice == 'eat'){
     $(".button_row").empty()
@@ -94,12 +71,11 @@ function choiceMade(choice, mushroom){
 
   }
   else {
-    choicePostReq(choice, mushroom)
+    choicePostReq(choice, mushroom);
   }
 }
 
 function choicePostReq(choice, mushroom){
-  console.log('choicePostReq', choice, mushroom)
   let data = {
     "choice": choice,
     "mushroom": mushroom
