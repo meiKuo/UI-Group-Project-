@@ -6,19 +6,26 @@
 
 <head>
     <!--link js-->
-    <script type="text/javascript" src="{{ url_for('static', filename = 'homepage.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename = 'lesson1_compare.js') }}"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
         crossorigin="anonymous">
 
     <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
 
     <script>
-        let data = {{ data| tojson}} 
+        let mushroom1 = {{ mushroom1| tojson}}
+        let mushroom2 = {{ mushroom2| tojson}}
+        let lesson_name1 = {{ lesson_name1 | tojson}}
     </script>
 
     <style>
         .top_ofPage {
             text-align: center;
+        }
+
+        .lessonName{
+            font-size: 30px;
+            padding-bottom: 20px;
         }
 
         .lesson_img {
@@ -35,46 +42,60 @@
             bottom: 50px;
             right: 100px;
         }
+
+        .card {
+            box-shadow: 0 4px 8px 0;
+        }
+
+        .container {
+            padding: 2px 16px;
+        }
     </style>
 </head>
 
 <body>
     <div class="top_ofPage">
-        <div title="name_ofLesson"> Lesson 1: Differentiating Edible and Poisonous Mushrooms</div>
-        <div title="small_descript">On the left we have true morel mushrooms and on the right we have false morel
-            mushrooms.</div>
+        <div title="name_ofLesson" class = 'lessonName'> Lesson 1: {{lesson_name1.lesson_name}}</div>
+        <div title="small_descript">{{lesson_name1.description}}</div>
     </div>
 
     <div title="left_image_right" class='comparison_padding'>
         <div class="row" id="row">
-            <div class='col-md-4'>
-                <!-- can be done dynamically -->
-                <li>True morel mushrooms are edible.</li>
-                <li>Uniformly shaped cap</li>
-                <li>Pitted intwards</li>
-                <li>Covered in pits and ridges</li>
-                <li>Attached directly to stem</li>
+            <div class='col-md-6'>
+                <div class="card">
+                    <div class='top_ofPage'>
+                        <h4><b>{{mushroom1.name}}</b></h4>
+                        <img class='lesson_img' src='{{mushroom1.img_url}}'>
+                    </div>
+
+                    <div class="container">
+                        <li>{{mushroom1.features[0]}}</li>
+                        <li>{{mushroom1.features[1]}}</li>
+                        <li>{{mushroom1.features[2]}}</li>
+                        <li>{{mushroom1.features[3]}}</li>
+                    </div>
+                </div>
             </div>
-            <div class='col-md-4'>
-                <img class='lesson_img'
-                    src='http://www.wideopenspaces.com/wp-content/uploads/2017/03/morel-mushroom-real-fake.jpg'>
-            </div>
-            <div class='col-md-4'>
-                <!-- can be done dynamically -->
-                <li>False morel mushrooms are not edible.</li>
-                <li>Irregularly shaped</li>
-                <li>Bulging outwards</li>
-                <li>Wavy and lobed</li>
-                <li>Hangs freely from the stem</li>
-                <li>When sliced in half, a false morel mushroom will not be hollow, it is filled with cotton-like white
-                    fibers inside.</li>
+
+            <div class='col-md-6'>
+                <div class="card">
+                    <div class='top_ofPage'>
+                        <h4><b>{{mushroom2.name}}</b></h4>
+                        <img class='lesson_img' src='{{mushroom2.img_url}}'>
+                    </div>
+                    <div class="container">
+                        <li>{{mushroom2.features[0]}}</li>
+                        <li>{{mushroom2.features[1]}}</li>
+                        <li>{{mushroom2.features[2]}}</li>
+                        <li>{{mushroom2.features[3]}}</li>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div>
-        <a class="right" href="/lesson2"><button class = 'nextButton'>Next</button></a>
-    </div>
+        <div>
+            <a class="right" href="/lesson2"><button class='nextButton'>Next</button></a>
+        </div>
 
 </body>
 

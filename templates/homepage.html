@@ -13,24 +13,32 @@
     <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
 
     <script>
-        let data = {{ data| tojson}}[0]
-        let lessons = {{ data| tojson}}[1]
+        let lesson_name1 = {{lesson_name1 | tojson}}
+        let lesson_name3 = {{lesson_name3 | tojson}}
     </script>
 
     <style>
-        .title {
+        .title{
+            font-size: 30px;
+        }
+        .center {
             text-align: center;
         }
 
         .padButtons {
             padding: 25px;
         }
+
+        .lessonName{
+            padding-bottom: 20px;
+        }
+
     </style>
 
 </head>
 
 <body>
-    <div class='title'>
+    <div class='center lessonName title'>
         Mushroom Lessons
     </div>
 
@@ -38,22 +46,21 @@
         <div class='row'>
             <div class='col-md-4'></div>
             <div class='col-md-4 padButtons'>
-                <a class="right" href="/lesson1"><button class="button">Lesson 1: Differentiating edible from poisonous
-                        mushrooms</button></a>
+                <a class="lessonName" href="/lesson1"><button class="button">{{lesson_name1.lesson_name}}</button></a>
             </div>
         </div>
 
         <div class='row'>
             <div class='col-md-4'></div>
-            <div class='col-md-4 title padButtons'>
-                <a class="right" href="/lesson2"><button class="button">Lesson 2: Psychedelic Mushrooms</button></a>
+            <div class='col-md-4 center padButtons'>
+                <a class="lessonName" href="/lesson2"><button class="button">{{lesson_name3.lesson_name}}</button></a>
             </div>
         </div>
 
         <div class='row'>
             <div class='col-md-4'></div>
-            <div class='col-md-4 title padButtons'>
-                <a class="right" href="/game/home"><button class="button">Adventure Time!</button></a>
+            <div class='col-md-4 center padButtons'>
+                <a class="lessonName" href="/game/home"><button class="button">Adventure Time!</button></a>
             </div>
         </div>
     </div>
