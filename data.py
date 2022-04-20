@@ -13,7 +13,7 @@ mushrooms = {
         ]
     },
     "1": {
-        "id": "0",
+        "id": "1",
         "name": "False Morel",
         "edible": True,
         "img_url": 'https://as1.ftcdn.net/v2/jpg/02/94/34/30/1000_F_294343087_4w1GR3vVswC4RoOslk9VxORUxiRb20Rw.jpg',
@@ -24,7 +24,21 @@ mushrooms = {
             "Wavy and lobed",
             "Hangs freely from the stem"
         ]
-    }
+    }, 
+    "2": {
+        "id": "2",
+        "name": "Death Cap",
+        "edible": True,
+        "img_url": 'https://cdn-s-www.bienpublic.com/images/8DF87B22-AADD-4FC0-8FC7-8632C3480795/NW_raw/les-champignons-tels-que-les-quot-psilocybe-semilanceata-quot-sont-inscrits-sur-la-liste-des-stupefiants-depuis-1990-en-france-photo-d-illustration-pixabay-domaine-public-1507911226.jpg',
+        "cut_img_url": "images/morel_1.png",
+        "features": [
+            "3Irregularly shaped",
+            "Bulging outwards",
+            "Wavy and lobed",
+            "Hangs freely from the stem"
+        ]
+    },
+
 }
 
 # Questions for quiz
@@ -136,7 +150,15 @@ lessons = {
         "lesson_id": "2",
         "lesson_name": "2Differentiating Edible and Poisonous Mushrooms",
         "description": "On the left we have true morel mushrooms and on the right we have false morel mushrooms.",
-        "type": "compare", 
+        "type": "description", 
+        "mushroom1": "0",
+        "mushrrom2": "0" , 
+    },
+    "3": {
+        "lesson_id": "3",
+        "lesson_name": "Identifying Psychedelic Mushrooms",
+        "description": "There are 227 known and classified species of psychedelic mushrooms.",
+        "type": "description", 
         "mushroom1": "0",
         "mushrrom2": "0" , 
     },

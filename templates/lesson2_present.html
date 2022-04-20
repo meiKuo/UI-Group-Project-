@@ -13,12 +13,18 @@
     <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
 
     <script>
-        let data = {{ data| tojson}} 
+        let lesson = {{ lesson| tojson}} 
+        let mushroom = {{ mushroom| tojson}} 
     </script>
 
     <style>
         .top_ofPage {
             text-align: center;
+        }
+
+        .lessonName{
+            font-size: 30px;
+            padding-bottom: 20px;
         }
 
         .lesson_img {
@@ -28,6 +34,14 @@
 
         .comparison_padding {
             padding-top: 50px;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px 0;
+        }
+
+        .container {
+            padding: 2px 16px;
         }
 
         .nextButton {
@@ -40,24 +54,27 @@
 
 <body>
     <div class="top_ofPage">
-        <div title="name_ofLesson"> Lesson 2: Identifying Psychedelic Mushrooms </div>
-        <div title="small_descript">There are 227 known and classified species of psychedelic mushrooms.</div>
+        <div title="name_ofLesson" class = 'lessonName'> Lesson 2: {{lesson.lesson_name}} </div>
+        <div title="small_descript">{{lesson.description}}</div>
     </div>
 
-    <div title="left_image_right" class='comparison_padding'>
-        <div class="row" id="row">
-            <div class='col-md-4'></div>
-            <div class='col-md-4'>
-                <img class='lesson_img'
-                    src='https://cdn-s-www.bienpublic.com/images/8DF87B22-AADD-4FC0-8FC7-8632C3480795/NW_raw/les-champignons-tels-que-les-quot-psilocybe-semilanceata-quot-sont-inscrits-sur-la-liste-des-stupefiants-depuis-1990-en-france-photo-d-illustration-pixabay-domaine-public-1507911226.jpg'>
-            </div>
-            <div class='col-md-4'>
-</div>
+    <div class="card">
+        <div class='top_ofPage'>
+            <h4><b>{{mushroom.name}}</b></h4>
+            <img class='lesson_img' src='{{mushroom.img_url}}'>
+        </div>
+
+        <div class="container">
+            <li>{{mushroom.features[0]}}</li>
+            <li>{{mushroom.features[1]}}</li>
+            <li>{{mushroom.features[2]}}</li>
+            <li>{{mushroom.features[3]}}</li>
         </div>
     </div>
 
     <div>
-        <button class = 'nextButton'>Next</button>
+        <button class='nextButton'>Next</button>
+        <a class="right" href="/game/home"><button class='nextButton'>Next</button></a>
     </div>
 
 </body>

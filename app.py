@@ -30,9 +30,9 @@ hunger = 10
 @app.route('/')
 def homepage():
     lesson_name1 = lessons["1"]
-    lesson_name2 = lessons["2"]
+    lesson_name3 = lessons["3"]
     print(lesson_name1)
-    return render_template('homepage.html', lesson_name1=lesson_name1, lesson_name2=lesson_name2)
+    return render_template('homepage.html', lesson_name1=lesson_name1, lesson_name3=lesson_name3)
 
 @app.route('/game/<path>')
 def game(path=None):
@@ -128,7 +128,9 @@ def lesson():
 
 @app.route('/lesson2')
 def lesson2():
-    return render_template('lesson2_present.html', data=data)
+    lesson = lessons["3"]
+    mushroom = mushrooms['2']
+    return render_template('lesson2_present.html', lesson=lesson, mushroom = mushroom)
 
 if __name__ == '__main__':
     app.run(debug=True)
