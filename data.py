@@ -15,6 +15,79 @@ mushrooms = {
 }
 
 # Questions for quiz
+quizMushrooms = [
+    {
+        "id": "0",
+        "name": "Black Morel",
+        "edible": True,
+        "poisonous": False,
+        "img_url": 'images/morel_1.png',
+        "cut_img_url": "images/morel_open_1.png",
+        "features": [
+            "Irregularly shaped",
+            "Bulging outwards",
+            "Wavy and lobed",
+            "Hangs freely from the stem"
+        ]
+    },
+    {
+        "id": "1",
+        "name": "False Morel",
+        "edible": False,
+        "poisonous": True,
+        "img_url": 'images/false_morel_1.png',
+        "cut_img_url": "images/false_morel_1.png",
+        "features": [
+            "Irregularly shaped",
+            "Bulging outwards",
+            "Wavy and lobed",
+            "Hangs freely from the stem"
+        ]
+    },
+    {
+        "id": "2",
+        "name": "Death Cap",
+        "edible": False,
+        "poisonous": True,
+        "img_url": 'images/death_cap_1.png',
+        "cut_img_url": "images/death_cap_1.png",
+        "features": [
+            "Irregularly shaped",
+            "Bulging outwards",
+            "Wavy and lobed",
+            "Hangs freely from the stem"
+        ]
+    },
+    {
+        "id": "3",
+        "name": "Destorying Angel",
+        "edible": False,
+        "poisonous": True,
+        "img_url": 'images/destorying_angel_1.png',
+        "cut_img_url": "images/destorying_angel_1.png",
+        "features": [
+            "Irregularly shaped",
+            "Bulging outwards",
+            "Wavy and lobed",
+            "Hangs freely from the stem"
+        ]
+    },
+    {
+        "id": "4",
+        "name": "Giant Puffball",
+        "edible": True,
+        "poisonous": False,
+        "img_url": 'images/puffball_mushroom_1.png',
+        "cut_img_url": "images/puffball_mushroom_open_1.png",
+        "features": [
+            "Irregularly shaped",
+            "Bulging outwards",
+            "Wavy and lobed",
+            "Hangs freely from the stem"
+        ]
+    },
+
+]
 questions = [
     {
         "id": 1,

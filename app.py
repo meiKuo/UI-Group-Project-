@@ -1,11 +1,10 @@
 import json
 from flask import Flask
 from flask import render_template
-from flask import Response, request, jsonify, request
+from flask import Response, request, jsonify, request, redirect
 app = Flask(__name__)
 
-from data import questions
-from data import mushrooms
+from data import questions, mushrooms, quizMushrooms
 
 # add to data
 data = {
@@ -25,11 +24,7 @@ lessons = ["Differentiating edible from poisonous mushrooms","Psychedelic Mushro
 
 
 health = 100
-lives = 3
-hunger = 0
-cur_question = 1
-
-score = 0
+hunger = 10
 
 # ROUTES
 @app.route('/')
@@ -37,60 +32,79 @@ def homepage():
     top_three = [data["1"], data["2"], data["3"]]
     return render_template('homepage.html', data=[top_three, lessons])
 
-@app.route('/game/<q_idx>', methods=['GET', 'POST'])
-def game(q_idx):
-    global lives
+@app.route('/game/<path>')
+def game(path=None):
     global health
     global hunger
-    global cur_question
+    global quizMushrooms
+    global game_params
+    global mushroom
 
-    if int(q_idx) == 1:
-        health = 100
-        lives = 3
-        hunger = 0
+    if path == "home":
+        return render_template('game_home.html')
+    elif path == "map" and len(quizMushrooms):
+        game_params = {
+            "health": health,
+            "hunger": hunger,
+            "mushrooms": quizMushrooms,
+        }
 
-    if int(q_idx) == len(questions) + 1:
-        return "You've reached the end of the quiz."
+        return render_template('game_map.html', **game_params)
+    elif len(quizMushrooms) and health > 0:
+        print(len(quizMushrooms), health)
+        for mush in quizMushrooms:
+            if path == mush['id']:
+                return render_template('game_ind_mushroom.html', mushroom=mush)
+        return 'End of game!'
+    else:
+        data = {
+            'health': health,
+            'hunger': hunger,
+            'quizMushrooms': quizMushrooms,
+        }
 
-    if int(q_idx) > len(questions):
-        return "Error: Out of question range."
+        return render_template('end_game.html', data=data)
 
-    cur_question = int(q_idx)
-
-    m_id = questions[cur_question - 1]["mushroom"]
-    print(mushrooms[m_id])
-
-    game_params = {
-        "lives": lives,
-        "health": health,
-        "hunger": hunger,
-        "question": questions[cur_question - 1],
-        "mushroom": mushrooms[m_id]
-    }
-
-    return render_template('game.html', **game_params )
 
 @app.route('/update', methods=['POST'])
 def update():
-    global lives
     global health
-    global score
     global hunger
-    idx = request.get_json()
+    global quizMushrooms
+    data = request.get_json()
+    print(data)
 
-    correct = idx == questions[cur_question - 1]["correct_choice"]
+    if data['choice'] == 'eat' and data['mushroom']['edible']:
+        # user ate and mushroom edible
+        # reduce hunger and increase health
+        if hunger > 10:
+            hunger = hunger - 10
+        else:
+            hunger = 0
 
-    if not correct:
-        if lives > 0:
-            lives -= 1
-    else:
-        score += 1
+        if health < 95:
+            health = health + 5
+        else:
+            health = 100
+    elif data['choice'] == 'eat' and not data['mushroom']['edible']:
+        # user ate but mushroom not edible
+        # reduce health and increase hunger
+        if health > 10:
+            health = health - 10
+        else:
+            health = 0
+        if hunger < 95:
+            hunger = hunger + 5
+        else:
+            hunger = 100
+            health = health - 10
+
+
+    quizMushrooms.remove(data['mushroom'])
 
     user_stats = {
-        "lives": lives,
         "health": health,
         "hunger": hunger,
-        "score": score,
     }
 
     return jsonify(user_stats)
