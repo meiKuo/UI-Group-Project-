@@ -4,7 +4,7 @@ from flask import render_template
 from flask import Response, request, jsonify, request, redirect
 app = Flask(__name__)
 
-from data import questions, mushrooms, quizMushrooms
+from data import questions, mushrooms, quizMushrooms, lessons
 
 # add to data
 data = {
@@ -20,7 +20,7 @@ data = {
 }
 
 
-lessons = ["Differentiating edible from poisonous mushrooms","Psychedelic Mushrooms"]
+#essons = ["Differentiating edible from poisonous mushrooms","Psychedelic Mushrooms"]
 
 
 health = 100
@@ -29,8 +29,10 @@ hunger = 10
 # ROUTES
 @app.route('/')
 def homepage():
-    top_three = [data["1"], data["2"], data["3"]]
-    return render_template('homepage.html', data=[top_three, lessons])
+    lesson_name1 = lessons["1"]
+    lesson_name3 = lessons["3"]
+    print(lesson_name1)
+    return render_template('homepage.html', lesson_name1=lesson_name1, lesson_name3=lesson_name3)
 
 @app.route('/game/<path>')
 def game(path=None):
@@ -119,11 +121,16 @@ def update():
 
 @app.route('/lesson1')
 def lesson():
-    return render_template('lesson1_compare.html', data=data)
+    mushroom1 = mushrooms["0"]
+    mushroom2 = mushrooms["1"]   
+    lesson_name1 = lessons["1"]
+    return render_template('lesson1_compare.html', mushroom1 = mushroom1, mushroom2 = mushroom2, lesson_name1 = lesson_name1)
 
 @app.route('/lesson2')
 def lesson2():
-    return render_template('lesson2_present.html', data=data)
+    lesson = lessons["3"]
+    mushroom = mushrooms['2']
+    return render_template('lesson2_present.html', lesson=lesson, mushroom = mushroom)
 
 if __name__ == '__main__':
     app.run(debug=True)
