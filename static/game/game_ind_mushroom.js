@@ -62,16 +62,17 @@ function updateOnAnswer(idx) {
 }
 
 
-function resetChoices() {
-    $.each(question.choices, (i, val) => {
-        $(".button-box").append($(
-            `<a type="button" class="game-button" data-idx=${i}>${val.text}</a>`
-        ))
-    })
-}
+// function resetChoices() {
+//     $.each(question.choices, (i, val) => {
+//         $(".button-box").append($(
+//             `<a type="button" class="game-button" data-idx=${i}>${val.text}</a>`
+//         ))
+//     })
+// }
 
 function choiceMade(choice, mushroom){
   if (choice == 'eat'){
+    $(".button_row").empty()
     $("#dialog").text("You just ate a " + mushroom['name'] + " mushroom!")
     setTimeout(
       function(){
