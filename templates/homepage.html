@@ -17,44 +17,6 @@
         let lesson_name3 = {{ lesson_name3 | tojson}}
     </script>
 
-    <style>
-        .title {
-            font-size: 60px;
-            text-align: center;
-            padding-top: 30px;
-            padding-bottom: 50px;
-        }
-
-        .padButtons {
-            padding: 25px;
-        }
-
-        .lessonName {
-            padding-bottom: 20px;
-            text-align: center;
-            font-size: 45px;
-            color: black;
-        }
-        .lessonName:hover {
-            padding-bottom: 20px;
-            text-align: center;
-            font-size: 45px;
-            color: red;
-        }
-
-        .card {
-            box-shadow: 0 4px 8px 0;
-            height: 300px;
-            width: auto;
-        }
-        .centerVert{
-            display: flex;
-            justify-content: center;
-            line-height: 45px;
-        }
-
-    </style>
-
 </head>
 
 <body>
@@ -67,7 +29,7 @@
             <div class='col-md-2'></div>
 
             <div class='col-md-4'>
-                <a class="lessonName" href="/lessonplans" id = 'adventureTime'>
+                <a class="homepageCardName" href="/lessonplans" id='adventureTime'>
                     <div class='card centerVert'>
                         Learn
                     </div>
@@ -75,7 +37,7 @@
             </div>
 
             <div class='col-md-4'>
-                <a class="lessonName" href="/game/home" id='adventureTime'>
+                <a class="homepageCardName" href="/game/home" id='adventureTime'>
                     <div class= 'card centerVert'>
                         Adventure Time!
                     </div>
