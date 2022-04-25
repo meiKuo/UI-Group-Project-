@@ -41,8 +41,8 @@ mushrooms = {
         "location": "Near woodlands or shrubs in suburban lawns/meadows",
         "inner": "White",
     },
-    "4": {
-        "id": "4",
+    "3": {
+        "id": "3",
         "name": "Giant Puffball",
         "edible": True,
         "img_url": 'images/puffball_mushroom_1.png',
@@ -130,47 +130,34 @@ mushrooms = {
         "inner": "White",
         "description": "The lion's mane mushroom is a species known by a variety of names. Its scientific name, Hericium erinaceus, is how mycologists—the scientists who study fungi—officially refer to it. It is also known as Yamabushitake in Japanese, and as lion’s mane in English. Alternately, called the bearded tooth fungus or the pom pom mushroom due to its highly textured surface, lion’s mane mushrooms are native to the mountains of northeast Asia and may also be found in Europe and North America. An important species in the traditional medicine of China, Korea, and Japan, where it has been used for thousands of years, lion’s mane has grown in popularity recently in part due to another nickname. Dubbed a “smart mushroom” because of its support for cognitive function and neurological health, lion’s mane is receiving attention all over the world for its exceptional brain supportive potential. Investigating lion’s mane mushroom benefits will help you to determine if this smart mushroom is something you need in your life.",
     },
-    "5": {
-        "id": "5",
-        "name": "Destorying Angel",
-        "edible": False,
-        "img_url": 'images/destorying_angel_1.png',
-        "cut_img_url": "images/destorying_angel_1.png",
-        "features": [
-            "Irregularly shaped",
-            "Bulging outwards",
-            "Wavy and lobed",
-            "Hangs freely from the stem"
-        ]
-    },
 
 }
 
 quiz = {
     "1": {
         "id": "1",
-        "mushroom_id": "1",
+        "mushroom_id": "0",
         "img_url": 'images/morel_1.png',
         "cut_img_url": "images/morel_1.png",
         "done": False
     },
     "2": {
         "id": "2",
-        "mushroom_id": "2",
+        "mushroom_id": "1",
         "img_url": 'images/false_morel_1.png',
         "cut_img_url": "images/false_morel_1.png",
         "done": False
     },
     "3": {
         "id": "3",
-        "mushroom_id": "4",
+        "mushroom_id": "3",
         "img_url": 'images/puffball_mushroom_1.png',
         "cut_img_url": "images/puffball_mushroom_open_1.png",
         "done": False
     },
     "4": {
         "id": "4",
-        "mushroom_id": "3",
+        "mushroom_id": "2",
         "img_url": 'images/death_cap_1.png',
         "cut_img_url": "images/death_cap_1.png",
         "done": False
