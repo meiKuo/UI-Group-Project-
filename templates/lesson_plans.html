@@ -21,59 +21,32 @@
         let lesson6 = {{ lesson6 | tojson}}
     </script>
 
-    <style>
-        .title {
-            font-size: 30px;
-            padding-right: 65px;
-        }
-
-        .center {
-            text-align: center;
-        }
-
-        .padButtons {
-            padding: 25px;
-        }
-
-        .lessonName {
-            padding-bottom: 20px;
-        }
-
-    </style>
-
 </head>
 
 <body>
-    <div class='center lessonName title'>
-        Lesson Overview
+    <div class='title'>
+        Lessons Overview
     </div>
 
-    <div id='Overview'>
-        <div class='row'>
-            <div class='col-md-2'></div>
-
-            <div class='col-md-4'>      
-                    Commonly Confused
-                    <a href = '/lesson/{{lesson1.lesson_id}}' > <li>{{lesson1.lesson_name}}</li> </a>
-                    <a href = '/lesson/{{lesson2.lesson_id}}' > <li>{{lesson2.lesson_name}}</li> </a>
-                    <a href = '/lesson/{{lesson3.lesson_id}}' > <li>{{lesson3.lesson_name}}</li> </a>
-            </div>
-
-            <div class='col-md-4'>
-                    Common Edible
-                    <a href = '/lesson/{{lesson4.lesson_id}}' > <li>{{lesson4.lesson_name}}</li> </a>
-                    <a href = '/lesson/{{lesson5.lesson_id}}' > <li>{{lesson5.lesson_name}}</li> </a>
-                    <a href = '/lesson/{{lesson6.lesson_id}}' > <li>{{lesson6.lesson_name}}</li> </a>
-            </div>
-            </div>
-
-            <div class='col-md-2'></div>
-
+    <div class='row'>
+      <div class="column centerHor halfWidth">
+        <div class="subtitle">Commonly Confused</div>
+        <div class="alignLeft confusedPadding">
+          <a href='/lesson/{{lesson1.lesson_id}}' class="lessonName"><li>{{lesson1.lesson_name}}</li></a>
+          <a href='/lesson/{{lesson2.lesson_id}}' class="lessonName"><li>{{lesson2.lesson_name}}</li></a>
+          <a href='/lesson/{{lesson3.lesson_id}}' class="lessonName"><li>{{lesson3.lesson_name}}</li></a>
         </div>
+      </div>
+      <div class="column centerHor halfWidth">
+        <div class="subtitle">Common Edible</div>
+        <div class="alignLeft ediblePadding">
+          <a href='/lesson/{{lesson4.lesson_id}}' class="lessonName"><li>{{lesson4.lesson_name}}</li></a>
+          <a href='/lesson/{{lesson5.lesson_id}}' class="lessonName"><li>{{lesson5.lesson_name}}</li></a>
+          <a href='/lesson/{{lesson6.lesson_id}}' class="lessonName"><li>{{lesson6.lesson_name}}</li></a>
+        </div>
+      </div>
     </div>
 
-
-    </div>
 </body>
 
 </html>

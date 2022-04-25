@@ -16,112 +16,67 @@
         let lesson_params = {{ data | tojson}}
     </script>
 
-    <style>
-        .top_ofPage {
-            text-align: center;
-        }
-
-        .lessonName {
-            font-size: 30px;
-            padding-bottom: 20px;
-        }
-
-        .lesson_img {
-            width: 300px;
-            height: auto;
-        }
-
-        .comparison_padding {
-            padding-top: 50px;
-        }
-
-        .nextButton {
-            position: fixed;
-            bottom: 50px;
-            right: 100px;
-        }
-
-        .card {
-            box-shadow: 0 4px 8px 0;
-        }
-
-        .container {
-            padding: 2px 16px;
-        }
-    </style>
 </head>
 
 <body>
-    <div class="top_ofPage">
-        <div title="name_ofLesson" class="lessonName"> Commonly Confused</div>
+    <div class="centerHor">
+        <div title="name_ofLesson" class="title removeBotPad">Commonly Confused Mushrooms</div>
         <div title="small_descript">Click "Lesson" to learn about other mushrooms!</div>
+        <br>
     </div>
-    
 
-    <div title="left_image_right" class='comparison_padding'>
-        <div class="row" id="row">
-            <div class='col-md-4'> </div>
-            <div id="name1" class='col-md-4'> </div>
-            <div id="name2" class='col-md-4'></div>
-        </div>
-
-        <div class="row" id="row">
-            <div class='col-md-4'> Photo </div>
-            <div class='col-md-4'> <img id="img1" class='lesson_img' src=""></div>
-            <div class='col-md-4'> <img id="img2" class='lesson_img' src=""></div>
-        </div>
-
-        <div class="row" id="row">
-            <div class='col-md-4'> Toxicity </div>
-            <div id="edible1" class='col-md-4'></div>
-            <div id="edible2" class='col-md-4'></div>
-        </div>
-
-        <div class="row" id="row">
-            <div class='col-md-4'> Cap </div>
-            <div id="cap1" class='col-md-4'></div>
-            <div id="cap2" class='col-md-4'></div>
-        </div>
-
-        <div class="row" id="row">
-            <div class='col-md-4'> Stem </div>
-            <div id="stem1" class='col-md-4'></div>
-            <div id="stem2" class='col-md-4'></div>
-        </div>
-
-        <div class="row" id="row">
-            <div class='col-md-4'> Gills </div>
-            <div id="gills1" class='col-md-4'></div>
-            <div id="gills2" class='col-md-4'></div>
-        </div>
-        
-         <div class="row" id="row">
-             <div class='col-md-4'> Smell/Taste </div>
-             <div id="taste1" class='col-md-4'></div>
-             <div id="taste2" class='col-md-4'></div>
-         </div>
-         
-          <div class="row" id="row">
-              <div class='col-md-4'> Color </div>
-              <div id="color1" class='col-md-4'></div>
-              <div id="color2" class='col-md-4'></div>
-          </div>
-          
-           <div class="row" id="row">
-               <div class='col-md-4'> Location </div>
-               <div id="location1" class='col-md-4'></div>
-               <div id="location2" class='col-md-4'></div>
-           </div>
-
-         <div class="row" id="row">
-             <div class='col-md-4'> Inner Color </div>
-             <div id="inner1" class='col-md-4'></div>
-             <div id="inner2" class='col-md-4'></div>
-         </div>
-
-         <div id = "nextB"></div>
-    
-        
+    <table>
+      <tr>
+        <th>Name</th>
+        <th id="name1"></th>
+        <th id="name2"></th>
+      </tr>
+      <tr>
+        <td>Image</td>
+        <td><img id="img1" class='lesson_img' src=""></td>
+        <td><img id="img2" class='lesson_img' src=""></td>
+      </tr>
+      <tr>
+        <td>Toxicity</td>
+        <td id="edible1"></td>
+        <td id="edible2"></td>
+      </tr>
+      <tr>
+        <td>Cap</td>
+        <td id="cap1"></td>
+        <td id="cap2"></td>
+      </tr>
+      <tr>
+        <td>Stem</td>
+        <td id="stem1"></td>
+        <td id="stem2"></td>
+      </tr>
+      <tr>
+        <td>Gills</td>
+        <td id="gills1"></td>
+        <td id="gills2"></td>
+      </tr>
+      <tr>
+        <td>Smell/Taste</td>
+        <td id="taste1"></td>
+        <td id="taste2"></td>
+      </tr>
+      <tr>
+        <td>Color</td>
+        <td id="color1"></td>
+        <td id="color2"></td>
+      </tr>
+      <tr>
+        <td>Location</td>
+        <td id="location1"></td>
+        <td id="location2"></td>
+      </tr>
+      <tr>
+        <td>Inner Color</td>
+        <td id="inner1"></td>
+        <td id="inner2"></td>
+      </tr>
+    </table>
 
 </body>
 
