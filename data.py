@@ -52,6 +52,38 @@ mushrooms = {
             "Hangs freely from the stem"
         ]
     },
+    "4": {
+        "id": "4",
+        "name": "Chanterelle",
+        "img_url": "https://media.istockphoto.com/photos/two-yellow-chantarelles-picture-id133823186?k=20&m=133823186&s=612x612&w=0&h=FQj2DXE24LGlV99r51CgsCeRufp1EdUNZdxJMQkBq0I=",
+        "cut_img_url": "",
+        "edible": "Edible",
+        "cap": "Funnel shaped, wavy",
+        "stem": "Full stem",
+        "gills": "Blunt, gill-like ridges",
+        "taste": "Peppery/peachy/apricot",
+        "color": "Bright yellow/orange",
+        "location": "East and West Coasts",
+        "inner": "White internal flesh"
+        
+        },
+    "5": {
+        "id": "5",
+        "name": "Jack o Lantern",
+        "img_url": "https://healing-mushrooms.net/wp-content/uploads/2020/01/Jack-o-Lantern-Mushroom.jpg",
+        "cut_img_url": "",
+        "edible": "Toxic",
+        "cap": "Round, flat",
+        "stem": "Hollow stem",
+        "gills": "True, sharp gills on stalk",
+        "taste": "N/A",
+        "color": "Orangy brown",
+        "location": "East & West of Rocky Mts",
+        "inner": "Orange internal flesh"
+        
+        
+        
+        }
 
 }
 
@@ -156,23 +188,38 @@ questions = [
 #lessons 
 lessons = [
     {
-        "lesson_name": "Differentiating Edible and Poisonous Mushrooms", 
-        "description": "On the left we have true morel mushrooms and on the right we have false morel mushrooms.",
-        "type": "compare", 
+        "lesson_id": "1", 
+        "lesson_name": "True vs False Morels ", 
         "mushroom1": "0",
-        "mushroom2": "1" , 
+        "mushroom2": "1",
+        "type": "compare"
     }, 
     {
-        "lesson_name": "Differentiating Edible and Poisonous Mushrooms",
-        "description": "On the left we have true morel mushrooms and on the right we have false morel mushrooms.",
-        "type": "compare", 
-        "mushroom1": "0",
-        "mushroom2": "2" , 
-    },
+        "lesson_id": "2", 
+        "lesson_name": "Chanterelle vs Jack o Lantern", 
+        "mushroom1": "4",
+        "mushroom2": "5",
+        "type": "compare"
+    }, 
+    #Fix lessons 3 onwards based on the format for lessons 1 and 2
     {
-        "lesson_name": "Identifying Psychedelic Mushrooms",
-        "description": "There are 227 known and classified species of psychedelic mushrooms.",
-        "type": "description", 
-        "mushroom1": "2",
+        "lesson_id": "3", 
+        "lesson_name": " 3. Puff Ball vs Death Cap vs Destroying Angel", 
+        "type": "compare"
+    }, 
+    {
+        "lesson_id": "4", 
+        "lesson_name": "Maitake Mushrooms", 
+        "type": "indiv"
+    }, 
+    {
+        "lesson_id": "5", 
+        "lesson_name": "Oyster Mushrooms", 
+        "type": "indiv"
+    }, {
+        "lesson_id": "6", 
+        "lesson_name": "Lion's Mane", 
+        "type": "indiv"
     },
+    
 ]

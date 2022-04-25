@@ -20,7 +20,7 @@
     <style>
         .title {
             font-size: 30px;
-            padding-right: 65px; 
+            padding-right: 65px;
         }
 
         .center {
@@ -35,44 +35,49 @@
             padding-bottom: 20px;
         }
 
-        .card {
-            box-shadow: 0 4px 8px 0;
-            width: 300px; 
-            height: 300px; 
-        }
     </style>
 
 </head>
 
 <body>
     <div class='center lessonName title'>
-        Mushroom Scavenging
+        Lesson Overview
     </div>
 
     <div id='Overview'>
         <div class='row'>
             <div class='col-md-2'></div>
 
-            <div class='col-md-4'>
-                <a class="lessonName" href="/lessonplans" id = 'adventureTime'>
-                    <div class= 'card'>
-                        Learn
-                    </div>
-                </a>
+            <div class='col-md-4'>      
+                    Commonly Confused
+                    <!-- dynamic append of lessons-->
+                    <!-- <div class="container">
+                        {% for f in lessons %}
+                            <a><li>{{ f }}</li></a>
+                        {% endfor %}
+                    </div> -->
+                    <li>test1</li>
+                    <li>test2</li>
+                    <li>test3</li>
             </div>
 
             <div class='col-md-4'>
-                <a class="lessonName" href="/game/home" id = 'adventureTime'>
-                    <div class= 'card'>
-                        Adventure Time!
-                    </div>
-                </a>  
-            </div> 
+                    Common Edible
+                    <!-- dynamic append of lessons-->
+                    <!-- <div class="container">
+                        {% for f in lessons %}
+                            <a><li>{{ f }}</li></a>
+                        {% endfor %}
+                    </div> -->
+                    <a href = '/lesson/1'><li>test1</li></a>
+                    <li>test2</li>
+                    <li>test3</li>
+            </div>
 
             <div class='col-md-2'></div>
 
-            </div>
         </div>
+    </div>
 
 
     </div>
