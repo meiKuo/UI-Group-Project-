@@ -13,56 +13,43 @@
     <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
 
     <script>
-        let lesson_name1 = {{lesson_name1 | tojson}}
-        let lesson_name3 = {{lesson_name3 | tojson}}
+        let lesson_name1 = {{ lesson_name1 | tojson}}
+        let lesson_name3 = {{ lesson_name3 | tojson}}
     </script>
-
-    <style>
-        .title{
-            font-size: 30px;
-        }
-        .center {
-            text-align: center;
-        }
-
-        .padButtons {
-            padding: 25px;
-        }
-
-        .lessonName{
-            padding-bottom: 20px;
-        }
-
-    </style>
 
 </head>
 
 <body>
-    <div class='center lessonName title'>
-        Mushroom Lessons
+    <div class='center title'>
+        Mushroom Scavenging
     </div>
 
     <div id='Overview'>
         <div class='row'>
-            <div class='col-md-4'></div>
-            <div class='col-md-4 padButtons'>
-                <a class="lessonName" href="/lesson/1"><button class="button">{{lesson_name1.lesson_name}}</button></a>
+            <div class='col-md-2'></div>
+
+            <div class='col-md-4'>
+                <a class="homepageCardName" href="/lessonplans" id='adventureTime'>
+                    <div class='card centerVert'>
+                        Learn
+                    </div>
+                </a>
+            </div>
+
+            <div class='col-md-4'>
+                <a class="homepageCardName" href="/game/start" id='adventureTime'>
+                    <div class= 'card centerVert'>
+                        Adventure Time!
+                    </div>
+                </a>
+            </div>
+
+            <div class='col-md-2'></div>
+
             </div>
         </div>
 
-        <div class='row'>
-            <div class='col-md-4'></div>
-            <div class='col-md-4 center padButtons'>
-                <a class="lessonName" href="/lesson/3"><button class="button">{{lesson_name3.lesson_name}}</button></a>
-            </div>
-        </div>
 
-        <div class='row'>
-            <div class='col-md-4'></div>
-            <div class='col-md-4 center padButtons'>
-                <a class="lessonName" href="/game/home"><button class="button">Adventure Time!</button></a>
-            </div>
-        </div>
     </div>
 </body>
 

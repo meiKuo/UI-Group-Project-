@@ -17,6 +17,17 @@ def homepage():
     print(lesson_name1)
     return render_template('homepage.html', lesson_name1=lesson_name1, lesson_name3=lesson_name3)
 
+@app.route('/lessonplans')
+def lessonplans():
+    lesson1 = lessons[0]
+    lesson2 = lessons[1]
+    lesson3 = lessons[2]
+    lesson4 = lessons[3]
+    lesson5 = lessons[4]
+    lesson6 = lessons[5]
+
+    return render_template('lesson_plans.html', lesson1=lesson1, lesson2=lesson2, lesson3=lesson3, lesson4=lesson4, lesson5=lesson5, lesson6=lesson6 )
+
 @app.route('/game/<path>')
 def game(path):
     global health
@@ -153,19 +164,17 @@ def lesson(id):
     if cur_lesson["type"] == "compare":
         lesson_params = {
             "lesson_name": cur_lesson["lesson_name"],
-            "description": cur_lesson["description"],
             "mushroom1": mushrooms[cur_lesson["mushroom1"]],
             "mushroom2": mushrooms[cur_lesson["mushroom2"]]
         }
-        return render_template('lesson1_compare.html', **lesson_params)
+        return render_template('lesson1_compare.html', data=lesson_params)
     
     else:
         lesson_params = {
             "lesson_name": cur_lesson["lesson_name"],
-            "description": cur_lesson["description"],
             "mushroom1": mushrooms[cur_lesson["mushroom1"]],
         }
-        return render_template('lesson2_present.html', **lesson_params)
+        return render_template('lesson2_present.html', data=lesson_params)
 
 if __name__ == '__main__':
     app.run(debug=True)

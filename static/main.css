@@ -1,3 +1,116 @@
+/* homepage and lessons */
+.title {
+  font-size: 60px;
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 50px;
+  font-weight: 900;
+}
+.removeBotPad{
+  padding-bottom: 0;
+}
+.subtitle{
+  font-size: 40px;
+  text-align: center;
+  padding-bottom: 20px;
+  font-weight: 600;
+}
+.lessonName{
+  font-size: 22px;
+  color: black;
+}
+.lessonName:hover {
+  font-size: 22px;
+  color: purple;
+}
+.homepageCardName{
+  padding-bottom: 20px;
+  text-align: center;
+  font-size: 45px;
+  color: black;
+  font-weight: 600;
+}
+.homepageCardName:hover{
+  padding-bottom: 20px;
+  text-align: center;
+  font-size: 45px;
+  color: purple;
+  font-weight: 600;
+}
+.card {
+    box-shadow: 0 4px 8px 0;
+    height: 300px;
+    width: auto;
+}
+.centerVert{
+  display: flex;
+  justify-content: center;
+  line-height: 45px;
+}
+.centerHor{
+  text-align: center;
+}
+.halfWidth{
+  width: 50%;
+}
+.alignLeft{
+  text-align: left;
+}
+.confusedPadding{
+  padding-left: 100px;
+}
+.ediblePadding{
+  padding-left: 150px;
+}
+#backButton{
+  font-size: 20px;
+  background-color: #adadad;
+  width: 170px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333333;
+  border-color: darkgrey;
+  border-width: medium;
+  border-style: solid;
+}
+#backButton:hover{
+  font-size: 20px;
+  background-color: darkgrey;
+  width: 170px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  border-color: black;
+  border-width: medium;
+  border-style: solid;
+  cursor: pointer;
+}
+
+/* table */
+table{
+  width: 100%;
+  border: 1px solid;
+  text-align: center;
+  font-size: 20px;
+}
+th{
+  border: 1px solid;
+  font-size: 45px;
+  font-weight: 600;
+
+}
+td{
+  border: 1px solid;
+}
+.lesson_img {
+    width: 300px;
+    height: auto;
+}
+
 /* game_home */
 .dialog_box{
   height: 500px;

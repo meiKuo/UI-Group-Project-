@@ -6,7 +6,7 @@
 
 <head>
     <!--link js-->
-    <script type="text/javascript" src="{{ url_for('static', filename = 'homepage.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename = 'lesson2_present.js') }}"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
         crossorigin="anonymous">
 
@@ -26,6 +26,7 @@
         .lesson_img {
             width: 300px;
             height: auto;
+
         }
 
         .comparison_padding {
@@ -46,31 +47,68 @@
             right: 100px;
         }
     </style>
+    <script>
+        let lesson_params = {{ data | tojson}}
+    </script>
 </head>
 
 <body>
-    <div class="top_ofPage">
-        <div title="name_ofLesson" class = 'lessonName'> Lesson 2: {{lesson_name}} </div>
-        <div title="small_descript">{{description}}</div>
-    </div>
+  <div class="centerHor">
+      <div title="name_ofLesson" class="title removeBotPad">Common Edible Mushrooms</div>
+      <!-- <div title="small_descript">Click "Lesson" to learn about other mushrooms!</div> -->
+      <br>
+  </div>
 
-    <div class="card">
-        <div class='top_ofPage'>
-            <h4><b>{{mushroom1.name}}</b></h4>
-            <img class='lesson_img' src='{{mushroom1.img_url}}'>
-        </div>
+  <div id="backButton">Back to Lessons</div><br>
 
-        <div class="container">
-            {% for f in mushroom1.features %}
-                <li>{{ f }}</li>
-            {% endfor %}
-        </div>
-    </div>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th id="name1"></th>
+      <th id="name2"></th>
+    </tr>
+    <tr>
+      <td>Image</td>
+      <td><img id="img1" class='lesson_img' src=""></td>
+    </tr>
+    <tr>
+      <td>Toxicity</td>
+      <td id="edible1"></td>
+    </tr>
+    <tr>
+      <td>Cap</td>
+      <td id="cap1"></td>
+    </tr>
+    <tr>
+      <td>Stem</td>
+      <td id="stem1"></td>
+    </tr>
+    <tr>
+      <td>Gills</td>
+      <td id="gills1"></td>
+    </tr>
+    <tr>
+      <td>Smell/Taste</td>
+      <td id="taste1"></td>
+    </tr>
+    <tr>
+      <td>Color</td>
+      <td id="color1"></td>
+    </tr>
+    <tr>
+      <td>Location</td>
+      <td id="location1"></td>
+    </tr>
+    <tr>
+      <td>Inner Color</td>
+      <td id="inner1"></td>
+    </tr>
+    <tr>
+      <td>Description</td>
+      <td id="description"></td>
+    </tr>
+  </table>
 
-    <div>
-        <button class='nextButton'>Next</button>
-        <a class="right" href="/game/home"><button class='nextButton'>Next</button></a>
-    </div>
 
 </body>
 

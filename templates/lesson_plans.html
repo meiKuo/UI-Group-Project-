@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<html>
+
+<head>
+    <!--link js-->
+    <script type="text/javascript" src="{{ url_for('static', filename = 'homepage.js') }}"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
+
+    <script>
+        let lesson1 = {{ lesson1 | tojson}}
+        let lesson2 = {{ lesson2 | tojson}}
+        let lesson3 = {{ lesson3 | tojson}}
+        let lesson4 = {{ lesson4 | tojson}}
+        let lesson5 = {{ lesson5 | tojson}}
+        let lesson6 = {{ lesson6 | tojson}}
+    </script>
+
+</head>
+
+<body>
+    <div class='title'>
+        Lessons Overview
+    </div>
+
+    <div class='row'>
+      <div class="column centerHor halfWidth">
+        <div class="subtitle">Commonly Confused</div>
+        <div class="alignLeft confusedPadding">
+          <a href='/lesson/{{lesson1.lesson_id}}' class="lessonName"><li>{{lesson1.lesson_name}}</li></a>
+          <a href='/lesson/{{lesson2.lesson_id}}' class="lessonName"><li>{{lesson2.lesson_name}}</li></a>
+          <a href='/lesson/{{lesson3.lesson_id}}' class="lessonName"><li>{{lesson3.lesson_name}}</li></a>
+        </div>
+      </div>
+      <div class="column centerHor halfWidth">
+        <div class="subtitle">Common Edible</div>
+        <div class="alignLeft ediblePadding">
+          <a href='/lesson/{{lesson4.lesson_id}}' class="lessonName"><li>{{lesson4.lesson_name}}</li></a>
+          <a href='/lesson/{{lesson5.lesson_id}}' class="lessonName"><li>{{lesson5.lesson_name}}</li></a>
+          <a href='/lesson/{{lesson6.lesson_id}}' class="lessonName"><li>{{lesson6.lesson_name}}</li></a>
+        </div>
+      </div>
+    </div>
+
+</body>
+
+</html>
+
+{% endblock %}
