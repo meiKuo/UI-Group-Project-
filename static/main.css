@@ -87,6 +87,7 @@
   border-color: black;
   border-width: medium;
   border-style: solid;
+  cursor: pointer;
 }
 
 /* table */
