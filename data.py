@@ -156,23 +156,24 @@ questions = [
 #lessons 
 lessons = [
     {
-        "lesson_name": "Differentiating Edible and Poisonous Mushrooms", 
-        "description": "On the left we have true morel mushrooms and on the right we have false morel mushrooms.",
-        "type": "compare", 
-        "mushroom1": "0",
-        "mushroom2": "1" , 
+        "lesson_id": "1", 
+        "lesson_name": "True vs False Morels ", 
     }, 
     {
-        "lesson_name": "Differentiating Edible and Poisonous Mushrooms",
-        "description": "On the left we have true morel mushrooms and on the right we have false morel mushrooms.",
-        "type": "compare", 
-        "mushroom1": "0",
-        "mushroom2": "2" , 
-    },
+        "lesson_id": "2", 
+        "lesson_name": "Chanterelle vs Jack o Lantern", 
+    }, 
     {
-        "lesson_name": "Identifying Psychedelic Mushrooms",
-        "description": "There are 227 known and classified species of psychedelic mushrooms.",
-        "type": "description", 
-        "mushroom1": "2",
-    },
+        "lesson_id": "3", 
+        "lesson_name": " 3. Puff Ball vs Death Cap vs Destroying Angel", 
+    }, 
+    {
+        "lesson_id": "4", 
+        "lesson_name": "Maitake Mushrooms", 
+    }, 
+    {
+        "lesson_id": "5", 
+        "lesson_name": "Oyster Mushrooms", 
+    }, 
+    
 ]
