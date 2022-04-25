@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
 
     <script>
+        let lesson_params = {{ data | tojson}}
     </script>
 
     <style>
@@ -52,47 +53,72 @@
 
 <body>
     <div class="top_ofPage">
-        <div title="name_ofLesson" class='lessonName'> Lesson 1: {{lesson_name}}</div>
-        <div title="small_descript">{{description}}</div>
+        <div title="name_ofLesson" class="lessonName"> Lesson 1: </div>
+        <div title="small_descript"></div>
     </div>
+    
 
     <div title="left_image_right" class='comparison_padding'>
         <div class="row" id="row">
             <div class='col-md-4'> </div>
-            <div class='col-md-4'> {{mushroom1.name}}</div>
-            <div class='col-md-4'>{{mushroom2.name}}</div>
+            <div id="name1" class='col-md-4'> </div>
+            <div id="name2" class='col-md-4'></div>
         </div>
 
         <div class="row" id="row">
             <div class='col-md-4'> Photo </div>
-            <div class='col-md-4'> <img class='lesson_img' src={{mushroom1.img_url}}></div>
-            <div class='col-md-4'> <img class='lesson_img' src={{mushroom2.img_url}}></div>
+            <div class='col-md-4'> <img id="img1" class='lesson_img' src=""></div>
+            <div class='col-md-4'> <img id="img2" class='lesson_img' src=""></div>
         </div>
 
         <div class="row" id="row">
             <div class='col-md-4'> Toxicity </div>
-            <div class='col-md-4'> fill in with data.py</div>
-            <div class='col-md-4'> fill in with data.py </div>
+            <div id="edible1" class='col-md-4'> fill in with data.py</div>
+            <div id="edible2" class='col-md-4'> fill in with data.py </div>
         </div>
 
         <div class="row" id="row">
             <div class='col-md-4'> Cap </div>
-            <div class='col-md-4'> fill in with data.py</div>
-            <div class='col-md-4'> fill in with data.py</div>
+            <div id="cap1" class='col-md-4'> fill in with data.py</div>
+            <div id="cap2" class='col-md-4'> fill in with data.py</div>
         </div>
 
         <div class="row" id="row">
             <div class='col-md-4'> Stem </div>
-            <div class='col-md-4'> fill in with data.py</div>
-            <div class='col-md-4'> fill in with data.py</div>
+            <div id="stem1" class='col-md-4'> fill in with data.py</div>
+            <div id="stem2" class='col-md-4'> fill in with data.py</div>
         </div>
 
         <div class="row" id="row">
-            <div class='col-md-4'> Gill </div>
-            <div class='col-md-4'> fill in with data.py</div>
-            <div class='col-md-4'> fill in with data.py </div>
+            <div class='col-md-4'> Gills </div>
+            <div id="gills1" class='col-md-4'> fill in with data.py</div>
+            <div id="gills2" class='col-md-4'> fill in with data.py </div>
         </div>
+        
+         <div class="row" id="row">
+             <div class='col-md-4'> Smell/Taste </div>
+             <div id="taste1" class='col-md-4'> fill in with data.py</div>
+             <div id="taste2" class='col-md-4'> fill in with data.py </div>
+         </div>
+         
+          <div class="row" id="row">
+              <div class='col-md-4'> Color </div>
+              <div id="color1" class='col-md-4'> fill in with data.py</div>
+              <div id="color2" class='col-md-4'> fill in with data.py </div>
+          </div>
+          
+           <div class="row" id="row">
+               <div class='col-md-4'> Location </div>
+               <div id="location1" class='col-md-4'> fill in with data.py</div>
+               <div id="location2" class='col-md-4'> fill in with data.py </div>
+           </div>
 
+         <div class="row" id="row">
+             <div class='col-md-4'> Inner Color </div>
+             <div id="inner1" class='col-md-4'> fill in with data.py</div>
+             <div id="inner2" class='col-md-4'> fill in with data.py </div>
+         </div>
+    
         <div>
             <a class="right" href="/lesson/3"><button class='nextButton'>Next</button></a>
         </div>
