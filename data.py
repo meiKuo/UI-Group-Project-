@@ -209,7 +209,7 @@ lessons = [
 ]
 
 
-START_DIALOGUE = """Welcome to wild, wild wilderness. Here we'll test everything you've learned.\n\n 
+START_DIALOGUE = """Welcome to the wild, wild wilderness. Here we'll test everything you've learned.\n\n 
                     Toxic mushrooms and getting too hungry can decrease your health, so be careful!"""
 
 ON_CHOICE_DIALOGUE = "Hmm, this looks interesting. What will you do?"

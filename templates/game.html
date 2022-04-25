@@ -6,7 +6,7 @@
         --game-width: 700px;
         --game-height: 710px;
     }
-    
+
     .game-container {
         min-height: var(--game-height);
         position: relative;
@@ -67,8 +67,6 @@
         border-radius: 15px;
         border: 0;
     }
-
-     
 
     .progress {
         height: 100%;
@@ -153,7 +151,7 @@
     <div class="container game-content align-bottom">
         <div class="row">
             <div class="col-6 px-5">
-                <div class="dialogue-box align-bottom p-2">{{ dialogue }}</div>
+                <div class="dialogue-box align-bottom p-2 introText">{{ dialogue }}</div>
             </div>
             {% if displayGameImg %}
             <div class="col-6">
@@ -179,4 +177,3 @@
 </div>
 
 {% endblock %}
-
