@@ -18,6 +18,12 @@ def homepage():
     print(lesson_name1)
     return render_template('homepage.html', lesson_name1=lesson_name1, lesson_name3=lesson_name3)
 
+@app.route('/lessonplans')
+def lessonplans():
+    lesson_name1 = lessons[0]
+    lesson_name3 = lessons[2]
+    return render_template('lesson_plans.html', lesson_name1=lesson_name1, lesson_name3=lesson_name3)
+
 @app.route('/game/<path>')
 def game(path=None):
     global health
