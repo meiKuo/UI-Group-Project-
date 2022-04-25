@@ -3,7 +3,7 @@ const GAME_STATE = {
     Map: 1,
     OnChoice: 2,
     OnEatConfirm: 3,
-    OnCut: 4, 
+    OnCut: 4,
     OnToxicConfirm: 5,
     Continue: 6,
 }
@@ -19,8 +19,8 @@ function setDialogue(dialogue) {
 }
 
 function createGameButton(text, color, nextState) {
-    return `<button data-next=${nextState} class="game-button ${color} p-2">${text}</button>`
-        
+    return `<button data-next=${nextState} class="game-button ${color}">${text}</button>`
+
 }
 
 function updateButtons(buttons) {
@@ -83,7 +83,7 @@ function updateState() {
             break;
         case (GAME_STATE.OnToxicConfirm):
             setDialogue("Are you sure this mushroom is toxic?")
-            updateButtons([ 
+            updateButtons([
                 {
                     text: "Not sure, go back.",
                     color: BUTTON_COLOR.Gray,
@@ -186,7 +186,7 @@ function onGameButtonPress(nextState) {
             return;
         case (GAME_STATE.Continue):
             submitUserChoice()
-            return;      
+            return;
     }
 
     gameState = nextState
