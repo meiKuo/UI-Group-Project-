@@ -121,11 +121,10 @@ def lesson(id):
     if cur_lesson["type"] == "compare":
         lesson_params = {
             "lesson_name": cur_lesson["lesson_name"],
-            "description": cur_lesson["description"],
             "mushroom1": mushrooms[cur_lesson["mushroom1"]],
             "mushroom2": mushrooms[cur_lesson["mushroom2"]]
         }
-        return render_template('lesson1_compare.html', **lesson_params)
+        return render_template('lesson1_compare.html', data=lesson_params)
     
     else:
         lesson_params = {
@@ -133,7 +132,7 @@ def lesson(id):
             "description": cur_lesson["description"],
             "mushroom1": mushrooms[cur_lesson["mushroom1"]],
         }
-        return render_template('lesson2_present.html', **lesson_params)
+        return render_template('lesson2_present.html', data=lesson_params)
 
 if __name__ == '__main__':
     app.run(debug=True)
