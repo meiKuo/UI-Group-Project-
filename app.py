@@ -1,6 +1,4 @@
 import json
-from operator import le
-from tkinter import dialog
 from flask import Flask
 from flask import render_template
 from flask import Response, request, jsonify, request, redirect
