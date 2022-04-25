@@ -1,7 +1,7 @@
 mushrooms = {
     "0": {
         "id": "0",
-        "name": "True Morels",
+        "name": "Black Morel",
         "edible": True,
         "img_url": 'https://media.istockphoto.com/vectors/hand-drawn-colorful-morel-mushroom-vector-id1181276056?k=6&m=1181276056&s=612x612&w=0&h=_qqA5l8WiwQpR2mRJc0mnndmzgyky-EZs_nTwl21T0U=',
         "cut_img_url": "images/puffball_mushroom_open_1.png",
@@ -45,7 +45,7 @@ mushrooms = {
         "id": "3",
         "name": "Giant Puffball",
         "edible": True,
-        "img_url": 'https://education.mdc.mo.gov/sites/default/files/styles/centered_full/public/media/field-guide/Puffball.jpg?itok=6avLAqkN',
+        "img_url": 'images/puffball_mushroom_1.png',
         "cut_img_url": "images/puffball_mushroom_open_1.png",
         "cap": "Pure white stalks cap",
         "stem": "Pure white stems",
@@ -133,103 +133,37 @@ mushrooms = {
 
 }
 
-# Questions for quiz
-quizMushrooms = [
-    {
-        "id": "0",
-        "name": "Black Morel",
-        "edible": True,
-        "poisonous": False,
-        "img_url": 'images/morel_1.png',
-        "cut_img_url": "images/morel_open_1.png",
-        "features": [
-            "Irregularly shaped",
-            "Bulging outwards",
-            "Wavy and lobed",
-            "Hangs freely from the stem"
-        ]
-    },
-    {
+quiz = {
+    "1": {
         "id": "1",
-        "name": "False Morel",
-        "edible": False,
-        "poisonous": True,
+        "mushroom_id": "0",
+        "img_url": 'images/morel_1.png',
+        "cut_img_url": "images/morel_1.png",
+        "done": False
+    },
+    "2": {
+        "id": "2",
+        "mushroom_id": "1",
         "img_url": 'images/false_morel_1.png',
         "cut_img_url": "images/false_morel_1.png",
-        "features": [
-            "Irregularly shaped",
-            "Bulging outwards",
-            "Wavy and lobed",
-            "Hangs freely from the stem"
-        ]
+        "done": False
     },
-    {
-        "id": "2",
-        "name": "Death Cap",
-        "edible": False,
-        "poisonous": True,
-        "img_url": 'images/death_cap_1.png',
-        "cut_img_url": "images/death_cap_1.png",
-        "features": [
-            "Irregularly shaped",
-            "Bulging outwards",
-            "Wavy and lobed",
-            "Hangs freely from the stem"
-        ]
-    },
-    {
+    "3": {
         "id": "3",
-        "name": "Destorying Angel",
-        "edible": False,
-        "poisonous": True,
-        "img_url": 'images/destorying_angel_1.png',
-        "cut_img_url": "images/destorying_angel_1.png",
-        "features": [
-            "Irregularly shaped",
-            "Bulging outwards",
-            "Wavy and lobed",
-            "Hangs freely from the stem"
-        ]
-    },
-    {
-        "id": "4",
-        "name": "Giant Puffball",
-        "edible": True,
-        "poisonous": False,
+        "mushroom_id": "3",
         "img_url": 'images/puffball_mushroom_1.png',
         "cut_img_url": "images/puffball_mushroom_open_1.png",
-        "features": [
-            "Irregularly shaped",
-            "Bulging outwards",
-            "Wavy and lobed",
-            "Hangs freely from the stem"
-        ]
+        "done": False
     },
-
-]
-
-"""
-questions = [
-    {
-        "id": 1,
-        "question": "Hmm, this mushroom looks interesting. Not sure if it's edible. What do you think?",
-        "mushroom": "0", # ID from mushrooms[]
-        "health_cost": 1,
-        "hunger_cost": 0,
-        "cut_dialogue": "It looks like the mushroom is hollow from tip to stem.",
-        "correct_choice": 0,
-    },
-    {
-        "id": 2,
-        "question": "Hmm, this mushroom looks interesting. Not sure if it's edible. What do you think?",
-        "mushroom": "0", # ID from mushrooms[]
-        "health_cost": 1,
-        "hunger_cost": 0,
-        "cut_dialogue": "It looks like the mushroom is hollow from tip to stem.",
-        "correct_choice": 0,
+    "4": {
+        "id": "4",
+        "mushroom_id": "2",
+        "img_url": 'images/death_cap_1.png',
+        "cut_img_url": "images/death_cap_1.png",
+        "done": False
     }
-]
-"""
+}
+
 
 #lessons
 lessons = [
@@ -265,11 +199,17 @@ lessons = [
         "lesson_name": "Oyster Mushrooms",
         "mushroom1": "7",
         "type": "indiv"
-    }, {
+    },
+    {
         "lesson_id": "6",
         "lesson_name": "Lion's Mane",
         "mushroom1": "8",
         "type": "indiv"
     },
-
 ]
+
+
+START_DIALOGUE = """Welcome to wild, wild wilderness. Here we'll test everything you've learned.\n\n 
+                    Toxic mushrooms and getting too hungry can decrease your health, so be careful!"""
+
+ON_CHOICE_DIALOGUE = "Hmm, this looks interesting. What will you do?"
