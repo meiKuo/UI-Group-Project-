@@ -5,6 +5,10 @@ $(document).ready(() => {
     let mushroom1 = lesson_params["mushroom1"]
     let mushroom2 = lesson_params["mushroom2"]
 
+    $("#backButton").click(function(){
+      window.location.href ='/lessonplans'
+    })
+
     document.getElementById("name1").innerHTML = mushroom1["name"]
     document.getElementById("name2").innerHTML = mushroom2["name"]
 

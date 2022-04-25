@@ -62,6 +62,19 @@
 .ediblePadding{
   padding-left: 150px;
 }
+#backButton{
+  font-size: 20px;
+  background-color: darkgrey;
+  width: 170px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  border-color: darkgrey;
+  border-width: medium;
+  border-style: solid;
+}
 
 /* table */
 table{
