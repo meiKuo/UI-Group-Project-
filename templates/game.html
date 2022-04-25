@@ -73,14 +73,6 @@
         border-radius: 15px;
     }
 
-    .health-bar {
-        background-color: lightcoral !important;
-    }
-
-    .hunger-bar {
-        background-color: lightgreen !important;
-    }
-
     .button-red {
         background-color: lightcoral !important;
     }
@@ -105,7 +97,7 @@
 
 {% block content %}
 <div class="row py-3">
-    <div class="col-1">
+    <div class="col-1 healthText">
         Health:
     </div>
     <div class="col-5">
@@ -113,7 +105,7 @@
             <div class="progress-bar health-bar" role="progressbar" style="width: {{ health }}%;" aria-valuenow="{{ health }}" aria-valuemin="0" aria-valuemax="100">{{ health }}</div>
         </div>
     </div>
-    <div class="col-1">
+    <div class="col-1 healthText">
         Hunger:
     </div>
     <div class="col-5">

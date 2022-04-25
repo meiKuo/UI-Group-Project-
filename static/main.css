@@ -188,6 +188,23 @@ td{
   padding: 0 50px;
   margin-bottom: 100px;
 }
+.healthText{
+  font-size: 25px;
+  font-weight: 800;
+  padding-right: 10px;
+}
+.health-bar {
+    background-color: lightcoral !important;
+    color: black;
+    font-weight: 700;
+    font-size: 20px
+}
+.hunger-bar {
+    background-color: lightgreen !important;
+    color: black;
+    font-weight: 700;
+    font-size: 20px;
+}
 
 /* game mushroom */
 .dialog{
