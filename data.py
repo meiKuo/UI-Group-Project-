@@ -169,10 +169,10 @@ quiz = {
 lessons = [
     {
         "lesson_id": "1",
-        "lesson_name": "True vs False Morels ",
+        "lesson_name": "True Morels ",
         "mushroom1": "0",
-        "mushroom2": "1",
-        "type": "compare"
+        "img_url": 'https://media.istockphoto.com/vectors/hand-drawn-colorful-morel-mushroom-vector-id1181276056?k=6&m=1181276056&s=612x612&w=0&h=_qqA5l8WiwQpR2mRJc0mnndmzgyky-EZs_nTwl21T0U=',
+        "type": "indiv", 
     },
     {
         "lesson_id": "2",
@@ -206,6 +206,13 @@ lessons = [
         "mushroom1": "8",
         "type": "indiv"
     },
+    # {
+    #     "lesson_id": "1",
+    #     "lesson_name": "True vs False Morels ",
+    #     "mushroom1": "0",
+    #     "mushroom2": "1",
+    #     "type": "compare"
+    # },
 ]
 
 
