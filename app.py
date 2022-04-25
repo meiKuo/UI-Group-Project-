@@ -20,9 +20,14 @@ def homepage():
 
 @app.route('/lessonplans')
 def lessonplans():
-    lesson_name1 = lessons[0]
-    lesson_name3 = lessons[2]
-    return render_template('lesson_plans.html', lesson_name1=lesson_name1, lesson_name3=lesson_name3)
+    lesson1 = lessons[0]
+    lesson2 = lessons[1]
+    lesson3 = lessons[2]
+    lesson4 = lessons[3]
+    lesson5 = lessons[4]
+    lesson6 = lessons[5]
+
+    return render_template('lesson_plans.html', lesson1=lesson1, lesson2=lesson2, lesson3=lesson3, lesson4=lesson4, lesson5=lesson5, lesson6=lesson6 )
 
 @app.route('/game/<path>')
 def game(path=None):
@@ -129,7 +134,6 @@ def lesson(id):
     else:
         lesson_params = {
             "lesson_name": cur_lesson["lesson_name"],
-            "description": cur_lesson["description"],
             "mushroom1": mushrooms[cur_lesson["mushroom1"]],
         }
         return render_template('lesson2_present.html', data=lesson_params)

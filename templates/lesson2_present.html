@@ -6,7 +6,7 @@
 
 <head>
     <!--link js-->
-    <script type="text/javascript" src="{{ url_for('static', filename = 'homepage.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename = 'lesson2_present.js') }}"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
         crossorigin="anonymous">
 
@@ -26,6 +26,7 @@
         .lesson_img {
             width: 300px;
             height: auto;
+
         }
 
         .comparison_padding {
@@ -46,30 +47,34 @@
             right: 100px;
         }
     </style>
+    <script>
+        let lesson_params = {{ data | tojson}}
+    </script>
 </head>
 
 <body>
     <div class="top_ofPage">
-        <div title="name_ofLesson" class = 'lessonName'> Lesson 2: {{lesson_name}} </div>
-        <div title="small_descript">{{description}}</div>
+        <div title="name_ofLesson" class = 'lessonName'> Common Edible </div>
+        <div title="small_descript">Click "Lesson" to learn about other mushrooms!</div>
     </div>
 
     <div class="card">
-        <div class='top_ofPage'>
-            <h4><b>{{mushroom1.name}}</b></h4>
-            <img class='lesson_img' src='{{mushroom1.img_url}}'>
-        </div>
+        <div id = "name1" class='top_ofPage'></div>
 
         <div class="container">
-            {% for f in mushroom1.features %}
-                <li>{{ f }}</li>
-            {% endfor %}
+            <img id="img1" class='lesson_img' src=""></div>
+            <div id="edible1"></div>
+            <div id="cap1"></div>
+            <div id="stem1"></div>
+            <div id="gills1"></div>
+            <div id="taste1"></div>
+            <div id="color1"></div>
+            <div id="location1"></div>
+            <div id="inner1"></div>
+            <div id="description"></div>
+            
+        
         </div>
-    </div>
-
-    <div>
-        <button class='nextButton'>Next</button>
-        <a class="right" href="/game/home"><button class='nextButton'>Next</button></a>
     </div>
 
 </body>
