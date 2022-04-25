@@ -34,7 +34,5 @@ $(document).ready(() => {
     
     document.getElementById("inner1").innerHTML = mushroom1["inner"]
     document.getElementById("inner2").innerHTML = mushroom2["inner"]
-    
-
   
   })

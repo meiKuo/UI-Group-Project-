@@ -13,8 +13,12 @@
     <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
 
     <script>
-        let lesson_name1 = {{ lesson_name1 | tojson}}
-        let lesson_name3 = {{ lesson_name3 | tojson}}
+        let lesson1 = {{ lesson1 | tojson}}
+        let lesson2 = {{ lesson2 | tojson}}
+        let lesson3 = {{ lesson3 | tojson}}
+        let lesson4 = {{ lesson4 | tojson}}
+        let lesson5 = {{ lesson5 | tojson}}
+        let lesson6 = {{ lesson6 | tojson}}
     </script>
 
     <style>
@@ -50,28 +54,17 @@
 
             <div class='col-md-4'>      
                     Commonly Confused
-                    <!-- dynamic append of lessons-->
-                    <!-- <div class="container">
-                        {% for f in lessons %}
-                            <a><li>{{ f }}</li></a>
-                        {% endfor %}
-                    </div> -->
-                    <li>test1</li>
-                    <li>test2</li>
-                    <li>test3</li>
+                    <a href = '/lesson/{{lesson1.lesson_id}}' > <li>{{lesson1.lesson_name}}</li> </a>
+                    <a href = '/lesson/{{lesson2.lesson_id}}' > <li>{{lesson2.lesson_name}}</li> </a>
+                    <a href = '/lesson/{{lesson3.lesson_id}}' > <li>{{lesson3.lesson_name}}</li> </a>
             </div>
 
             <div class='col-md-4'>
                     Common Edible
-                    <!-- dynamic append of lessons-->
-                    <!-- <div class="container">
-                        {% for f in lessons %}
-                            <a><li>{{ f }}</li></a>
-                        {% endfor %}
-                    </div> -->
-                    <a href = '/lesson/1'><li>test1</li></a>
-                    <li>test2</li>
-                    <li>test3</li>
+                    <a href = '/lesson/{{lesson4.lesson_id}}' > <li>{{lesson4.lesson_name}}</li> </a>
+                    <a href = '/lesson/{{lesson5.lesson_id}}' > <li>{{lesson5.lesson_name}}</li> </a>
+                    <a href = '/lesson/{{lesson6.lesson_id}}' > <li>{{lesson6.lesson_name}}</li> </a>
+            </div>
             </div>
 
             <div class='col-md-2'></div>
