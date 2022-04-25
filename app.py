@@ -1,14 +1,15 @@
 import json
 from operator import le
+from tkinter import dialog
 from flask import Flask
 from flask import render_template
 from flask import Response, request, jsonify, request, redirect
 app = Flask(__name__)
 
-from data import mushrooms, quizMushrooms, lessons
+from data import *
 
 health = 100
-hunger = 10
+hunger = 0
 
 # ROUTES
 @app.route('/')
@@ -19,89 +20,128 @@ def homepage():
     return render_template('homepage.html', lesson_name1=lesson_name1, lesson_name3=lesson_name3)
 
 @app.route('/game/<path>')
-def game(path=None):
+def game(path):
     global health
     global hunger
-    global quizMushrooms
-    global game_params
     global mushrooms
+    global quiz
 
-    if path == "home":
-        return render_template('game_home.html')
-    elif path == "map" and len(quizMushrooms):
+    def reset_game():
+        for q in quiz.values():
+            q["done"] = False
+        
+        global health
+        global hunger
+        hunger = 0
+        health = 100
+
+    def get_remaining_quiz(quiz):
+        return [q for q in quiz.values() if not q["done"]]
+
+    remaining_quiz = get_remaining_quiz(quiz)
+    if len(remaining_quiz) == 0:
+        data = { "health": health }
+        return render_template("end_game.html", data=data)
+
+    if path == "start":
+        reset_game()
+
         game_params = {
-            "health": health,
+            "state": 0,
+            "dialogue": START_DIALOGUE,
+            "quiz_id": "0",
             "hunger": hunger,
-            "mushrooms": quizMushrooms,
+            "health": health,
         }
 
-        return render_template('game_map.html', **game_params)
-    elif len(quizMushrooms) and health > 0:
-        print(len(quizMushrooms), health)
-        for mush in quizMushrooms:
-            if path == mush['id']:
-                return render_template('game_ind_mushroom.html', mushroom=mush)
-        return 'End of game!'
-    else:
-        data = {
-            'health': health,
-            'hunger': hunger,
-            'quizMushrooms': quizMushrooms,
+        return render_template("game.html", **game_params)
+
+    elif path == "map":
+
+        game_params = {
+            "displayMap": True,
+            "quiz": quiz.values(),
+            "quiz_id": "0",
+            "state": 1,
+            "hunger": hunger,
+            "health": health,
+        }
+        return render_template("game.html", **game_params)
+    
+    elif path.isdigit():
+        if int(path) < 1 or int(path) > len(quiz.values()):
+            return "Error: Invalid quiz id." 
+
+        game_params = {
+            "displayGameImg": True,
+            "displayMap": False,
+            "quiz": quiz[path],
+            "quiz_id": quiz[path]["id"],
+            "state": 2,
+            "dialogue": ON_CHOICE_DIALOGUE,
+            "hunger": hunger,
+            "health": health,
         }
 
-        return render_template('end_game.html', data=data)
+        return render_template("game.html", **game_params)
 
 
 @app.route('/update', methods=['POST'])
 def update():
     global health
     global hunger
-    global quizMushrooms
+    global quiz
+    global mushrooms
     data = request.get_json()
-    print(data)
 
-    if data['choice'] == 'eat' and data['mushroom']['edible']:
-        # user ate and mushroom edible
-        # reduce hunger and increase health
+    def get_mushroom(quiz_id):
+        return mushrooms[quiz[quiz_id]["mushroom_id"]]
+
+    mushroom = get_mushroom(data['quiz_id'])
+
+    if data['eat'] and mushroom['edible']:
+        # User ate mushroom and mushroom edible
         if hunger > 10:
             hunger = hunger - 10
         else:
             hunger = 0
 
-        if health < 90:
-            health = health + 10
-        else:
-            health = 100
-    elif data['choice'] == 'eat' and not data['mushroom']['edible']:
-        # user ate but mushroom not edible
-        # reduce health and increase hunger
+    elif data['eat'] and not mushroom['edible']:
+        # User ate, not edible
         if health > 10:
             health = health - 10
         else:
             health = 0
+
         if hunger < 90:
             hunger = hunger + 10
         else:
             hunger = 100
             health = health - 10
-    elif data['choice'] != 'eat':
-        # user chose not to eat
-        # increase hunger
+    
+    elif not data['eat'] and mushroom['edible']:
+        # user did not eat, edible
         if hunger < 90:
             hunger = hunger + 10
         else:
             hunger = 100
-            health = health - 10
+            health = health - 10 
+    
+    
+    # Else: Did not eat, not edible
 
+    # Mark quiz_id as done
+    quiz[data['quiz_id']]["done"] = True
 
-    quizMushrooms.remove(data['mushroom'])
-
-    user_stats = {
+    choice_result = {
         "health": health,
+        "eat": data['eat'],
+        "mushroomName": mushroom["name"],
+        "edible": mushroom["edible"],
         "hunger": hunger,
     }
 
-    return jsonify(user_stats)
+    return jsonify(choice_result)
 
 @app.route('/lesson/<id>')
 def lesson(id):

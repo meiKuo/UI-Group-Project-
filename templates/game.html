@@ -4,22 +4,34 @@
 <style>
     :root {
         --game-width: 700px;
-        --game-height: 100px;
+        --game-height: 710px;
     }
-   
-    .character-img {
-        width: 15em;
-    }
-
-    .game-area {
-        display: flex;
-        justify-content: space-between;
-    }
-
+    
     .game-container {
-        max-width: var(--game-width);
-        height: var(--game-height);
+        min-height: var(--game-height);
+        position: relative;
+    }
+
+    .align-bottom {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto
+    }
+
+    .background-img {
+        z-index: -1;
+    }
+
+    .character-img {
+        width: 200px;
+        height: 200px;
         margin: auto;
+        display:block;
+    }
+
+    .game-content {
     }
 
     .none {
@@ -27,37 +39,66 @@
     }
 
     .dialogue-box {
-        margin-left: auto;
-        margin-right: 0;
-        max-width: calc(var(--game-width) / 2);
-
-        font-size: 20px;
+        background-color: rgb(229, 229, 229);
+        border-radius: 15px;
+        width: 80%;
     }
 
     .game-img {
         width: 200px;
         height: 200px;
+        border-radius: 15px;
+        margin: auto;
+        display: block;
     }
 
-    .game-img > img {
+    .game-choice-img {
+        width: 100px;
+        height: 100px;
         border-radius: 15px;
     }
-
     .button-box {
         display: flex;
         justify-content: space-evenly;
         font-size: 20px;
-        
     }
 
-    .game-button:hover {
-        text-decoration: underline !important;
-        cursor: pointer !important;
-    }   
+    .game-button {
+        border-radius: 15px;
+        border: 0;
+    }
+
+     
+
+    .progress {
+        height: 100%;
+        border-radius: 15px;
+    }
+
+    .health-bar {
+        background-color: lightcoral !important;
+    }
+
+    .hunger-bar {
+        background-color: lightgreen !important;
+    }
+
+    .button-red {
+        background-color: lightcoral !important;
+    }
+
+    .button-green {
+        background-color: lightgreen !important;
+    }
+
 </style>
 
 <script>
-    let question = {{ question | tojson }} 
+    let gameState = {{ state }};
+</script>
+
+<script>
+    let quiz = {{ quiz_id | tojson }}
 </script>
 
 <script type="text/javascript" src="{{ url_for('static', filename = 'game/game.js') }}"></script>
@@ -65,43 +106,77 @@
 {% endblock %}
 
 {% block content %}
-<div class="mt-5">
-    {% if not end %}
-    <h1>Eat the edible mushrooms and get out of the forest (alive)!</h1>
-    <div class="game-bar my-5 d-inline-flex">
-        <div class="lives-container mr-3 d-flex">
-            <h2>Lives:</h2>
-            <div id="heart-container">
-            {% for l in range(lives) %}
-            <img src="{{ url_for('static', filename='game/assets/heart.png') }}"/>
-            {% endfor %}
-            </div>
-        </div>
-        <div class="lives-container">
-            <h2>Hunger: {{ hunger }}/100</h2>
+<div class="row py-3">
+    <div class="col-1">
+        Health:
+    </div>
+    <div class="col-5">
+        <div class="progress">
+            <div class="progress-bar health-bar" role="progressbar" style="width: {{ health }}%;" aria-valuenow="{{ health }}" aria-valuemin="0" aria-valuemax="100">{{ health }}</div>
         </div>
     </div>
-    <div class="game-container">
-        <div class="dialogue-box">
-            <span id="dialogue">{{ question.question }}</span>
+    <div class="col-1">
+        Hunger:
+    </div>
+    <div class="col-5">
+        <div class="progress">
+            <div class="progress-bar hunger-bar" role="progressbar" style="width: {{ hunger }}%;" aria-valuenow="{{ hunger }}" aria-valuemin="0" aria-valuemax="100">{{ hunger }}</div>
         </div>
-        <div class="game-area my-5">
-            <img class="character-img" src="{{ url_for('static', filename='game/assets/MC.png') }}"/>
-            <div class="game-img">
-                <img class="img-fluid" src="{{ url_for('static', filename=mushroom.img_url) }}" />
+    </div>
+</div>
+{% endblock %}
+
+{% block game %}
+
+<div class="w-100 game-container">
+    {% if displayMap %}
+    <img src="{{ url_for('static', filename = 'game/assets/background_map.png') }}" alt="" class="background-img align-bottom img-fluid">
+    <div class="container">
+        {% for q in quiz %}
+            {% if not q.done %}
+            <a href="/game/{{ q.id }}">
+                <img src="{{ url_for('static', filename = q.img_url )}}" alt="" class="game-choice-img m-5">
+            </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="container game-content align-bottom">
+        <div class="row">
+            <div class="col-6">
+                <img src="{{ url_for('static', filename = 'game/assets/MC.png')}}" alt="" class="character-img">
             </div>
-            <img class="character-img" src="{{ url_for('static', filename='game/assets/TG.png') }}"/>
-        </div>
-        <div class="button-box">
-            <a type="button" id="skip" href="/game/{{ question.id + 1 }}" class="game-button">Hmm, let's skip this.</a>
+            <div class="col-6"></div>
         </div>
     </div>
     {% else %}
-        <h1>You've reached the end of the quiz. Here are your stats.</h1>
-        <h2>Lives: {{ lives }}</h2>
-        <h2>Score: {{ score }}</h2>
-        <h2>Hunger: {{ hunger }}</h2>
+    <img src="{{ url_for('static', filename = 'game/assets/background.png') }}" alt="" class="background-img align-bottom img-fluid">
+    <div class="container game-content align-bottom">
+        <div class="row">
+            <div class="col-6 px-5">
+                <div class="dialogue-box align-bottom p-2">{{ dialogue }}</div>
+            </div>
+            {% if displayGameImg %}
+            <div class="col-6">
+                <img src="{{ url_for('static', filename = quiz.img_url )}}" alt="" class="game-img">
+            </div>
+            {% endif %}
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <img src="{{ url_for('static', filename = 'game/assets/MC.png')}}" alt="" class="character-img">
+            </div>
+            <div class="col-6">
+
+            </div>
+        </div>
+    </div>
     {% endif %}
 </div>
+
+<div class="container py-3">
+    <div class="button-box">
+    </div>
+</div>
+
 {% endblock %}
 
