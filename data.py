@@ -45,7 +45,7 @@ mushrooms = {
         "id": "3",
         "name": "Giant Puffball",
         "edible": True,
-        "img_url": 'images/puffball_mushroom_1.png',
+        "img_url": 'https://education.mdc.mo.gov/sites/default/files/styles/centered_full/public/media/field-guide/Puffball.jpg?itok=6avLAqkN',
         "cut_img_url": "images/puffball_mushroom_open_1.png",
         "cap": "Pure white stalks cap",
         "stem": "Pure white stems",
@@ -209,7 +209,7 @@ lessons = [
 ]
 
 
-START_DIALOGUE = """Welcome to the wild, wild wilderness. Here we'll test everything you've learned.\n\n 
+START_DIALOGUE = """Welcome to the wild, wild wilderness. Here we'll test everything you've learned.\n\n
                     Toxic mushrooms and getting too hungry can decrease your health, so be careful!"""
 
 ON_CHOICE_DIALOGUE = "Hmm, this looks interesting. What will you do?"
