@@ -67,7 +67,9 @@ mushrooms = {
         "taste": "Peppery/peachy/apricot",
         "color": "Bright yellow/orange",
         "location": "East and West Coasts",
-        "inner": "White internal flesh"
+        "inner": "White internal flesh",
+        "description": "“Maitake” means dancing mushroom in Japanese. The mushroom is said to have gotten its name after people danced with happiness upon finding it in the wild, such are its incredible healing properties. This mushroom is a type of adaptogen. Adaptogens assist the body in fighting against any type of mental or physical difficulty. They also work to regulate systems of the body that have become unbalanced. While this mushroom can be used in recipes for taste alone, it’s considered to be a medicinal mushroom. The mushroom grows wild in parts of Japan, China, and North America. It grows at the bottom of Oak, Elm, and Maple trees. It can be cultivated and even grown at home, though it typically won’t grow as well as it does in the wild. You can usually find the mushroom during the autumn months.",
+
 
         },
     "5": {
