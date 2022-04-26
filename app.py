@@ -25,8 +25,11 @@ def lessonplans():
     lesson4 = lessons[3]
     lesson5 = lessons[4]
     lesson6 = lessons[5]
+    lesson7 = lessons[6]
+    lesson8 = lessons[7]
+    lesson9 = lessons[8]
 
-    return render_template('lesson_plans.html', lesson1=lesson1, lesson2=lesson2, lesson3=lesson3, lesson4=lesson4, lesson5=lesson5, lesson6=lesson6 )
+    return render_template('lesson_plans.html', lesson1=lesson1, lesson2=lesson2, lesson3=lesson3, lesson4=lesson4, lesson5=lesson5, lesson6=lesson6, lesson7=lesson7, lesson8=lesson8, lesson9=lesson9, )
 
 @app.route('/game/<path>')
 def game(path):
