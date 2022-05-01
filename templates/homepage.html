@@ -14,40 +14,85 @@
     <script>
     </script>
 
+    <style>
+        .gray {
+            background-color: lightgray;
+        }
+
+        .small {
+            font-size: 20px;
+            font-weight: normal;
+        }
+
+        .split {
+            height: 50%;
+            width: 50%;
+            position: fixed;
+            z-index: 1;
+            overflow-x: hidden;
+            padding-top: 100px;
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            right: 0;
+            background-color: lightgreen;
+        }
+
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .down {
+            padding-top: 100px;
+        }
+
+        .character_shift{
+            padding-top: 140px; 
+            padding-left: 50px; 
+        }
+    </style>
+
 </head>
 
 <body>
-    <div class='center title'>
+    <div class='title gray'>
         Mushroom Scavenging
+        <p class='small'>Do you know how how to identify poisonous mushrooms?
+            Can you survive the wild?</p>
     </div>
 
-    <div id='Overview'>
-        <div class='row'>
-            <div class='col-md-2'></div>
 
-            <div class='col-md-4'>
-                <a class="homepageCardName" href="/lessonplans" id='adventureTime'>
-                    <div class='card centerVert'>
-                        Learn
-                    </div>
-                </a>
-            </div>
-
-            <div class='col-md-4'>
-                <a class="homepageCardName" href="/game/start" id='adventureTime'>
-                    <div class='card centerVert'>
-                        Adventure Time!
-                    </div>
-                </a>
-            </div>
-
-            <div class='col-md-2'></div>
-
+    <div class="split left">
+        <div class="centered">
+            <h2>Learn</h2>
+            <p>Worry not! Learn the difference.</p>
+            <a href="/lessonplans" id='adventureTime'><button>Learn</button></a>
         </div>
     </div>
 
-
+    <div class="split right">
+        <div class="centered">
+            <h2>Play</h2>
+            <p>Already an expert? Test your skills!</p>
+            <a href="/game/start" id='adventureTime'><button>Play</button></a>
+            
+        </div>
+        <img class="character_shift" src="{{ url_for('static', filename='game/assets/MC.png') }}"/>
     </div>
+
+
+
+
+
+
 </body>
 
 </html>
