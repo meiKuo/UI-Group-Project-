@@ -15,7 +15,7 @@ mushrooms = {
     },
     "1": {
         "id": "1",
-        "name": "False Morels",
+        "name": "False Morel",
         "edible": False,
         "img_url": 'https://as1.ftcdn.net/v2/jpg/02/94/34/30/1000_F_294343087_4w1GR3vVswC4RoOslk9VxORUxiRb20Rw.jpg',
         "cut_img_url": "images/puffball_mushroom_open_1.png",
@@ -139,15 +139,15 @@ quiz = {
     "1": {
         "id": "1",
         "mushroom_id": "0",
-        "img_url": 'images/morel_1.png',
-        "cut_img_url": "images/morel_1.png",
+        "img_url": 'images/morel_1.jpeg',
+        "cut_img_url": "images/morel_open_1.png",
         "done": False
     },
     "2": {
         "id": "2",
         "mushroom_id": "1",
-        "img_url": 'images/false_morel_1.png',
-        "cut_img_url": "images/false_morel_1.png",
+        "img_url": 'images/false_morel_1.jpeg',
+        "cut_img_url": "images/false_morel_open_1.jpeg",
         "done": False
     },
     "3": {
@@ -160,8 +160,64 @@ quiz = {
     "4": {
         "id": "4",
         "mushroom_id": "2",
-        "img_url": 'images/death_cap_1.png',
+        "img_url": 'images/destroying_angel_1.jpeg',
+        "cut_img_url": "images/destroying_angel_open_1.jpeg",
+        "done": False
+    },
+    "5": {
+        "id": "5",
+        "mushroom_id": "4",
+        "img_url": 'images/chanterelle_1.jpeg',
         "cut_img_url": "images/death_cap_1.png",
+        "done": False
+    },
+    "6": {
+        "id": "6",
+        "mushroom_id": "6",
+        "img_url": 'images/maitake_1.jpeg',
+        "cut_img_url": "images/maitake_open_1.png",
+        "done": False
+    },
+    "7": {
+        "id": "7",
+        "mushroom_id": "2",
+        "img_url": 'images/destroying_angel_2.jpeg',
+        "cut_img_url": "images/destroying_angel_open_2.jpeg",
+        "done": False
+    },
+    "8": {
+        "id": "8",
+        "mushroom_id": "5",
+        "img_url": 'images/jack_o_lantern_1.jpeg',
+        "cut_img_url": "images/jack_o_lantern_open_1.jpeg",
+        "done": False
+    },
+    "9": {
+        "id": "9",
+        "mushroom_id": "8",
+        "img_url": 'images/lions_mane_1.jpeg',
+        "cut_img_url": "images/lions_mane_open_1.jpeg",
+        "done": False
+    },
+    "10": {
+        "id": "10",
+        "mushroom_id": "7",
+        "img_url": 'images/oyster_1.jpeg',
+        "cut_img_url": "images/oyster_1.jpeg",
+        "done": False
+    },
+    "11": {
+        "id": "11",
+        "mushroom_id": "0",
+        "img_url": 'images/morel_2.jpeg',
+        "cut_img_url": "images/morel_open_2.jpeg",
+        "done": False
+    },
+    "12": {
+        "id": "12",
+        "mushroom_id": "3",
+        "img_url": 'images/puffball_2.jpeg',
+        "cut_img_url": "images/puffball_open_2.jpeg",
         "done": False
     }
 }
@@ -171,10 +227,10 @@ quiz = {
 lessons = [
     {
         "lesson_id": "1",
-        "lesson_name": "True Morels ",
+        "lesson_name": "True Morel",
         "mushroom1": "0",
         "img_url": 'https://media.istockphoto.com/vectors/hand-drawn-colorful-morel-mushroom-vector-id1181276056?k=6&m=1181276056&s=612x612&w=0&h=_qqA5l8WiwQpR2mRJc0mnndmzgyky-EZs_nTwl21T0U=',
-        "type": "indiv", 
+        "type": "indiv",
     },
     {
         "lesson_id": "2",
@@ -192,14 +248,14 @@ lessons = [
     },
     {
         "lesson_id": "4",
-        "lesson_name": "Maitake Mushrooms",
+        "lesson_name": "Maitake Mushroom",
         "mushroom1": "6",
         "img_url": 'https://thumbs.dreamstime.com/z/maitake-mushroom-grifola-frondosa-hen-woods-medicinal-plant-maitake-mushroom-grifola-frondosa-hen-woods-109414751.jpg',
         "type": "indiv",
     },
     {
         "lesson_id": "5",
-        "lesson_name": "Oyster Mushrooms",
+        "lesson_name": "Oyster Mushroom",
         "mushroom1": "7",
         "img_url": 'https://thumbs.dreamstime.com/z/oyster-mushroom-hand-drawn-vector-illustration-sketch-food-drawing-isolated-white-background-organic-vegetarian-product-great-146858794.jpg',
         "type": "indiv"
@@ -213,36 +269,29 @@ lessons = [
     },
     {
         "lesson_id": "7",
-        "lesson_name": "False Morels ",
+        "lesson_name": "False Morel",
         "mushroom1": "1",
         "img_url": 'https://as1.ftcdn.net/v2/jpg/02/94/34/30/1000_F_294343087_4w1GR3vVswC4RoOslk9VxORUxiRb20Rw.jpg',
-        "type": "indiv", 
+        "type": "indiv",
     },
     {
         "lesson_id": "8",
         "lesson_name": "Jack o Lantern",
         "mushroom1": "5",
         "img_url": "https://healing-mushrooms.net/wp-content/uploads/2020/01/Jack-o-Lantern-Mushroom.jpg",
-        "type": "indiv", 
+        "type": "indiv",
     },
     {
         "lesson_id": "9",
         "lesson_name": "Destroying Angel",
         "mushroom1": "2",
        "img_url": 'https://media.illustrationx.com/images/artist/LizPepperell/128015/watermark/1300/destroying-angel-toadstool.jpg',
-        "type": "indiv", 
+        "type": "indiv",
     },
-    # {
-    #     "lesson_id": "1",
-    #     "lesson_name": "True vs False Morels ",
-    #     "mushroom1": "0",
-    #     "mushroom2": "1",
-    #     "type": "compare"
-    # },
 ]
 
 
 START_DIALOGUE = """Welcome to the wild, wild wilderness. Here we'll test everything you've learned.\n\n
-                    Toxic mushrooms and getting too hungry can decrease your health, so be careful!"""
+                    Eat the edible mushrooms and stay away from the toxic ones!"""
 
 ON_CHOICE_DIALOGUE = "Hmm, this looks interesting. What will you do?"
