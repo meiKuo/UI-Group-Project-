@@ -230,17 +230,10 @@ td {
 }
 
 .health-bar {
-  background-color: lightcoral !important;
-  color: black;
-  font-weight: 700;
-  font-size: 20px
-}
-
-.hunger-bar {
   background-color: lightgreen !important;
   color: black;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 20px
 }
 
 /* game mushroom */

@@ -7,7 +7,6 @@ app = Flask(__name__)
 from data import *
 
 health = 100
-hunger = 0
 
 # ROUTES
 @app.route('/')
@@ -34,17 +33,14 @@ def lessonplans():
 @app.route('/game/<path>')
 def game(path):
     global health
-    global hunger
     global mushrooms
     global quiz
 
     def reset_game():
         for q in quiz.values():
             q["done"] = False
-        
+
         global health
-        global hunger
-        hunger = 0
         health = 100
 
     def get_remaining_quiz(quiz):
@@ -62,7 +58,6 @@ def game(path):
             "state": 0,
             "dialogue": START_DIALOGUE,
             "quiz_id": "0",
-            "hunger": hunger,
             "health": health,
         }
 
@@ -75,14 +70,13 @@ def game(path):
             "quiz": quiz.values(),
             "quiz_id": "0",
             "state": 1,
-            "hunger": hunger,
             "health": health,
         }
         return render_template("game.html", **game_params)
-    
+
     elif path.isdigit():
         if int(path) < 1 or int(path) > len(quiz.values()):
-            return "Error: Invalid quiz id." 
+            return "Error: Invalid quiz id."
 
         game_params = {
             "displayGameImg": True,
@@ -91,17 +85,14 @@ def game(path):
             "quiz_id": quiz[path]["id"],
             "state": 2,
             "dialogue": ON_CHOICE_DIALOGUE,
-            "hunger": hunger,
             "health": health,
         }
 
         return render_template("game.html", **game_params)
 
-
 @app.route('/update', methods=['POST'])
 def update():
     global health
-    global hunger
     global quiz
     global mushrooms
     data = request.get_json()
@@ -113,10 +104,10 @@ def update():
 
     if data['eat'] and mushroom['edible']:
         # User ate mushroom and mushroom edible
-        if hunger > 10:
-            hunger = hunger - 10
+        if health < 90:
+            health = health + 10
         else:
-            hunger = 0
+            health = 100
 
     elif data['eat'] and not mushroom['edible']:
         # User ate, not edible
@@ -125,21 +116,14 @@ def update():
         else:
             health = 0
 
-        if hunger < 90:
-            hunger = hunger + 10
-        else:
-            hunger = 100
-            health = health - 10
-    
     elif not data['eat'] and mushroom['edible']:
         # user did not eat, edible
-        if hunger < 90:
-            hunger = hunger + 10
+        if health > 10:
+            health = health - 10
         else:
-            hunger = 100
-            health = health - 10 
-    
-    
+            health = 0
+
+
     # Else: Did not eat, not edible
 
     # Mark quiz_id as done
@@ -150,7 +134,6 @@ def update():
         "eat": data['eat'],
         "mushroomName": mushroom["name"],
         "edible": mushroom["edible"],
-        "hunger": hunger,
     }
 
     return jsonify(choice_result)
@@ -162,7 +145,7 @@ def lesson(id):
     if lesson_id >= len(lessons) or lesson_id < 0:
         return "Error: Invalid lesson number."
 
-    
+
     cur_lesson = lessons[lesson_id]
     if cur_lesson["type"] == "compare":
         lesson_params = {
@@ -171,7 +154,7 @@ def lesson(id):
             "mushroom2": mushrooms[cur_lesson["mushroom2"]]
         }
         return render_template('lesson1_compare.html', data=lesson_params)
-    
+
     else:
         lesson_params = {
             "lesson_name": cur_lesson["lesson_name"],

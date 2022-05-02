@@ -17,7 +17,8 @@
         bottom: 0;
         left: 0;
         right: 0;
-        margin: auto
+        margin: auto;
+        <!-- background-color: red; -->
     }
 
     .background-img {
@@ -45,17 +46,23 @@
     }
 
     .game-img {
-        width: 200px;
-        height: 200px;
+        height: 275px;
+        border-radius: 15px;
+        margin: auto;
+        display: block;
+    }
+    .game-img-cut {
+        height: 275px;
         border-radius: 15px;
         margin: auto;
         display: block;
     }
 
     .game-choice-img {
-        width: 100px;
-        height: 100px;
+        height: 130px;
         border-radius: 15px;
+        margin-left: 100px;
+        margin-top: 50px;
     }
     .button-box {
         display: flex;
@@ -116,14 +123,6 @@
             <div class="progress-bar health-bar" role="progressbar" style="width: {{ health }}%;" aria-valuenow="{{ health }}" aria-valuemin="0" aria-valuemax="100">{{ health }}</div>
         </div>
     </div>
-    <div class="col-1 healthText">
-        Hunger:
-    </div>
-    <div class="col-5">
-        <div class="progress">
-            <div class="progress-bar hunger-bar" role="progressbar" style="width: {{ hunger }}%;" aria-valuenow="{{ hunger }}" aria-valuemin="0" aria-valuemax="100">{{ hunger }}</div>
-        </div>
-    </div>
 </div>
 {% endblock %}
 
@@ -136,7 +135,7 @@
         {% for q in quiz %}
             {% if not q.done %}
             <a href="/game/{{ q.id }}">
-                <img src="{{ url_for('static', filename = q.img_url )}}" alt="" class="game-choice-img m-5">
+                <img src="{{ url_for('static', filename = q.img_url )}}" alt="" class="game-choice-img">
             </a>
             {% endif %}
         {% endfor %}
@@ -157,17 +156,15 @@
                 <div class="dialogue-box align-bottom p-2 introText">{{ dialogue }}</div>
             </div>
             {% if displayGameImg %}
-            <div class="col-6">
+            <div class="col-6 game-img-cont">
                 <img src="{{ url_for('static', filename = quiz.img_url )}}" alt="" class="game-img">
+                <img src="{{ url_for('static', filename = quiz.cut_img_url )}}" alt="" class="game-img-cut">
             </div>
             {% endif %}
         </div>
         <div class="row">
             <div class="col-6">
                 <img src="{{ url_for('static', filename = 'game/assets/MC.png')}}" alt="" class="character-img">
-            </div>
-            <div class="col-6">
-
             </div>
         </div>
     </div>
