@@ -88,7 +88,7 @@ mushrooms = {
         },
     "6": {
         "id": "6",
-        "name": "Maitake Mushrooms",
+        "name": "Maitake Mushroom",
         "edible": True,
         "img_url": 'https://thumbs.dreamstime.com/z/maitake-mushroom-grifola-frondosa-hen-woods-medicinal-plant-maitake-mushroom-grifola-frondosa-hen-woods-109414751.jpg',
         "cut_img_url": "images/puffball_mushroom_open_1.png",
@@ -104,7 +104,7 @@ mushrooms = {
     },
     "7": {
         "id": "7",
-        "name": "Oyster Mushrooms",
+        "name": "Oyster Mushroom",
         "edible": True,
         "img_url": 'https://thumbs.dreamstime.com/z/oyster-mushroom-hand-drawn-vector-illustration-sketch-food-drawing-isolated-white-background-organic-vegetarian-product-great-146858794.jpg',
         "cut_img_url": "images/puffball_mushroom_open_1.png",
