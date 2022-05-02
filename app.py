@@ -7,7 +7,6 @@ app = Flask(__name__)
 from data import *
 
 health = 100
-hunger = 0
 
 # ROUTES
 @app.route('/')
@@ -34,7 +33,6 @@ def lessonplans():
 @app.route('/game/<path>')
 def game(path):
     global health
-    global hunger
     global mushrooms
     global quiz
 
@@ -43,8 +41,6 @@ def game(path):
             q["done"] = False
 
         global health
-        global hunger
-        hunger = 0
         health = 100
 
     def get_remaining_quiz(quiz):
@@ -62,7 +58,6 @@ def game(path):
             "state": 0,
             "dialogue": START_DIALOGUE,
             "quiz_id": "0",
-            "hunger": hunger,
             "health": health,
         }
 
@@ -75,7 +70,6 @@ def game(path):
             "quiz": quiz.values(),
             "quiz_id": "0",
             "state": 1,
-            "hunger": hunger,
             "health": health,
         }
         return render_template("game.html", **game_params)
@@ -91,7 +85,6 @@ def game(path):
             "quiz_id": quiz[path]["id"],
             "state": 2,
             "dialogue": ON_CHOICE_DIALOGUE,
-            "hunger": hunger,
             "health": health,
         }
 
@@ -100,7 +93,6 @@ def game(path):
 @app.route('/update', methods=['POST'])
 def update():
     global health
-    global hunger
     global quiz
     global mushrooms
     data = request.get_json()
@@ -112,10 +104,10 @@ def update():
 
     if data['eat'] and mushroom['edible']:
         # User ate mushroom and mushroom edible
-        if hunger > 10:
-            hunger = hunger - 10
+        if health < 90:
+            health = health + 10
         else:
-            hunger = 0
+            health = 100
 
     elif data['eat'] and not mushroom['edible']:
         # User ate, not edible
@@ -124,19 +116,12 @@ def update():
         else:
             health = 0
 
-        if hunger < 90:
-            hunger = hunger + 10
-        else:
-            hunger = 100
-            health = health - 10
-
     elif not data['eat'] and mushroom['edible']:
         # user did not eat, edible
-        if hunger < 90:
-            hunger = hunger + 10
-        else:
-            hunger = 100
+        if health > 10:
             health = health - 10
+        else:
+            health = 0
 
 
     # Else: Did not eat, not edible
@@ -149,7 +134,6 @@ def update():
         "eat": data['eat'],
         "mushroomName": mushroom["name"],
         "edible": mushroom["edible"],
-        "hunger": hunger,
     }
 
     return jsonify(choice_result)

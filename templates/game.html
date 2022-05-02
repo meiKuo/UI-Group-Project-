@@ -17,7 +17,8 @@
         bottom: 0;
         left: 0;
         right: 0;
-        margin: auto
+        margin: auto;
+        <!-- background-color: red; -->
     }
 
     .background-img {
@@ -58,8 +59,10 @@
     }
 
     .game-choice-img {
-        height: 120px;
+        height: 130px;
         border-radius: 15px;
+        margin-left: 100px;
+        margin-top: 50px;
     }
     .button-box {
         display: flex;
@@ -132,7 +135,7 @@
         {% for q in quiz %}
             {% if not q.done %}
             <a href="/game/{{ q.id }}">
-                <img src="{{ url_for('static', filename = q.img_url )}}" alt="" class="game-choice-img m-5">
+                <img src="{{ url_for('static', filename = q.img_url )}}" alt="" class="game-choice-img">
             </a>
             {% endif %}
         {% endfor %}
@@ -162,9 +165,6 @@
         <div class="row">
             <div class="col-6">
                 <img src="{{ url_for('static', filename = 'game/assets/MC.png')}}" alt="" class="character-img">
-            </div>
-            <div class="col-6">
-
             </div>
         </div>
     </div>
