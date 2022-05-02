@@ -5,47 +5,154 @@
 <html>
 
 <head>
-    <!--link js-->
-    <script type="text/javascript" src="{{ url_for('static', filename = 'homepage.js') }}"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-        crossorigin="anonymous">
+  <!--link js-->
+  <script type="text/javascript" src="{{ url_for('static', filename = 'homepage.js') }}"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    crossorigin="anonymous">
 
-    <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
 
-    <script>
-        let lesson1 = {{ lesson1 | tojson}}
-        let lesson2 = {{ lesson2 | tojson}}
-        let lesson3 = {{ lesson3 | tojson}}
-        let lesson4 = {{ lesson4 | tojson}}
-        let lesson5 = {{ lesson5 | tojson}}
-        let lesson6 = {{ lesson6 | tojson}}
-    </script>
+  <script>
+    let lesson1 = {{ lesson1 | tojson}}
+    let lesson2 = {{ lesson2 | tojson}}
+    let lesson3 = {{ lesson3 | tojson}}
+    let lesson4 = {{ lesson4 | tojson}}
+    let lesson5 = {{ lesson5 | tojson}}
+    let lesson6 = {{ lesson6 | tojson}}
+    let lesson7 = {{ lesson7 | tojson}}
+    let lesson8 = {{ lesson8 | tojson}}
+    let lesson9 = {{ lesson9 | tojson}}
+  </script>
+
+  <style>
+    .borderCategory1 {
+      border-style: solid;
+      border-radius: 15px;
+      font-size: 25px;
+      background-color: lightcoral;
+    }
+
+    .borderCategory2 {
+      border-style: solid;
+      border-radius: 15px;
+      font-size: 25px;
+      background-color: lightgreen;
+    }
+
+    .adjustSpace {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+
+    .lessonCard {
+      padding-top: 40px;
+      box-shadow: 0 4px 8px 0;
+      height: 100px;
+      width: auto;
+      display: flex;
+      justify-content: center;
+      line-height: 25px;
+    }
+
+    .cardImg {
+      width: 50px;
+      height: auto;
+    }
+  </style>
 
 </head>
 
 <body>
-    <div class='title'>
-        Lessons Overview
+  <div class='title'>
+    Lessons Overview
+  </div>
+
+  <div class='subTitle'>
+    <div class='borderCategory1'> Edbile Mushroom </div>
+    <div class='row'>
+      <div class='col-md-4 adjustSpace'>
+        <div class='lessonCard'>
+          <div>
+            <img class = 'cardImg' src='{{lesson1.img_url}}'>
+          </div>
+          <a href='/lesson/{{lesson1.lesson_id}}' class="lessonName">{{lesson1.lesson_name}}</a>
+        </div>
+      </div>
+      <div class='col-md-4 adjustSpace'>
+        <div class='lessonCard'>
+          <div>
+            <img class = 'cardImg' src='{{lesson2.img_url}}'>
+          </div>
+          <a href='/lesson/{{lesson2.lesson_id}}' class="lessonName">{{lesson2.lesson_name}}</a>
+        </div>
+      </div>
+      <div class='col-md-4 adjustSpace'>
+        <div class='lessonCard'>
+          <div>
+            <img class = 'cardImg' src='{{lesson3.img_url}}'>
+          </div>
+          <a href='/lesson/{{lesson3.lesson_id}}' class="lessonName">{{lesson3.lesson_name}}</a>
+        </div>
+      </div>
     </div>
 
     <div class='row'>
-      <div class="column centerHor halfWidth">
-        <div class="subtitle">Commonly Confused</div>
-        <div class="alignLeft confusedPadding">
-          <a href='/lesson/{{lesson1.lesson_id}}' class="lessonName"><li>{{lesson1.lesson_name}}</li></a>
-          <a href='/lesson/{{lesson2.lesson_id}}' class="lessonName"><li>{{lesson2.lesson_name}}</li></a>
-          <a href='/lesson/{{lesson3.lesson_id}}' class="lessonName"><li>{{lesson3.lesson_name}}</li></a>
+      <div class='col-md-4 adjustSpace'>
+        <div class='lessonCard'>
+          <div>
+            <img class = 'cardImg' src='{{lesson4.img_url}}'>
+          </div>
+          <a href='/lesson/{{lesson4.lesson_id}}' class="lessonName">{{lesson4.lesson_name}}</a>
         </div>
       </div>
-      <div class="column centerHor halfWidth">
-        <div class="subtitle">Common Edible</div>
-        <div class="alignLeft ediblePadding">
-          <a href='/lesson/{{lesson4.lesson_id}}' class="lessonName"><li>{{lesson4.lesson_name}}</li></a>
-          <a href='/lesson/{{lesson5.lesson_id}}' class="lessonName"><li>{{lesson5.lesson_name}}</li></a>
-          <a href='/lesson/{{lesson6.lesson_id}}' class="lessonName"><li>{{lesson6.lesson_name}}</li></a>
+      <div class='col-md-4 adjustSpace'>
+        <div class='lessonCard'>
+          <div>
+            <img class = 'cardImg' src='{{lesson5.img_url}}'>
+          </div>
+          <a href='/lesson/{{lesson5.lesson_id}}' class="lessonName">{{lesson5.lesson_name}}</a>
+        </div>
+      </div>
+      <div class='col-md-4 adjustSpace'>
+        <div class='lessonCard'>
+          <div>
+            <img class = 'cardImg' src='{{lesson6.img_url}}'>
+          </div>
+          <a href='/lesson/{{lesson6.lesson_id}}' class="lessonName">{{lesson6.lesson_name}}</a>
         </div>
       </div>
     </div>
+  </div>
+
+  <div class='subTitle'>
+    <div class='borderCategory2'> Poisonous Mushroom </div>
+    <div class='row'>
+      <div class='col-md-4 adjustSpace'>
+        <div class='lessonCard'>
+          <div>
+            <img class = 'cardImg' src='{{lesson7.img_url}}'>
+          </div>
+          <a href='/lesson/{{lesson7.lesson_id}}' class="lessonName">{{lesson7.lesson_name}}</a>
+        </div>
+      </div>
+      <div class='col-md-4 adjustSpace'>
+        <div class='lessonCard'>
+          <div>
+            <img class = 'cardImg' src='{{lesson8.img_url}}'>
+          </div>
+          <a href='/lesson/{{lesson8.lesson_id}}' class="lessonName">{{lesson8.lesson_name}}</a>
+        </div>
+      </div>
+      <div class='col-md-4 adjustSpace'>
+        <div class='lessonCard'>
+          <div>
+            <img class = 'cardImg' src='{{lesson9.img_url}}'>
+          </div>
+          <a href='/lesson/{{lesson9.lesson_id}}' class="lessonName">{{lesson9.lesson_name}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
 

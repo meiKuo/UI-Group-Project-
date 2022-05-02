@@ -16,11 +16,7 @@
     <style>
         .top_ofPage {
             text-align: center;
-        }
-
-        .lessonName{
-            font-size: 30px;
-            padding-bottom: 20px;
+            font-size: 30px; 
         }
 
         .lesson_img {
@@ -33,18 +29,22 @@
             padding-top: 50px;
         }
 
-        .card {
-            box-shadow: 0 4px 8px 0;
-        }
 
         .container {
             padding: 2px 16px;
         }
 
-        .nextButton {
-            position: fixed;
-            bottom: 50px;
-            right: 100px;
+        .graph {
+            padding-top: 50px;
+        }
+
+        .coloring {
+            color: green;
+        }
+
+        .buttonFormat{
+            border-radius: 25px;  
+            width: 200px; 
         }
     </style>
     <script>
@@ -53,62 +53,56 @@
 </head>
 
 <body>
-  <div class="centerHor">
-      <div title="name_ofLesson" class="title removeBotPad">Common Edible Mushrooms</div>
-      <!-- <div title="small_descript">Click "Lesson" to learn about other mushrooms!</div> -->
-      <br>
-  </div>
 
-  <div id="backButton">Back to Lessons</div><br>
+    <div id="name1" class='top_ofPage'></div>
 
-  <table>
-    <tr>
-      <th>Name</th>
-      <th id="name1"></th>
-      <th id="name2"></th>
-    </tr>
-    <tr>
-      <td>Image</td>
-      <td><img id="img1" class='lesson_img' src=""></td>
-    </tr>
-    <tr>
-      <td>Toxicity</td>
-      <td id="edible1"></td>
-    </tr>
-    <tr>
-      <td>Cap</td>
-      <td id="cap1"></td>
-    </tr>
-    <tr>
-      <td>Stem</td>
-      <td id="stem1"></td>
-    </tr>
-    <tr>
-      <td>Gills</td>
-      <td id="gills1"></td>
-    </tr>
-    <tr>
-      <td>Smell/Taste</td>
-      <td id="taste1"></td>
-    </tr>
-    <tr>
-      <td>Color</td>
-      <td id="color1"></td>
-    </tr>
-    <tr>
-      <td>Location</td>
-      <td id="location1"></td>
-    </tr>
-    <tr>
-      <td>Inner Color</td>
-      <td id="inner1"></td>
-    </tr>
-    <tr>
-      <td>Description</td>
-      <td id="description"></td>
-    </tr>
-  </table>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4"><a href='/lessonplans'><button class = "buttonFormat">Back to Lessons</button></a></div>
+            </div>
+            </div>
+        </div>
 
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4"><img id="img1" class='lesson_img' src=""></div>
+                <div class="col-md-8" id="description"></div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4"><a href='/'><button class = "buttonFormat">Compare to ___</button></a></div>
+                <div class="col-md-4"><a href='/'><button class = "buttonFormat">Next Mushroom</button></a></div>
+            </div>
+        </div>
+
+        <div class='graph'>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2 coloring">Cap</div>
+                    <div class="col-md-2 coloring">Stem</div>
+                    <div class="col-md-2 coloring">Gills</div>
+                    <div class="col-md-2 coloring">Outer Color</div>
+                    <div class="col-md-2 coloring">Location Found</div>
+                    <div class="col-md-2 coloring">Inner Color</div>
+
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-2" id="cap1"></div>
+                    <div class="col-md-2" id="stem1"></div>
+                    <div class="col-md-2" id="gills1"></div>
+                    <div class="col-md-2" id="color1"></div>
+                    <div class="col-md-2" id="location1"></div>
+                    <div class="col-md-2" id="inner1"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 </body>
 

@@ -6,7 +6,7 @@
         --game-width: 700px;
         --game-height: 710px;
     }
-    
+
     .game-container {
         min-height: var(--game-height);
         position: relative;
@@ -60,27 +60,28 @@
     .button-box {
         display: flex;
         justify-content: space-evenly;
-        font-size: 20px;
     }
 
     .game-button {
+        padding: 8px 26px;
         border-radius: 15px;
-        border: 0;
+        border-color: white;
+        border-width: thick;
+        border-style: solid;
+        font-size: 30px;
+        font-weight: 700px;
     }
-
-     
+    .game-button:hover{
+        font-weight: 800px;
+        border-color: black;
+        border-width: thick;
+        border-style: solid;
+        cursor: pointer;
+    }
 
     .progress {
         height: 100%;
         border-radius: 15px;
-    }
-
-    .health-bar {
-        background-color: lightcoral !important;
-    }
-
-    .hunger-bar {
-        background-color: lightgreen !important;
     }
 
     .button-red {
@@ -107,7 +108,7 @@
 
 {% block content %}
 <div class="row py-3">
-    <div class="col-1">
+    <div class="col-1 healthText">
         Health:
     </div>
     <div class="col-5">
@@ -115,7 +116,7 @@
             <div class="progress-bar health-bar" role="progressbar" style="width: {{ health }}%;" aria-valuenow="{{ health }}" aria-valuemin="0" aria-valuemax="100">{{ health }}</div>
         </div>
     </div>
-    <div class="col-1">
+    <div class="col-1 healthText">
         Hunger:
     </div>
     <div class="col-5">
@@ -153,7 +154,7 @@
     <div class="container game-content align-bottom">
         <div class="row">
             <div class="col-6 px-5">
-                <div class="dialogue-box align-bottom p-2">{{ dialogue }}</div>
+                <div class="dialogue-box align-bottom p-2 introText">{{ dialogue }}</div>
             </div>
             {% if displayGameImg %}
             <div class="col-6">
@@ -179,4 +180,3 @@
 </div>
 
 {% endblock %}
-
