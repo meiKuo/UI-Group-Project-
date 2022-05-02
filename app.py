@@ -41,7 +41,7 @@ def game(path):
     def reset_game():
         for q in quiz.values():
             q["done"] = False
-        
+
         global health
         global hunger
         hunger = 0
@@ -79,10 +79,10 @@ def game(path):
             "health": health,
         }
         return render_template("game.html", **game_params)
-    
+
     elif path.isdigit():
         if int(path) < 1 or int(path) > len(quiz.values()):
-            return "Error: Invalid quiz id." 
+            return "Error: Invalid quiz id."
 
         game_params = {
             "displayGameImg": True,
@@ -96,7 +96,6 @@ def game(path):
         }
 
         return render_template("game.html", **game_params)
-
 
 @app.route('/update', methods=['POST'])
 def update():
@@ -130,16 +129,16 @@ def update():
         else:
             hunger = 100
             health = health - 10
-    
+
     elif not data['eat'] and mushroom['edible']:
         # user did not eat, edible
         if hunger < 90:
             hunger = hunger + 10
         else:
             hunger = 100
-            health = health - 10 
-    
-    
+            health = health - 10
+
+
     # Else: Did not eat, not edible
 
     # Mark quiz_id as done
@@ -162,7 +161,7 @@ def lesson(id):
     if lesson_id >= len(lessons) or lesson_id < 0:
         return "Error: Invalid lesson number."
 
-    
+
     cur_lesson = lessons[lesson_id]
     if cur_lesson["type"] == "compare":
         lesson_params = {
@@ -171,7 +170,7 @@ def lesson(id):
             "mushroom2": mushrooms[cur_lesson["mushroom2"]]
         }
         return render_template('lesson1_compare.html', data=lesson_params)
-    
+
     else:
         lesson_params = {
             "lesson_name": cur_lesson["lesson_name"],

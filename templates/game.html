@@ -45,7 +45,13 @@
     }
 
     .game-img {
-        height: 200px;
+        height: 275px;
+        border-radius: 15px;
+        margin: auto;
+        display: block;
+    }
+    .game-img-cut {
+        height: 275px;
         border-radius: 15px;
         margin: auto;
         display: block;
@@ -114,14 +120,6 @@
             <div class="progress-bar health-bar" role="progressbar" style="width: {{ health }}%;" aria-valuenow="{{ health }}" aria-valuemin="0" aria-valuemax="100">{{ health }}</div>
         </div>
     </div>
-    <div class="col-1 healthText">
-        Hunger:
-    </div>
-    <div class="col-5">
-        <div class="progress">
-            <div class="progress-bar hunger-bar" role="progressbar" style="width: {{ hunger }}%;" aria-valuenow="{{ hunger }}" aria-valuemin="0" aria-valuemax="100">{{ hunger }}</div>
-        </div>
-    </div>
 </div>
 {% endblock %}
 
@@ -155,8 +153,9 @@
                 <div class="dialogue-box align-bottom p-2 introText">{{ dialogue }}</div>
             </div>
             {% if displayGameImg %}
-            <div class="col-6">
+            <div class="col-6 game-img-cont">
                 <img src="{{ url_for('static', filename = quiz.img_url )}}" alt="" class="game-img">
+                <img src="{{ url_for('static', filename = quiz.cut_img_url )}}" alt="" class="game-img-cut">
             </div>
             {% endif %}
         </div>

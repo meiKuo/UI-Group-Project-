@@ -20,7 +20,6 @@ function setDialogue(dialogue) {
 
 function createGameButton(text, color, nextState) {
     return `<button data-next=${nextState} class="game-button ${color}">${text}</button>`
-
 }
 
 function updateButtons(buttons) {
@@ -32,7 +31,6 @@ function updateButtons(buttons) {
 }
 
 function updateState() {
-    console.log(gameState)
     switch (gameState) {
         case (GAME_STATE.Start):
             updateButtons([
@@ -47,22 +45,24 @@ function updateState() {
             $(".button-box").empty()
             break;
         case (GAME_STATE.OnChoice):
+            $(".game-img").show();
+            $(".game-img-cut").hide();
             setDialogue("Hmm, this looks interesting. What will you do?")
             updateButtons([
                 {
-                    text: "Let's eat it!",
-                    color: BUTTON_COLOR.Green,
-                    nextState: GAME_STATE.OnEatConfirm,
+                    text: "Looks toxic, stay away.",
+                    color: BUTTON_COLOR.Red,
+                    nextState: GAME_STATE.OnToxicConfirm,
                 },
                 {
                     text: "Hmm, cut it open.",
                     color: BUTTON_COLOR.Gray,
-                    nextState: GAME_STATE.OnCut
+                    nextState: GAME_STATE.OnCut,
                 },
                 {
-                    text: "Nah, it's toxic!",
-                    color: BUTTON_COLOR.Red,
-                    nextState: GAME_STATE.OnToxicConfirm
+                    text: "Let's eat it!",
+                    color: BUTTON_COLOR.Green,
+                    nextState: GAME_STATE.OnEatConfirm,
                 },
             ])
             break;
@@ -70,15 +70,15 @@ function updateState() {
             setDialogue("Are you sure you want to eat this?")
             updateButtons([
                 {
+                    text: "No, go back.",
+                    color: BUTTON_COLOR.Gray,
+                    nextState: GAME_STATE.OnChoice
+                },
+                {
                     text: "Yes, let's eat it!",
                     color: BUTTON_COLOR.Green,
                     nextState: GAME_STATE.Continue
                 },
-                {
-                    text: "No, go back.",
-                    color: BUTTON_COLOR.Gray,
-                    nextState: GAME_STATE.OnChoice
-                }
             ])
             break;
         case (GAME_STATE.OnToxicConfirm):
@@ -97,12 +97,23 @@ function updateState() {
             ])
             break;
         case (GAME_STATE.OnCut):
+            setDialogue("You have cut the mushroom open. Do you see any clues to help you make a decision?")
+            $(".game-img-cut").show();
+            $(".game-img").hide();
+            // $(".game-img-cont").append('<img src="{{ url_for(\'static\',\ filename\ =\ quiz.img_url\ )}}" alt="" class="game-img">')
+            // $(".game-img").attr("src", "{{ url_for('static', filename = quiz.cut_img_url )}}")
+            // <img src="{{ url_for('static', filename = quiz.img_url )}}" alt="" class="game-img">
             updateButtons([
                 {
-                    text: "Back",
-                    color: BUTTON_COLOR.Gray,
-                    nextState: GAME_STATE.OnChoice,
-                }
+                    text: "Looks toxic, stay away.",
+                    color: BUTTON_COLOR.Red,
+                    nextState: GAME_STATE.OnToxicConfirm,
+                },
+                {
+                    text: "Let's eat it!",
+                    color: BUTTON_COLOR.Green,
+                    nextState: GAME_STATE.OnEatConfirm,
+                },
             ])
             break;
         case (GAME_STATE.Continue):
@@ -120,17 +131,17 @@ function updateState() {
 }
 
 function onUserChoiceResult(result) {
-    const { health, hunger, mushroomName, eat, edible } = result;
+    const { health, mushroomName, eat, edible } = result;
 
     if (eat) {
         if (edible) {
-            setDialogue(`Congrats! You just ate a ${mushroomName}. It was edible, so you will be less hungry!`)
+            setDialogue(`Congrats! You just ate a ${mushroomName}. It was edible, so you will gain health!`)
         } else {
-            setDialogue(`Uh oh! You just ate a ${mushroomName}. It was toxic. You will lose health and be more hungry!`)
+            setDialogue(`Uh oh! You just ate a ${mushroomName}. It was toxic. You will lose health!`)
         }
     } else {
         if (edible) {
-            setDialogue(`Oh no! That was a ${mushroomName}. It was edible, so you will be more hungry now!`)
+            setDialogue(`Oh no! That was a ${mushroomName}. It was edible, so you will lose health!`)
         } else {
             setDialogue(`Great! That was a ${mushroomName}. It was super toxic, so it's good to avoid it!`)
         }
@@ -138,8 +149,6 @@ function onUserChoiceResult(result) {
 
     $(".health-bar").css("width", `${health}%`)
     $(".health-bar").text(health)
-    $(".hunger-bar").css("width", `${hunger}%`)
-    $(".hunger-bar").text(hunger)
 
     gameState = GAME_STATE.Continue;
     updateState()
@@ -199,4 +208,5 @@ $(document).ready(() => {
     $(document).on("click", ".game-button", function() {
         onGameButtonPress($(this).data("next"))
     })
+
 })
