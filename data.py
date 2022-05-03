@@ -231,14 +231,7 @@ lessons = [
         "mushroom1": "2",
        "img_url": 'https://media.illustrationx.com/images/artist/LizPepperell/128015/watermark/1300/destroying-angel-toadstool.jpg',
         "type": "indiv", 
-    },
-    # {
-    #     "lesson_id": "1",
-    #     "lesson_name": "True vs False Morels ",
-    #     "mushroom1": "0",
-    #     "mushroom2": "1",
-    #     "type": "compare"
-    # },
+    }
 ]
 
 

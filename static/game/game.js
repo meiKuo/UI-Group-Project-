@@ -124,13 +124,13 @@ function onUserChoiceResult(result) {
 
     if (eat) {
         if (edible) {
-            setDialogue(`Congrats! You just ate a ${mushroomName}. It was edible, so you will be less hungry!`)
+            setDialogue(`Congrats! You just ate a ${mushroomName}. It was edible!`)
         } else {
-            setDialogue(`Uh oh! You just ate a ${mushroomName}. It was toxic. You will lose health and be more hungry!`)
+            setDialogue(`Uh oh! You just ate a ${mushroomName}. It was toxic. You will lose some health!`)
         }
     } else {
         if (edible) {
-            setDialogue(`Oh no! That was a ${mushroomName}. It was edible, so you will be more hungry now!`)
+            setDialogue(`Oh no! That was a ${mushroomName}. It was edible, so you will gain some health`)
         } else {
             setDialogue(`Great! That was a ${mushroomName}. It was super toxic, so it's good to avoid it!`)
         }
@@ -138,8 +138,6 @@ function onUserChoiceResult(result) {
 
     $(".health-bar").css("width", `${health}%`)
     $(".health-bar").text(health)
-    $(".hunger-bar").css("width", `${hunger}%`)
-    $(".hunger-bar").text(hunger)
 
     gameState = GAME_STATE.Continue;
     updateState()

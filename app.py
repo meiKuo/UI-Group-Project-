@@ -8,6 +8,7 @@ from data import *
 
 health = 100
 hunger = 0
+score = 0
 
 # ROUTES
 @app.route('/')
@@ -104,6 +105,7 @@ def update():
     global hunger
     global quiz
     global mushrooms
+    global score
     data = request.get_json()
 
     def get_mushroom(quiz_id):
@@ -113,6 +115,7 @@ def update():
 
     if data['eat'] and mushroom['edible']:
         # User ate mushroom and mushroom edible
+        score += 1
         if hunger > 10:
             hunger = hunger - 10
         else:
