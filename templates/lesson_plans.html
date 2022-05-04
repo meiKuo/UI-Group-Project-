@@ -25,13 +25,6 @@
   </script>
 
   <style>
-    .borderCategory1 {
-      border-style: solid;
-      border-radius: 15px;
-      font-size: 25px;
-      background-color: lightcoral;
-    }
-
     .borderCategory2 {
       border-style: solid;
       border-radius: 15px;
@@ -57,6 +50,22 @@
     .cardImg {
       width: 50px;
       height: auto;
+      object-fit: cover;
+      border-style: solid;
+      
+    }
+
+    .fill {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden
+    }
+
+    .fill img {
+      flex-shrink: 0;
+      min-width: 100%;
+      min-height: 100%
     }
   </style>
 
@@ -72,8 +81,9 @@
   </div>
 </div>
 
-<div class='subTitle'>
-  <div class='borderCategory1'>Edible Mushroom</div>
+<div class=' subTitle adjustSpace'>
+  <div class='w-50 bg-green white adjustSpace'>Edible Mushroom</div>
+
   <div class='row'>
     <div class='col-md-4 adjustSpace'>
       <div class='lessonCard'>
@@ -130,7 +140,7 @@
 </div>
 
 <div class='subTitle'>
-  <div class='borderCategory2'> Poisonous Mushroom </div>
+  <div class='w-50 w-50 bg-red white adjustSpace'> Poisonous Mushroom </div>
   <div class='row'>
     <div class='col-md-4 adjustSpace'>
       <div class='lessonCard'>
