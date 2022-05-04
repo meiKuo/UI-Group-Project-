@@ -1,100 +1,106 @@
 {% extends "layout.html" %}
 
-{% block content %}
-<html>
-
+{% block head %}
 <head>
-    <!--link js-->
-    <script type="text/javascript" src="{{ url_for('static', filename = 'homepage.js') }}"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-        crossorigin="anonymous">
-
-    <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
-
     <script>
     </script>
 
     <style>
-        .gray {
-            background-color: lightgray;
+        .content {
+            display: flex;
         }
 
-        .small {
-            font-size: 20px;
-            font-weight: normal;
-        }
-
-        .split {
-            height: 50%;
-            width: 50%;
-            position: fixed;
-            z-index: 1;
-            overflow-x: hidden;
-            padding-top: 100px;
-        }
-
-        .left {
-            left: 0;
-        }
-
-        .right {
-            right: 0;
-            background-color: lightgreen;
-        }
-
-        .centered {
+        .triangle-container {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
+            bottom: -20px;
+            left: 20%;
+        }   
+
+        .triangle {
+            fill: var(--light-gray);
         }
 
-        .down {
-            padding-top: 100px;
+        .character-img {
+            width: 200px;
+            height: 200px;
+            margin-left: 10px;
+            display:block;
         }
 
-        .character_shift{
-            padding-top: 140px; 
-            padding-left: 50px; 
+        .dialogue-box {
+            background-color: var(--light-gray);
+            color: var(--text-dark-gray) !important;
+            border-radius: 15px;
+            width: 50%;
+            text-align: left;
+            white-space: pre-line;
+        }
+
+        .align-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+
+        .bottom {
+
+        }
+
+        .play-section {
+            position: relative;
+            height: 550px;
         }
     </style>
 
 </head>
+{% endblock %}
 
-<body>
-    <div class='title gray'>
-        Mushroom Scavenging
-        <p class='small'>Do you know how how to identify poisonous mushrooms?
-            Can you survive the wild?</p>
-    </div>
-
-
-    <div class="split left">
-        <div class="centered">
-            <h2>Learn</h2>
-            <p>Worry not! Learn the difference.</p>
-            <a href="/lessonplans" id='adventureTime'><button>Learn</button></a>
+{% block game %}
+    <div class="w-100 banner">
+        <div class="container">
+            <h1>Mushroom Scavenging</h1>
+            <h2>Do you know how how to identify poisonous mushrooms?</h2>
+            <h2>Can you survive the wild?</h2>
         </div>
     </div>
-
-    <div class="split right">
-        <div class="centered">
-            <h2>Play</h2>
-            <p>Already an expert? Test your skills!</p>
-            <a href="/game/start" id='adventureTime'><button>Play</button></a>
-            
+    <div class="w-100 h-100 content">
+        <div class="w-50">
+            <div class="container l-spacing py-3">
+                <h1>Learn</h1>
+                <h2>Worry not! Learn the difference.</h2>
+                <div class="container align-bottom pb-5">
+                    <a class="button bg-green white" href="/lessonplans">Learn</a>
+                </div>
+            </div>
         </div>
-        <img class="character_shift" src="{{ url_for('static', filename='game/assets/MC.png') }}"/>
+        <div class="w-50 h-100 bg-green">
+            <div class="container r-spacing play-section white pt-3">
+                <h1>Play</h1>
+                <h2 class="white">Already an expert? Test your skills!</h2>
+                <div class="container align-bottom">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="dialogue-box p-2">Let's go into the wild!</div>
+                            <div> 
+                                <svg height="20" width="20" class="triangle-container">
+                                    <polygon points="0,0 20,0 10,15" class="triangle" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="col-6"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <img src="{{ url_for('static', filename = 'game/assets/MC.png')}}" alt="" class="character-img">
+                        </div>
+                        <div class="col-6 d-flex align-items-end pb-5">
+                            <a href="/game/start" class="button bg-white green">Play</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-
-
-
-
-
-</body>
-
-</html>
-
 {% endblock %}

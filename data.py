@@ -290,7 +290,7 @@ lessons = [
         "lesson_id": "9",
         "lesson_name": "Destroying Angel",
         "mushroom1": "2",
-       "img_url": 'https://media.illustrationx.com/images/artist/LizPepperell/128015/watermark/1300/destroying-angel-toadstool.jpg',
+        "img_url": "https://media.illustrationx.com/images/artist/LizPepperell/128015/watermark/1300/destroying-angel-toadstool.jpg",
         "type": "indiv",
     },
 ]

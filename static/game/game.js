@@ -132,7 +132,7 @@ function updateState() {
             ])
             break;
         case (GAME_STATE.End):
-            const hungerText = hunger > 50 ? "That's pretty good!" : "Seems like missed a few edible mushrooms!"
+            const hungerText = hunger < 50 ? "That's pretty good!" : "Seems like missed a few edible mushrooms!"
             const healthText = health > 50 ? "That's awesome!" : "How are you still alive?!"
 
             setDialogue(`You've reached the end! Let's see how you did.\n
