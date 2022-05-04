@@ -7,14 +7,15 @@ app = Flask(__name__)
 from data import *
 
 health = 100
+hunger = 100
+
+HUNGER_CHANGE = (100 // find_num_edible()) + 1
+HEALTH_CHANGE = (100 // find_num_inedible()) + 1
 
 # ROUTES
 @app.route('/')
 def homepage():
-    lesson_name1 = lessons[0]
-    lesson_name3 = lessons[2]
-    print(lesson_name1)
-    return render_template('homepage.html', lesson_name1=lesson_name1, lesson_name3=lesson_name3)
+    return render_template('homepage.html')
 
 @app.route('/lessonplans')
 def lessonplans():
@@ -41,29 +42,39 @@ def game(path):
             q["done"] = False
 
         global health
+        global hunger
         health = 100
+        hunger = 100
 
     def get_remaining_quiz(quiz):
         return [q for q in quiz.values() if not q["done"]]
-
-    remaining_quiz = get_remaining_quiz(quiz)
-    if len(remaining_quiz) == 0:
-        data = { "health": health }
-        return render_template("end_game.html", data=data)
 
     if path == "start":
         reset_game()
 
         game_params = {
             "state": 0,
-            "dialogue": START_DIALOGUE,
             "quiz_id": "0",
             "health": health,
+            "hunger": hunger,
+        }
+
+        return render_template("game.html", **game_params)
+    
+    remaining_quiz = get_remaining_quiz(quiz)
+    if len(remaining_quiz) == 0 or path=="end":
+        STATS_DIALOGUE = "".format(health, hunger)
+        game_params = {
+            "state": 7,
+            "quiz_id": "0",
+            "hunger": hunger,
+            "health": health,
+            "dialogue": STATS_DIALOGUE,
         }
 
         return render_template("game.html", **game_params)
 
-    elif path == "map":
+    if path == "map":
 
         game_params = {
             "displayMap": True,
@@ -71,6 +82,7 @@ def game(path):
             "quiz_id": "0",
             "state": 1,
             "health": health,
+            "hunger": hunger,
         }
         return render_template("game.html", **game_params)
 
@@ -84,8 +96,8 @@ def game(path):
             "quiz": quiz[path],
             "quiz_id": quiz[path]["id"],
             "state": 2,
-            "dialogue": ON_CHOICE_DIALOGUE,
             "health": health,
+            "hunger": hunger,
         }
 
         return render_template("game.html", **game_params)
@@ -95,6 +107,8 @@ def update():
     global health
     global quiz
     global mushrooms
+    global hunger
+
     data = request.get_json()
 
     def get_mushroom(quiz_id):
@@ -104,24 +118,15 @@ def update():
 
     if data['eat'] and mushroom['edible']:
         # User ate mushroom and mushroom edible
-        if health < 90:
-            health = health + 10
-        else:
-            health = 100
+        hunger = max(0, hunger - HUNGER_CHANGE)
 
     elif data['eat'] and not mushroom['edible']:
         # User ate, not edible
-        if health > 10:
-            health = health - 10
-        else:
-            health = 0
+        health = max(0, health - HEALTH_CHANGE)
 
     elif not data['eat'] and mushroom['edible']:
         # user did not eat, edible
-        if health > 10:
-            health = health - 10
-        else:
-            health = 0
+        hunger = min(100, hunger + HUNGER_CHANGE)
 
 
     # Else: Did not eat, not edible
@@ -131,6 +136,7 @@ def update():
 
     choice_result = {
         "health": health,
+        "hunger": hunger,
         "eat": data['eat'],
         "mushroomName": mushroom["name"],
         "edible": mushroom["edible"],
@@ -145,13 +151,18 @@ def lesson(id):
     if lesson_id >= len(lessons) or lesson_id < 0:
         return "Error: Invalid lesson number."
 
+    complete = False
+    if lesson_id == len(lessons) - 1:
+        complete = True
 
     cur_lesson = lessons[lesson_id]
     if cur_lesson["type"] == "compare":
         lesson_params = {
             "lesson_name": cur_lesson["lesson_name"],
             "mushroom1": mushrooms[cur_lesson["mushroom1"]],
-            "mushroom2": mushrooms[cur_lesson["mushroom2"]]
+            "mushroom2": mushrooms[cur_lesson["mushroom2"]],
+            "next": lesson_id + 2,
+            "complete": complete
         }
         return render_template('lesson1_compare.html', data=lesson_params)
 
@@ -159,6 +170,8 @@ def lesson(id):
         lesson_params = {
             "lesson_name": cur_lesson["lesson_name"],
             "mushroom1": mushrooms[cur_lesson["mushroom1"]],
+            "next": lesson_id + 2,
+            "complete": complete
         }
         return render_template('lesson2_present.html', data=lesson_params)
 
