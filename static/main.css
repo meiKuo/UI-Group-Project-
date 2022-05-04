@@ -1,3 +1,14 @@
+:root {
+  --light-red: #F68780;
+  --light-green: #96D365;
+  --light-gray: #E4E4E4;
+
+  --text-dark-gray: #4F4F4F;
+}
+
+body {
+  font-family: 'Nova Flat', sans-serif;
+}
 /* homepage and lessons */
 .title {
   font-size: 60px;
@@ -223,25 +234,6 @@ td {
   margin-bottom: 100px;
 }
 
-.healthText {
-  font-size: 25px;
-  font-weight: 800;
-  padding-right: 10px;
-}
-
-.health-bar {
-  background-color: lightcoral !important;
-  color: black;
-  font-weight: 700;
-  font-size: 20px
-}
-
-.hunger-bar {
-  background-color: lightgreen !important;
-  color: black;
-  font-weight: 700;
-  font-size: 20px;
-}
 
 /* game mushroom */
 .dialog {

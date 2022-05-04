@@ -7,16 +7,15 @@ app = Flask(__name__)
 from data import *
 
 health = 100
-hunger = 0
-score = 0
+hunger = 100
+
+HUNGER_CHANGE = (100 // find_num_edible()) + 1
+HEALTH_CHANGE = (100 // find_num_inedible()) + 1
 
 # ROUTES
 @app.route('/')
 def homepage():
-    lesson_name1 = lessons[0]
-    lesson_name3 = lessons[2]
-    print(lesson_name1)
-    return render_template('homepage.html', lesson_name1=lesson_name1, lesson_name3=lesson_name3)
+    return render_template('homepage.html')
 
 @app.route('/lessonplans')
 def lessonplans():
@@ -35,55 +34,61 @@ def lessonplans():
 @app.route('/game/<path>')
 def game(path):
     global health
-    global hunger
     global mushrooms
     global quiz
 
     def reset_game():
         for q in quiz.values():
             q["done"] = False
-        
+
         global health
         global hunger
-        hunger = 0
         health = 100
+        hunger = 100
 
     def get_remaining_quiz(quiz):
         return [q for q in quiz.values() if not q["done"]]
-
-    remaining_quiz = get_remaining_quiz(quiz)
-    if len(remaining_quiz) == 0:
-        data = { "health": health }
-        return render_template("end_game.html", data=data)
 
     if path == "start":
         reset_game()
 
         game_params = {
             "state": 0,
-            "dialogue": START_DIALOGUE,
+            "quiz_id": "0",
+            "health": health,
+            "hunger": hunger,
+        }
+
+        return render_template("game.html", **game_params)
+    
+    remaining_quiz = get_remaining_quiz(quiz)
+    if len(remaining_quiz) == 0 or path=="end":
+        STATS_DIALOGUE = "".format(health, hunger)
+        game_params = {
+            "state": 7,
             "quiz_id": "0",
             "hunger": hunger,
             "health": health,
+            "dialogue": STATS_DIALOGUE,
         }
 
         return render_template("game.html", **game_params)
 
-    elif path == "map":
+    if path == "map":
 
         game_params = {
             "displayMap": True,
             "quiz": quiz.values(),
             "quiz_id": "0",
             "state": 1,
-            "hunger": hunger,
             "health": health,
+            "hunger": hunger,
         }
         return render_template("game.html", **game_params)
-    
+
     elif path.isdigit():
         if int(path) < 1 or int(path) > len(quiz.values()):
-            return "Error: Invalid quiz id." 
+            return "Error: Invalid quiz id."
 
         game_params = {
             "displayGameImg": True,
@@ -91,21 +96,19 @@ def game(path):
             "quiz": quiz[path],
             "quiz_id": quiz[path]["id"],
             "state": 2,
-            "dialogue": ON_CHOICE_DIALOGUE,
-            "hunger": hunger,
             "health": health,
+            "hunger": hunger,
         }
 
         return render_template("game.html", **game_params)
 
-
 @app.route('/update', methods=['POST'])
 def update():
     global health
-    global hunger
     global quiz
     global mushrooms
-    global score
+    global hunger
+
     data = request.get_json()
 
     def get_mushroom(quiz_id):
@@ -115,34 +118,17 @@ def update():
 
     if data['eat'] and mushroom['edible']:
         # User ate mushroom and mushroom edible
-        score += 1
-        if hunger > 10:
-            hunger = hunger - 10
-        else:
-            hunger = 0
+        hunger = max(0, hunger - HUNGER_CHANGE)
 
     elif data['eat'] and not mushroom['edible']:
         # User ate, not edible
-        if health > 10:
-            health = health - 10
-        else:
-            health = 0
+        health = max(0, health - HEALTH_CHANGE)
 
-        if hunger < 90:
-            hunger = hunger + 10
-        else:
-            hunger = 100
-            health = health - 10
-    
     elif not data['eat'] and mushroom['edible']:
         # user did not eat, edible
-        if hunger < 90:
-            hunger = hunger + 10
-        else:
-            hunger = 100
-            health = health - 10 
-    
-    
+        hunger = min(100, hunger + HUNGER_CHANGE)
+
+
     # Else: Did not eat, not edible
 
     # Mark quiz_id as done
@@ -150,10 +136,10 @@ def update():
 
     choice_result = {
         "health": health,
+        "hunger": hunger,
         "eat": data['eat'],
         "mushroomName": mushroom["name"],
         "edible": mushroom["edible"],
-        "hunger": hunger,
     }
 
     return jsonify(choice_result)
@@ -165,7 +151,7 @@ def lesson(id):
     if lesson_id >= len(lessons) or lesson_id < 0:
         return "Error: Invalid lesson number."
 
-    
+
     cur_lesson = lessons[lesson_id]
     if cur_lesson["type"] == "compare":
         lesson_params = {
@@ -174,7 +160,7 @@ def lesson(id):
             "mushroom2": mushrooms[cur_lesson["mushroom2"]]
         }
         return render_template('lesson1_compare.html', data=lesson_params)
-    
+
     else:
         lesson_params = {
             "lesson_name": cur_lesson["lesson_name"],

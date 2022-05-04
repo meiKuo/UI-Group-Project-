@@ -3,7 +3,7 @@
 {% block head %}
 <style>
     :root {
-        --game-width: 700px;
+        --game-width: 100%;
         --game-height: 710px;
     }
 
@@ -17,7 +17,7 @@
         bottom: 0;
         left: 0;
         right: 0;
-        margin: auto
+        margin: auto;
     }
 
     .background-img {
@@ -39,24 +39,29 @@
     }
 
     .dialogue-box {
-        background-color: rgb(229, 229, 229);
+        background-color: var(--light-gray);
         border-radius: 15px;
         width: 80%;
+        text-align: left;
+        white-space: pre-line;
     }
 
     .game-img {
-        width: 200px;
-        height: 200px;
+        height: 250px;
+        width: 250px;
         border-radius: 15px;
         margin: auto;
         display: block;
     }
 
     .game-choice-img {
-        width: 100px;
         height: 100px;
+        width: 100px;
         border-radius: 15px;
+        margin-left: 100px;
+        margin-top: 50px;
     }
+
     .button-box {
         display: flex;
         justify-content: space-evenly;
@@ -81,21 +86,55 @@
 
     .progress {
         height: 100%;
+        width: 95%;
         border-radius: 15px;
+        font-size: 20px;
+        color: black;
+    }
+
+    .health-bar {
+        background-color: var(--light-red);
+        color: black;
+    }
+
+    .hunger-bar {
+        background-color: var(--light-green);
+        color: black;
+    }
+    
+    .bar-label {
+        font-size: 25px;
+        font-weight: 800;
+        padding-right: 10px;
     }
 
     .button-red {
-        background-color: lightcoral !important;
+        background-color: var(--light-red);
     }
 
     .button-green {
-        background-color: lightgreen !important;
+        background-color: var(--light-green);
+    }
+
+    .button-gray {
+        background-color: var(--light-gray);
+    }
+
+    .triangle-container {
+        position: absolute;
+        bottom: -20px;
+        left: 20%;
+    }
+    .triangle {
+        fill: var(--light-gray);
     }
 
 </style>
 
 <script>
     let gameState = {{ state }};
+    let hunger = {{ hunger }}
+    let health = {{ health }}
 </script>
 
 <script>
@@ -108,12 +147,20 @@
 
 {% block content %}
 <div class="row py-3">
-    <div class="col-1 healthText">
-        Health:
-    </div>
-    <div class="col-5">
+    <div class="col-6 d-flex">
+        <span class="bar-label pr-2">
+            Health:
+        </span>
         <div class="progress">
             <div class="progress-bar health-bar" role="progressbar" style="width: {{ health }}%;" aria-valuenow="{{ health }}" aria-valuemin="0" aria-valuemax="100">{{ health }}</div>
+        </div>
+    </div>
+    <div class="col-6 d-flex">
+        <span class="bar-label pr-2">
+            Hunger:
+        </span>
+        <div class="progress">
+            <div class="progress-bar hunger-bar" role="progressbar" style="width: {{ hunger }}%;" aria-valuenow="{{ hunger }}" aria-valuemin="0" aria-valuemax="100">{{ hunger }}</div>
         </div>
     </div>
 </div>
@@ -128,7 +175,7 @@
         {% for q in quiz %}
             {% if not q.done %}
             <a href="/game/{{ q.id }}">
-                <img src="{{ url_for('static', filename = q.img_url )}}" alt="" class="game-choice-img m-5">
+                <img src="{{ url_for('static', filename = q.img_url )}}" alt="" class="game-choice-img">
             </a>
             {% endif %}
         {% endfor %}
@@ -145,21 +192,25 @@
     <img src="{{ url_for('static', filename = 'game/assets/background.png') }}" alt="" class="background-img align-bottom img-fluid">
     <div class="container game-content align-bottom">
         <div class="row">
-            <div class="col-6 px-5">
-                <div class="dialogue-box align-bottom p-2 introText">{{ dialogue }}</div>
+            <div class="col-6">
+                
+                <div class="dialogue-box align-bottom p-3"></div>
+                <div> 
+                    <svg height="20" width="20" class="triangle-container">
+                        <polygon points="0,0 20,0 10,15" class="triangle" />
+                    </svg>
+                </div>
             </div>
             {% if displayGameImg %}
-            <div class="col-6">
-                <img src="{{ url_for('static', filename = quiz.img_url )}}" alt="" class="game-img">
+            <div class="col-6 game-img-cont">
+                <img id="game-img" src="{{ url_for('static', filename = quiz.img_url )}}" alt="" class="game-img">
+                <img id="game-cut-img" src="{{ url_for('static', filename = quiz.cut_img_url )}}" alt="" class="game-img">
             </div>
             {% endif %}
         </div>
         <div class="row">
             <div class="col-6">
                 <img src="{{ url_for('static', filename = 'game/assets/MC.png')}}" alt="" class="character-img">
-            </div>
-            <div class="col-6">
-
             </div>
         </div>
     </div>
