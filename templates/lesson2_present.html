@@ -61,7 +61,7 @@
             <div class="row">
                 <div class="col-md-4"><a href='/lessonplans'><button class = "buttonFormat">Back to Lessons</button></a></div>
             </div>
-            </div>
+            
         </div>
 
         <div class="container">
@@ -82,26 +82,33 @@
         <div class='graph'>
             <div class="container">
                 <div class="row">
+                    <div class="col-md-2 coloring">Toxicity</div>
                     <div class="col-md-2 coloring">Cap</div>
                     <div class="col-md-2 coloring">Stem</div>
                     <div class="col-md-2 coloring">Gills</div>
                     <div class="col-md-2 coloring">Outer Color</div>
-                    <div class="col-md-2 coloring">Location Found</div>
                     <div class="col-md-2 coloring">Inner Color</div>
 
                 </div>
                 <hr>
                 <div class="row">
+                    <div class="col-md-2" id="toxic"></div>
                     <div class="col-md-2" id="cap1"></div>
                     <div class="col-md-2" id="stem1"></div>
                     <div class="col-md-2" id="gills1"></div>
                     <div class="col-md-2" id="color1"></div>
-                    <div class="col-md-2" id="location1"></div>
                     <div class="col-md-2" id="inner1"></div>
                 </div>
             </div>
         </div>
-
+        <div class="py-3">
+            {% if data.complete %}
+            <a href="/game/start" class="button bg-green white">Play Game</a>
+            {% else %}
+            <a href="/lesson/{{ data.next }}" class="button bg-green white">Next Mushroom</a>
+            {% endif %}
+        </div>
+        
     </div>
 
 </body>

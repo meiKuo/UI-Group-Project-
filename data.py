@@ -173,7 +173,7 @@ quiz = {
         "id": "5",
         "mushroom_id": "4",
         "img_url": 'images/chanterelle_1.jpeg',
-        "cut_img_url": "images/death_cap_1.png",
+        "cut_img_url": "images/chanterell_open_1.png",
         "done": False
     },
     "6": {
@@ -201,7 +201,7 @@ quiz = {
         "id": "9",
         "mushroom_id": "8",
         "img_url": 'images/lions_mane_1.jpeg',
-        "cut_img_url": "images/lions_mane_open_1.jpeg",
+        "cut_img_url": "images/lions_mane_open_1.png",
         "done": False
     },
     "10": {
@@ -290,13 +290,18 @@ lessons = [
         "lesson_id": "9",
         "lesson_name": "Destroying Angel",
         "mushroom1": "2",
-       "img_url": 'https://media.illustrationx.com/images/artist/LizPepperell/128015/watermark/1300/destroying-angel-toadstool.jpg',
+        "img_url": "https://media.illustrationx.com/images/artist/LizPepperell/128015/watermark/1300/destroying-angel-toadstool.jpg",
         "type": "indiv",
     },
 ]
 
 
-START_DIALOGUE = """Welcome to the wild, wild wilderness. Here we'll test everything you've learned.\n\n
-                    Eat the edible mushrooms and stay away from the toxic ones!"""
+START_DIALOGUE = """"""
 
-ON_CHOICE_DIALOGUE = "Hmm, this looks interesting. What will you do?"
+ON_CHOICE_DIALOGUE = ""
+
+def find_num_edible():
+    return len([q for q in quiz.values() if mushrooms[q["mushroom_id"]]["edible"] ])
+
+def find_num_inedible():
+    return len([q for q in quiz.values() if not mushrooms[q["mushroom_id"]]["edible"] ])

@@ -5,15 +5,9 @@
 <html>
 
 <head>
-    <!--link js-->
-    <script type="text/javascript" src="{{ url_for('static', filename = 'lesson1_compare.js') }}"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-        crossorigin="anonymous">
-
-    <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
 
     <script>
-        let lesson_params = {{ data | tojson}}
+        let lesson_params = {{ data | tojson }}
     </script>
 
     <style>
@@ -117,7 +111,12 @@
              <div id="inner1" class='col-md-4'></div>
              <div id="inner2" class='col-md-4'></div>
          </div>
-
+    </div>
+         {% if data.complete %}
+         <a href="/game/start" class="button bg-green white"></a>
+         {% else %}
+         <a href="/lesson/{{ data.next }}" class="button bg-green white">Next Mushroom</a>
+         {% endif %}
 
 </body>
 

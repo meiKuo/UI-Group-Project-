@@ -6,6 +6,7 @@ const GAME_STATE = {
     OnCut: 4,
     OnToxicConfirm: 5,
     Continue: 6,
+    End: 7,
 }
 
 const BUTTON_COLOR = {
@@ -33,6 +34,9 @@ function updateButtons(buttons) {
 function updateState() {
     switch (gameState) {
         case (GAME_STATE.Start):
+            setDialogue(`Welcome to the wild, wild wilderness. Here we'll test everything you've learned.\n
+            Eat the edible mushrooms to reduce hunger and stay away from toxic ones to keep your health.\n
+            See if you can escape with all of your health and no hunger remaining.`)
             updateButtons([
                 {
                     text: "Play",
@@ -45,8 +49,8 @@ function updateState() {
             $(".button-box").empty()
             break;
         case (GAME_STATE.OnChoice):
-            $(".game-img").show();
-            $(".game-img-cut").hide();
+            $("#game-img").show();
+            $("#game-cut-img").hide();
             setDialogue("Hmm, this looks interesting. What will you do?")
             updateButtons([
                 {
@@ -98,12 +102,14 @@ function updateState() {
             break;
         case (GAME_STATE.OnCut):
             setDialogue("You have cut the mushroom open. Do you see any clues to help you make a decision?")
-            $(".game-img-cut").show();
-            $(".game-img").hide();
-            // $(".game-img-cont").append('<img src="{{ url_for(\'static\',\ filename\ =\ quiz.img_url\ )}}" alt="" class="game-img">')
-            // $(".game-img").attr("src", "{{ url_for('static', filename = quiz.cut_img_url )}}")
-            // <img src="{{ url_for('static', filename = quiz.img_url )}}" alt="" class="game-img">
+            $("#game-cut-img").show();
+            $("#game-img").hide();
             updateButtons([
+                {
+                    text: "Back",
+                    color: BUTTON_COLOR.Gray,
+                    nextState: GAME_STATE.OnChoice,
+                },
                 {
                     text: "Looks toxic, stay away.",
                     color: BUTTON_COLOR.Red,
@@ -125,23 +131,36 @@ function updateState() {
                 }
             ])
             break;
+        case (GAME_STATE.End):
+            const hungerText = hunger < 50 ? "That's pretty good!" : "Seems like missed a few edible mushrooms!"
+            const healthText = health > 50 ? "That's awesome!" : "How are you still alive?!"
+
+            setDialogue(`You've reached the end! Let's see how you did.\n
+            You managed to keep ${health}% of you health. ${healthText}\n
+            And ${hunger}% of your hunger remains. ${hungerText}`)
+
+            updateButtons([{
+                text: "Replay",
+                color: BUTTON_COLOR.Green,
+                nextState: GAME_STATE.Start,
+            }])
         default:
             console.log("Error: Invalid state.")
     }
 }
 
 function onUserChoiceResult(result) {
-    const { health, mushroomName, eat, edible } = result;
+    const { health, hunger, mushroomName, eat, edible } = result;
 
     if (eat) {
         if (edible) {
-            setDialogue(`Congrats! You just ate a ${mushroomName}. It was edible, so you will gain health!`)
+            setDialogue(`Congrats! You just ate a ${mushroomName}. It was edible! You are less hungry now.`)
         } else {
-            setDialogue(`Uh oh! You just ate a ${mushroomName}. It was toxic. You will lose health!`)
+            setDialogue(`Uh oh! You just ate a ${mushroomName}. It was toxic. You will lose some health!`)
         }
     } else {
         if (edible) {
-            setDialogue(`Oh no! That was a ${mushroomName}. It was edible, so you will lose health!`)
+            setDialogue(`Oh no! That was a ${mushroomName}. It was edible, so you could have eaten it. You'll be more hungry now.`)
         } else {
             setDialogue(`Great! That was a ${mushroomName}. It was super toxic, so it's good to avoid it!`)
         }
@@ -149,6 +168,9 @@ function onUserChoiceResult(result) {
 
     $(".health-bar").css("width", `${health}%`)
     $(".health-bar").text(health)
+
+    $(".hunger-bar").css("width", `${hunger}%`)
+    $(".hunger-bar").text(hunger)
 
     gameState = GAME_STATE.Continue;
     updateState()
@@ -189,6 +211,7 @@ function submitUserChoice() {
 function onGameButtonPress(nextState) {
     switch (nextState) {
         case (GAME_STATE.Start):
+            window.location.href = '/game/start'
             return;
         case (GAME_STATE.Map):
             window.location.href = '/game/map'

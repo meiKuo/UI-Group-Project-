@@ -8,6 +8,13 @@ $(document).ready(() => {
       window.location.href ='/lessonplans'
     })
 
+
+    if (mushroom1.edible) {
+      $("#toxic").text("Not Toxic")
+    } else {
+      $("#toxic").text("Toxic")
+    }
+
     document.getElementById("name1").innerHTML = mushroom1["name"]
 
     document.getElementById("img1").src = mushroom1["img_url"]
@@ -19,8 +26,6 @@ $(document).ready(() => {
     document.getElementById("gills1").innerHTML = mushroom1["gills"]
 
     document.getElementById("color1").innerHTML = mushroom1["color"]
-
-    document.getElementById("location1").innerHTML = mushroom1["location"]
 
     document.getElementById("inner1").innerHTML = mushroom1["inner"]
 

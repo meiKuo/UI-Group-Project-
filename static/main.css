@@ -1,3 +1,60 @@
+:root {
+  --light-red: #F68780;
+  --light-green: #96D365;
+  --light-gray: #E4E4E4;
+
+  --text-dark-gray: #4F4F4F;
+  --xl-spacing: calc((100vw - 1140px) / 2)
+}
+
+body {
+  font-family: 'Nova Flat', sans-serif;
+}
+
+h1 {
+  font-size: 60px;
+}
+
+h2 {
+  font-size: 30px;
+  color: var(--text-dark-gray);
+}
+
+.l-spacing {
+  margin-left: var(--xl-spacing);
+}
+
+.r-spacing {
+  margin-right: var(--xl-spacing);
+}
+
+.bg-green {
+  background-color: var(--light-green);
+}
+
+.button {
+  padding: 10px 20px 10px 20px;
+  border-radius: 15px;
+  font-size: 25px;
+}
+
+.white {
+  color: white;
+}
+
+.green {
+  color: var(--light-green) !important; 
+}
+
+.bg-white {
+  background-color: white !important;
+}
+
+.banner {
+  background-color: var(--light-gray);
+  padding: 80px 0 80px 0;
+}
+
 /* homepage and lessons */
 .title {
   font-size: 60px;
@@ -223,18 +280,6 @@ td {
   margin-bottom: 100px;
 }
 
-.healthText {
-  font-size: 25px;
-  font-weight: 800;
-  padding-right: 10px;
-}
-
-.health-bar {
-  background-color: lightgreen !important;
-  color: black;
-  font-weight: 700;
-  font-size: 20px
-}
 
 /* game mushroom */
 .dialog {
