@@ -54,61 +54,77 @@
 
 <body>
 
-    <div id="name1" class='top_ofPage'></div>
+    <div  class="container"></div>
+        <div class="header row">
+            <div class="col-md-6">
+                <p class="lesson_name" id="name1"></p>
+                <p class="desc">Read the information below to learn more. <br>Some mushrooms have easily confused and deadly counterparts! </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p class="banner" id="banner">Edible</p>
+            </div>
+        </div>
 
-    <div>
         <div class="container">
             <div class="row">
-                <div class="col-md-4"><a href='/lessonplans'><button class = "buttonFormat">Back to Lessons</button></a></div>
+                <div class="col-md-4"><img id="img1" class="lesson_img" src=""></div>
+                <div class="col-md-8">
+                    <p class="features row">Features</p> 
+                    <div class="row">
+                    <div class="col-md-6">       
+                    <div id="features_list" class="f_list">
+                            <p class="row f"><b>Cap</b></p>
+                            <p class="row f"><b>Stem</b></p>
+                            <p class="row f"><b>Gills</b></p>
+                            <p class="row f"><b>Outer Color</b></p>
+                            <p class="row f"><b>Inner Color</b></p>
+                    </div>    
+                    </div>
+                    <div class="col-md-6">       
+                    <div id="features_list" class="f_list2">
+                            <p class="row f" id="cap1">Cap</p>
+                            <p class="row f" id="stem1">Stem</p>
+                            <p class="row f" id="gills1">Gills</p>
+                            <p class="row f" id="color1">Outer Color</p>
+                            <p class="row f" id="inner1">Inner Color</p>
+                    </div>    
+                    </div>  
+                    </div>
+                    
+                
+                </div>
             </div>
+            <div class="row">
+                <div class="col-md-4"><a><button class="cutButton">Cut Open</button></a></div>
             
-        </div>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4"><img id="img1" class='lesson_img' src=""></div>
-                <div class="col-md-8" id="description"></div>
             </div>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4"></div>
-                <!-- <div class="col-md-4"><a href='/'><button class = "buttonFormat">Compare to ___</button></a></div>
-                <div class="col-md-4"><a href='/'><button class = "buttonFormat">Next Mushroom</button></a></div> -->
-            </div>
-        </div>
-
-        <div class='graph'>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-2 coloring">Toxicity</div>
-                    <div class="col-md-2 coloring">Cap</div>
-                    <div class="col-md-2 coloring">Stem</div>
-                    <div class="col-md-2 coloring">Gills</div>
-                    <div class="col-md-2 coloring">Outer Color</div>
-                    <div class="col-md-2 coloring">Inner Color</div>
-
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-md-2" id="toxic"></div>
-                    <div class="col-md-2" id="cap1"></div>
-                    <div class="col-md-2" id="stem1"></div>
-                    <div class="col-md-2" id="gills1"></div>
-                    <div class="col-md-2" id="color1"></div>
-                    <div class="col-md-2" id="inner1"></div>
-                </div>
-            </div>
-        </div>
-        <div class="py-3">
-            {% if data.complete %}
-            <a href="/game/start" class="button bg-green white">Play Game</a>
-            {% else %}
-            <a href="/lesson/{{ data.next }}" class="button bg-green white">Next Mushroom</a>
-            {% endif %}
         </div>
         
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                     <p class="description row">Description</p> 
+                </div>
+            </div>
+            <div class="row">
+                <p class="mushroom_desc" id="description"></p>
+            
+            </div>
+            
+            <div class="row">
+                <div class="col-md-3"><a href="/lessonplans"><button class="backButton">Back</button></a></div>
+                
+                <div class="col-md-6"><a href="/"><button class="compButton">Compare to Jack-o-Lantern</button></a></div>
+                
+                <div class="col-md-3"><a href="/"><button class="nextButton">Next</button></a></div>
+            
+            </div>
+        </div>
+
+
     </div>
 
 </body>
