@@ -1,37 +1,134 @@
-//fill dynamically when data is filled
-$(document).ready(() => {
-    let lesson_name = lesson_params["lesson_name"]
-    let description = lesson_params["description"]
-    let mushroom1 = lesson_params["mushroom1"]
+{% extends "layout.html" %}
 
-    $("#backButton").click(function(){
-      window.location.href ='/lessonplans'
-    })
+{% block content %}
 
+<html>
 
-    if (mushroom1["edible"]){
-        document.getElementById("banner").style.backgroundColor = "#96D365";
-    }
-    else{
-        document.getElementById("banner").style.backgroundColor = "#F68780";
-    }
+<head>
+    <!--link js-->
+    <script type="text/javascript" src="{{ url_for('static', filename = 'lesson2_present.js') }}"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        crossorigin="anonymous">
 
-    document.getElementById("name1").innerHTML = mushroom1["name"]
-    
-    document.getElementById("img1").src = mushroom1["img_url"]
-
-    document.getElementById("cap1").innerHTML = mushroom1["cap"]
-
-    document.getElementById("stem1").innerHTML = mushroom1["stem"]
-
-    document.getElementById("gills1").innerHTML = mushroom1["gills"]
-
-    document.getElementById("color1").innerHTML = mushroom1["color"]
+    <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
 
 
-    document.getElementById("inner1").innerHTML = mushroom1["inner"]
+    <style>
+        .top_ofPage {
+            text-align: center;
+            font-size: 30px;
+        }
 
-    document.getElementById("description").innerHTML = mushroom1["description"]
+        .lesson_img {
+            width: 300px;
+            height: auto;
+
+        }
+
+        .comparison_padding {
+            padding-top: 50px;
+        }
 
 
-  })
+        .container {
+            padding: 2px 16px;
+        }
+
+        .graph {
+            padding-top: 50px;
+        }
+
+        .coloring {
+            color: green;
+        }
+
+        .buttonFormat{
+            border-radius: 25px;
+            width: 200px;
+        }
+    </style>
+    <script>
+        let lesson_params = {{ data | tojson}}
+    </script>
+</head>
+
+<body>
+
+    <div  class="container"></div>
+        <div class="header row">
+            <div class="col-md-6">
+                <p class="lesson_name" id="name1"></p>
+                <p class="desc">Read the information below to learn more. <br>Some mushrooms have easily confused and deadly counterparts! </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p class="banner" id="banner">Edible</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4"><img id="img1" class="lesson_img" src=""></div>
+                <div class="col-md-8">
+                    <p class="features row">Features</p> 
+                    <div class="row">
+                    <div class="col-md-6">       
+                    <div id="features_list" class="f_list">
+                            <p class="row f"><b>Cap</b></p>
+                            <p class="row f"><b>Stem</b></p>
+                            <p class="row f"><b>Gills</b></p>
+                            <p class="row f"><b>Outer Color</b></p>
+                            <p class="row f"><b>Inner Color</b></p>
+                    </div>    
+                    </div>
+                    <div class="col-md-6">       
+                    <div id="features_list" class="f_list2">
+                            <p class="row f" id="cap1">Cap</p>
+                            <p class="row f" id="stem1">Stem</p>
+                            <p class="row f" id="gills1">Gills</p>
+                            <p class="row f" id="color1">Outer Color</p>
+                            <p class="row f" id="inner1">Inner Color</p>
+                    </div>    
+                    </div>  
+                    </div>
+                    
+                
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4"><a><button class="cutButton">Cut Open</button></a></div>
+            
+            </div>
+        </div>
+        
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                     <p class="description row">Description</p> 
+                </div>
+            </div>
+            <div class="row">
+                <p class="mushroom_desc" id="description"></p>
+            
+            </div>
+            
+            <div class="row">
+                <div class="col-md-3"><a href="/lessonplans"><button class="backButton">Back</button></a></div>
+                
+                <div class="col-md-6"><a href="/"><button class="compButton">Compare to Jack-o-Lantern</button></a></div>
+                
+                <div class="col-md-3"><a href="/"><button class="nextButton">Next</button></a></div>
+            
+            </div>
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>
+
+{% endblock %}
