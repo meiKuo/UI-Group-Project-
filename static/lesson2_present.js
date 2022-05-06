@@ -7,6 +7,8 @@ $(document).ready(() => {
     $("#backButton").click(function(){
       window.location.href ='/lessonplans'
     })
+    
+    
 
 
     if (mushroom1["edible"]){
@@ -21,6 +23,8 @@ $(document).ready(() => {
     document.getElementById("name1").innerHTML = mushroom1["name"]
 
     document.getElementById("img1").src = mushroom1["img_url"]
+
+    document.getElementById("img2").src = mushroom1["cut_img_url"]
 
     document.getElementById("cap1").innerHTML = mushroom1["cap"]
 
