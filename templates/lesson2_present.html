@@ -42,10 +42,29 @@
             color: green;
         }
 
-        .buttonFormat{
+        .buttonFormat {
             border-radius: 25px;
             width: 200px;
         }
+
+        .popup {
+            width: 400px;
+            background: lightgray;
+            border-radius: 6px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .openPopup {
+            visibility: visible;
+        }
+
     </style>
     <script>
         let lesson_params = {{ data | tojson}}
@@ -54,80 +73,100 @@
 
 <body>
 
-    <div  class="container"></div>
-        <div class="header row">
-            <div class="col-md-6">
-                <p class="lesson_name" id="name1"></p>
-                <p class="desc">Read the information below to learn more. <br>Some mushrooms have easily confused and deadly counterparts! </p>
-            </div>
+    <div class="container"></div>
+    <div class="header row">
+        <div class="col-md-6">
+            <p class="lesson_name" id="name1"></p>
+            <p class="desc">Read the information below to learn more. <br>Some mushrooms have easily confused and deadly
+                counterparts! </p>
         </div>
-        <div class="row">
-            <div class="col-md-3">
-                <p class="banner_edible" id="banner"></p>
-            </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <p class="banner_edible" id="banner"></p>
         </div>
+    </div>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4"><img id="img1" class="lesson_img" src=""></div>
-                <div class="col-md-8">
-                    <p class="features row">Features</p> 
-                    <div class="row">
-                    <div class="col-md-6">       
-                    <div id="features_list" class="f_list">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4"><img id="img1" class="lesson_img" src=""></div>
+            <div class="col-md-8">
+                <p class="features row">Features</p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div id="features_list" class="f_list">
                             <p class="row f"><b>Cap</b></p>
                             <p class="row f"><b>Stem</b></p>
                             <p class="row f"><b>Gills</b></p>
                             <p class="row f"><b>Outer Color</b></p>
                             <p class="row f"><b>Inner Color</b></p>
-                    </div>    
+                        </div>
                     </div>
-                    <div class="col-md-6">       
-                    <div id="features_list" class="f_list2">
+                    <div class="col-md-6">
+                        <div id="features_list" class="f_list2">
                             <p class="row f" id="cap1">Cap</p>
                             <p class="row f" id="stem1">Stem</p>
                             <p class="row f" id="gills1">Gills</p>
                             <p class="row f" id="color1">Outer Color</p>
                             <p class="row f" id="inner1">Inner Color</p>
-                    </div>    
-                    </div>  
+                        </div>
                     </div>
-                    
-                
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4"><a><button class="cutButton">Cut Open</button></a></div>
-            
+
+
             </div>
         </div>
-        
+        <div class="row">
+            <div class="col-md-4" id="cut_open_button">
+                <button class="cutButton" onclick="cutMush()">Cut Open</button>
+            </div>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                     <p class="description row">Description</p> 
-                </div>
-            </div>
-            <div class="row">
-                <p class="mushroom_desc" id="description"></p>
-            
-            </div>
-            
-            <div class="row">
-                <div class="col-md-3"><a href="/lessonplans"><button class="backButton">Back</button></a></div>
-                
-                <div class="col-md-6"><a href="/"><button class="compButton">Compare to Jack-o-Lantern</button></a></div>
-                
-                <div class="col-md-3"><a href="/"><button class="nextButton">Next</button></a></div>
-            
-            </div>
         </div>
 
+        <div class="popup" id="popup">
+            <img src id="img2" class="lesson_img">
+                <p>This is the cut-open image</p>
+                <button type="button" onclick="closeMush()"> OK </button>
+
+        </div>
 
     </div>
 
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <p class="description row">Description</p>
+            </div>
+        </div>
+        <div class="row">
+            <p class="mushroom_desc" id="description"></p>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-3"><a href="/lessonplans"><button class="backButton">Back</button></a></div>
+
+            <div class="col-md-6"><a href="/"><button class="compButton">Compare to Jack-o-Lantern</button></a></div>
+
+            <div class="col-md-3"><a href="/"><button class="nextButton">Next</button></a></div>
+
+        </div>
+    </div>
+
 </body>
+
+<script>
+    let popup = document.getElementById("popup")
+
+    function cutMush() {
+        popup.classList.add("openPopup")
+    }
+
+    function closeMush() {
+        popup.classList.remove("openPopup")
+    }
+</script>
 
 </html>
 
