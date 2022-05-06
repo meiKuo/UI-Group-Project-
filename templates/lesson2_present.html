@@ -48,6 +48,7 @@
         }
 
         .popup {
+            padding: 20px; 
             width: 400px;
             background: lightgray;
             border-radius: 6px;
@@ -56,13 +57,17 @@
             left: 50%;
             transform: translate(-50%, -50%);
             visibility: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+
         }
 
         .openPopup {
             visibility: visible;
+        }
+
+        .popup_imgShift{
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
     </style>
@@ -124,12 +129,13 @@
         </div>
 
         <div class="popup" id="popup">
-            <img src id="img2" class="lesson_img">
-                <p>This is the cut-open image</p>
-                <button type="button" onclick="closeMush()"> OK </button>
+            <div>
+                <div class = "popup_imgShift"> <img src id="img2" class="lesson_img"></div>
+                <p class = "popup_imgShift">This is the cut-open image</p>
+                <div class = "popup_imgShift "><button type="button" onclick="closeMush()" class = "cutButton"> OK </button></div>
+            </div>
 
         </div>
-
     </div>
 
 
