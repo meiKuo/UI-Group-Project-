@@ -1,4 +1,5 @@
 import json
+from operator import le
 from flask import Flask
 from flask import render_template
 from flask import Response, request, jsonify, request, redirect
@@ -19,17 +20,25 @@ def homepage():
 
 @app.route('/lessonplans')
 def lessonplans():
-    lesson1 = lessons[0]
-    lesson2 = lessons[1]
-    lesson3 = lessons[2]
-    lesson4 = lessons[3]
-    lesson5 = lessons[4]
-    lesson6 = lessons[5]
-    lesson7 = lessons[6]
-    lesson8 = lessons[7]
-    lesson9 = lessons[8]
+    global lessons
 
-    return render_template('lesson_plans.html', lesson1=lesson1, lesson2=lesson2, lesson3=lesson3, lesson4=lesson4, lesson5=lesson5, lesson6=lesson6, lesson7=lesson7, lesson8=lesson8, lesson9=lesson9, )
+    def get_mushroom_edible(id):
+        return mushrooms[id]["edible"]
+
+    def check_completion():
+        for lesson in lessons.values():
+            if not "complete" in lesson:
+                return False
+            else:
+                if not lesson["complete"]:
+                    return False
+        return True
+    
+    print(lessons)
+    for lesson in lessons.values():
+        lesson["edible"] = get_mushroom_edible(lesson["mushroom"])
+
+    return render_template('lesson_plans.html', lessons=lessons.values(), complete = check_completion())
 
 @app.route('/game/<path>')
 def game(path):
@@ -147,31 +156,28 @@ def update():
 @app.route('/lesson/<id>')
 def lesson(id):
     global lessons
-    lesson_id = int(id) - 1
-    if lesson_id >= len(lessons) or lesson_id < 0:
+
+    lesson_id = int(id)
+    if lesson_id > len(lessons.values()) or lesson_id < 1:
         return "Error: Invalid lesson number."
 
-    complete = False
-    if lesson_id == len(lessons) - 1:
-        complete = True
+    cur_lesson = lessons[id]
+    lessons[id]["complete"] = True
 
-    cur_lesson = lessons[lesson_id]
     if cur_lesson["type"] == "compare":
         lesson_params = {
             "lesson_name": cur_lesson["lesson_name"],
-            "mushroom1": mushrooms[cur_lesson["mushroom1"]],
-            "mushroom2": mushrooms[cur_lesson["mushroom2"]],
-            "next": lesson_id + 2,
-            "complete": complete
+            "mushroom1": mushrooms[cur_lesson["mushroom"]],
+            "mushroom2": mushrooms[cur_lesson["mushroom"]],
+            "next": lesson_id + 1,
         }
         return render_template('lesson1_compare.html', data=lesson_params)
 
     else:
         lesson_params = {
             "lesson_name": cur_lesson["lesson_name"],
-            "mushroom1": mushrooms[cur_lesson["mushroom1"]],
-            "next": lesson_id + 2,
-            "complete": complete
+            "mushroom1": mushrooms[cur_lesson["mushroom"]],
+            "next": lesson_id + 1,
         }
         return render_template('lesson2_present.html', data=lesson_params)
 

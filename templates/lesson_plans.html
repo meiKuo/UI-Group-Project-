@@ -1,74 +1,57 @@
 {% extends "layout.html" %}
 
-{% block content %}
-
-<html>
-
+{% block head %}
 <head>
-  <!--link js-->
-  <script type="text/javascript" src="{{ url_for('static', filename = 'homepage.js') }}"></script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-    crossorigin="anonymous">
-
-  <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
-
   <script>
-    let lesson1 = {{ lesson1 | tojson}}
-    let lesson2 = {{ lesson2 | tojson}}
-    let lesson3 = {{ lesson3 | tojson}}
-    let lesson4 = {{ lesson4 | tojson}}
-    let lesson5 = {{ lesson5 | tojson}}
-    let lesson6 = {{ lesson6 | tojson}}
-    let lesson7 = {{ lesson7 | tojson}}
-    let lesson8 = {{ lesson8 | tojson}}
-    let lesson9 = {{ lesson9 | tojson}}
+    $(document).ready(() => {
+      $(".button").click(() => {
+        window.location.href = "/game/start"
+      })
+    })
   </script>
 
   <style>
-    .borderCategory2 {
-      border-style: solid;
+    .lesson-card {
+      display: flex;
       border-radius: 15px;
-      font-size: 25px;
-      background-color: lightgreen;
     }
 
-    .adjustSpace {
-      padding-top: 20px;
-      padding-bottom: 20px;
-    }
-
-    .lessonCard {
-      padding-top: 40px;
-      box-shadow: 0 4px 8px 0;
+    .card-img {
+      width: 100px;
       height: 100px;
-      width: auto;
+      border-radius: 15px 0 0 15px;
+    }
+
+    .card-content {
       display: flex;
+      align-content: center;
       justify-content: center;
-      line-height: 25px;
+      flex-wrap: wrap;
+      text-align: center;
+      font-size: 20px;
+      width: 230px;
+      background-color: var(--light-gray);
+      border-radius: 0 15px 15px 0;
     }
 
-    .cardImg {
-      width: 50px;
-      height: auto;
-      object-fit: cover;
-      border-style: solid;
-      
+    .card-link {
+      text-decoration: none;
+      color: black;
     }
 
-    .fill {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden
+    .button-box {
+      text-align: center;
     }
 
-    .fill img {
-      flex-shrink: 0;
-      min-width: 100%;
-      min-height: 100%
+    .complete-label {
+      font-size: 15px;
+      color: var(--light-green);
+    }
+
+    p {
+      margin: 0;
     }
   </style>
-
 </head>
 {% endblock %}
 
@@ -81,96 +64,64 @@
   </div>
 </div>
 
-<div class=' subTitle adjustSpace'>
-  <div class='w-50 bg-green white adjustSpace'>Edible Mushroom</div>
+<div class="label my-5 bg-green">
+  <h3>Edible</h3>
+</div>
 
-  <div class='row'>
-    <div class='col-md-4 adjustSpace'>
-      <div class='lessonCard'>
-        <div>
-          <img class='cardImg' src='{{lesson1.img_url}}'>
+<div class="container">
+  <div class="row ">
+    {% for l in lessons %}
+    {% if l.edible %}
+    <div class="col-4 mb-4">
+      <a class="card-link" href="/lesson/{{ l.lesson_id }}">
+        <div class="lesson-card m-auto">
+          <img src="{{ l.img_url }}" class="card-img" />
+          <div class="card-content px-5">
+            <p>{{ l.lesson_name }}</p>
+            {% if l.complete %}
+            <span class="complete-label">Complete</span>
+            {% endif %}
+          </div>
         </div>
-        <a href='/lesson/{{lesson1.lesson_id}}' class="lessonName">{{lesson1.lesson_name}}</a>
-      </div>
+      </a>
     </div>
-    <div class='col-md-4 adjustSpace'>
-      <div class='lessonCard'>
-        <div>
-          <img class='cardImg' src='{{lesson2.img_url}}'>
-        </div>
-        <a href='/lesson/{{lesson2.lesson_id}}' class="lessonName">{{lesson2.lesson_name}}</a>
-      </div>
-    </div>
-    <div class='col-md-4 adjustSpace'>
-      <div class='lessonCard'>
-        <div>
-          <img class='cardImg' src='{{lesson3.img_url}}'>
-        </div>
-        <a href='/lesson/{{lesson3.lesson_id}}' class="lessonName">{{lesson3.lesson_name}}</a>
-      </div>
-    </div>
-  </div>
-
-  <div class='row'>
-    <div class='col-md-4 adjustSpace'>
-      <div class='lessonCard'>
-        <div>
-          <img class='cardImg' src='{{lesson4.img_url}}'>
-        </div>
-        <a href='/lesson/{{lesson4.lesson_id}}' class="lessonName">{{lesson4.lesson_name}}</a>
-      </div>
-    </div>
-    <div class='col-md-4 adjustSpace'>
-      <div class='lessonCard'>
-        <div>
-          <img class='cardImg' src='{{lesson5.img_url}}'>
-        </div>
-        <a href='/lesson/{{lesson5.lesson_id}}' class="lessonName">{{lesson5.lesson_name}}</a>
-      </div>
-    </div>
-    <div class='col-md-4 adjustSpace'>
-      <div class='lessonCard'>
-        <div>
-          <img class='cardImg' src='{{lesson6.img_url}}'>
-        </div>
-        <a href='/lesson/{{lesson6.lesson_id}}' class="lessonName">{{lesson6.lesson_name}}</a>
-      </div>
-    </div>
+    {% endif %}
+    {% endfor %}
   </div>
 </div>
 
-<div class='subTitle'>
-  <div class='w-50 w-50 bg-red white adjustSpace'> Poisonous Mushroom </div>
-  <div class='row'>
-    <div class='col-md-4 adjustSpace'>
-      <div class='lessonCard'>
-        <div>
-          <img class='cardImg' src='{{lesson7.img_url}}'>
+<div class="label my-5 bg-red">
+  <h3>Toxic</h3>
+</div>
+
+<div class="container">
+  <div class="row">
+    {% for l in lessons %}
+    {% if not l.edible %}
+    <div class="col-4 mb-4">
+      <a class="card-link" href="/lesson/{{ l.lesson_id }}">
+        <div class="lesson-card m-auto">
+          <img src="{{ l.img_url }}" class="card-img" />
+          <div class="card-content px-5">
+            <p>{{ l.lesson_name }}</p>
+            {% if l.complete %}
+            <span class="complete-label">Complete</span>
+            {% endif %}
+          </div>
         </div>
-        <a href='/lesson/{{lesson7.lesson_id}}' class="lessonName">{{lesson7.lesson_name}}</a>
-      </div>
+      </a>
     </div>
-    <div class='col-md-4 adjustSpace'>
-      <div class='lessonCard'>
-        <div>
-          <img class='cardImg' src='{{lesson8.img_url}}'>
-        </div>
-        <a href='/lesson/{{lesson8.lesson_id}}' class="lessonName">{{lesson8.lesson_name}}</a>
-      </div>
-    </div>
-    <div class='col-md-4 adjustSpace'>
-      <div class='lessonCard'>
-        <div>
-          <img class='cardImg' src='{{lesson9.img_url}}'>
-        </div>
-        <a href='/lesson/{{lesson9.lesson_id}}' class="lessonName">{{lesson9.lesson_name}}</a>
-      </div>
-    </div>
+    {% endif %}
+    {% endfor %} 
   </div>
 </div>
 
-
-
-</html>
-
+<div class="container mb-5 button-box mt-2">
+  <h2 class="m-auto">0/9 Done</h2>
+  {% if complete %}
+  <button class="button bg-green white">Play Game</button>
+  {% else %}
+  <button class="button disabled" disabled>Play Game</button>
+  {% endif %}
+</div>
 {% endblock %}
