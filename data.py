@@ -173,7 +173,7 @@ quiz = {
         "id": "5",
         "mushroom_id": "4",
         "img_url": 'images/chanterelle_1.jpeg',
-        "cut_img_url": "images/chanterell_open_1.png",
+        "cut_img_url": "images/chanterelle_quiz_open.png",
         "done": False
     },
     "6": {
@@ -208,7 +208,7 @@ quiz = {
         "id": "10",
         "mushroom_id": "7",
         "img_url": 'images/oyster_1.jpeg',
-        "cut_img_url": "images/oyster_1.jpeg",
+        "cut_img_url": "images/oyster_cut_lesson.png",
         "done": False
     },
     "11": {
