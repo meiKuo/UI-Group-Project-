@@ -403,6 +403,7 @@ td {
     color: black;
     margin-left: 100px;
     margin-top: 40px;
+    width: 700px;
 }
 .desc{
     color: #3A3B3C;
@@ -535,4 +536,51 @@ td {
     margin-top: 35px;
     margin-bottom: 100px;
     margin-right: 100px;
+}
+
+
+
+/*compare*/
+.compare_title{
+    background-color: #FAFAFA;
+    font-family: monaco;
+    height: 130px;
+}
+
+.feature_label{
+    font-size: 20px;
+    margin-bottom: -20px;
+    margin-left: 10px;
+
+}
+
+.compare_feature{
+    color: #777777;
+    
+    margin-left: 10px;
+}
+.compare_banner_edible{
+    width: 135px;
+    height: 50px;
+    color: white;
+    font-family: monaco;
+    font-size: 20px;
+    margin-top: -60px;
+    padding-left: 10px;
+    padding-top: 10px;
+
+}
+
+.compare_img{
+    width: 70%;
+    border-radius: 25px;
+    margin-top: -20px;
+    
+}
+
+.compare_cut{
+    height: 50px;
+    margin-top: -40px;
+    margin-bottom: 40px;
+
 }
