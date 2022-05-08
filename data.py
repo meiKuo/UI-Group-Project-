@@ -96,7 +96,7 @@ mushrooms = {
         "edible": True,
         "img_url": '/static/images/maitake.jpeg',
         "cut_img_url": "/static/images/maitake_cut.jpeg",
-        "cap": "Distinctive shape that resembles mane of a male lion or a pom pom",
+        "cap": "Small overlapping tongues or fan-shaped caps",
         "stem": "Woody stem",
         "gills": "No gills, but leave a white spore print",
         "taste": "Strong earthy, peppery flavor",
