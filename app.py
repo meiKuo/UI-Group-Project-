@@ -156,6 +156,7 @@ def update():
 @app.route('/lesson/<id>')
 def lesson(id):
     global lessons
+    global mushrooms
 
     lesson_id = int(id)
     if lesson_id  > len(lessons.values()) or lesson_id < 1:
@@ -169,14 +170,15 @@ def lesson(id):
     else:
         n = lesson_id + 1
 
+    
     if cur_lesson["type"] == "compare":
         lesson_params = {
             "lesson_name": cur_lesson["lesson_name"],
             "mushroom1": mushrooms[cur_lesson["mushroom"]],
-            "mushroom2": mushrooms[cur_lesson["mushroom"]],
+            "mushroom2": mushrooms[cur_lesson["compare"]],
             "next": n,
         }
-        return render_template('lesson1_compare.html', data=lesson_params)
+        return render_template('lesson2_present.html', data=lesson_params)
 
     else:
         lesson_params = {
@@ -185,6 +187,23 @@ def lesson(id):
             "next": n,
         }
         return render_template('lesson2_present.html', data=lesson_params)
+
+
+@app.route('/lesson_compare/<id1>/<id2>')
+def compare(id1, id2):
+    global lessons
+
+    mushroom1 = mushrooms[id1]
+    mushroom2 = mushrooms[id2]
+
+    lesson_params = {
+        "mushroom1": mushroom1,
+        "mushroom2" : mushroom2,
+        "lessons" : lessons
+        }
+    
+    return render_template('lesson1_compare.html', data=lesson_params)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
