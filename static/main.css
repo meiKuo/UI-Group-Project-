@@ -424,7 +424,14 @@ td {
 
 }
 .lesson_img{
+    width: 100%;
     border-radius: 25px;
+}
+.img{
+    display: flex;
+    align-items: center;
+    height: 300px;
+    
 }
 .features{
     font-family: monaco;
@@ -442,7 +449,11 @@ td {
 }
 .f{
     padding-bottom: 10px;
+    margin-bottom: 15px;
 
+}
+.feature{
+    width: 400px;
 }
 .f_list2{
     font-family: monaco;
@@ -482,7 +493,7 @@ td {
 
 }
 
-.backButton{
+.back{
     background-color: #ECECEC;
     border: #ECECEC;
     border-radius: 10px;
