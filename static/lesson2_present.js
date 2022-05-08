@@ -4,11 +4,6 @@ $(document).ready(() => {
     let description = lesson_params["description"]
     let mushroom1 = lesson_params["mushroom1"]
 
-    $("#backButton").click(function(){
-      window.location.href ='/lessonplans'
-    })
-    
-    
 
 
     if (mushroom1["edible"]){
@@ -37,6 +32,11 @@ $(document).ready(() => {
     document.getElementById("inner1").innerHTML = mushroom1["inner"]
 
     document.getElementById("description").innerHTML = mushroom1["description"]
+    
+    if (lesson_params["next"] == 100){
+        document.getElementById("nextButton").innerHTML = "Play Game!"
+    }
+    
 
 
   })

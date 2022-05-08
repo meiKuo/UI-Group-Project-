@@ -158,18 +158,23 @@ def lesson(id):
     global lessons
 
     lesson_id = int(id)
-    if lesson_id > len(lessons.values()) or lesson_id < 1:
+    if lesson_id  > len(lessons.values()) or lesson_id < 1:
         return "Error: Invalid lesson number."
 
     cur_lesson = lessons[id]
     lessons[id]["complete"] = True
+    
+    if lesson_id + 1  > len(lessons.values()):
+        n = 100
+    else:
+        n = lesson_id + 1
 
     if cur_lesson["type"] == "compare":
         lesson_params = {
             "lesson_name": cur_lesson["lesson_name"],
             "mushroom1": mushrooms[cur_lesson["mushroom"]],
             "mushroom2": mushrooms[cur_lesson["mushroom"]],
-            "next": lesson_id + 1,
+            "next": n,
         }
         return render_template('lesson1_compare.html', data=lesson_params)
 
@@ -177,7 +182,7 @@ def lesson(id):
         lesson_params = {
             "lesson_name": cur_lesson["lesson_name"],
             "mushroom1": mushrooms[cur_lesson["mushroom"]],
-            "next": lesson_id + 1,
+            "next": n,
         }
         return render_template('lesson2_present.html', data=lesson_params)
 
