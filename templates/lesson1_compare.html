@@ -5,10 +5,13 @@
 <html>
 
 <head>
+    <!--link js-->
+    <script type="text/javascript" src="{{ url_for('static', filename = 'lesson1_compare.js') }}"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        crossorigin="anonymous">
 
-    <script>
-        let lesson_params = {{ data | tojson }}
-    </script>
+    <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
+
 
     <style>
         .top_ofPage {
@@ -43,82 +46,152 @@
             padding: 2px 16px;
         }
     </style>
+    <script>
+        let lesson_params = {{ data | tojson}}
+        
+
+    </script>
 </head>
 
 <body>
-    <div class="top_ofPage">
-        <div title="name_ofLesson" class="title removeBotPad">Commonly Confused Mushrooms</div>
-        <div title="small_descript">Click "Lesson" to learn about other mushrooms!</div>
+
+    <div class="container"></div>
+    
+    
+
+    <div class="container">
+        
+        <div class="compare_title row">
+            <div class="col-md-6">
+                <p class="lesson_name" id="title"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"><a><button class="back" id="back">Back</button></a></div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <p class="compare_banner_edible" id="banner1"></p>
+            </div>
+            <div class="col-md-6">
+                <p class="compare_banner_edible" id="banner2"></p>
+            </div>
+        </div>
+        
+        <div class="img row">
+            <div class="col-md-6">
+                <img id="img1" class="compare_img" src="">
+            </div>
+            <div class="col-md-6">
+                <img id="img2" class="compare_img" src="">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6">
+                    <div class="row f feature_label">
+                        <p><b>Cap</b></p>
+                    </div>
+                    <div class="row f compare_feature">
+                            <p class="feature" id="cap1"></p>
+                    </div>
+            </div>
+            <div class="col-md-6">
+                    <div class="row f feature_label">
+                        <p><b>Cap</b></p>
+                    </div>
+                    <div class="row f compare_feature">
+                            <p class="feature" id="cap2"></p>
+                    </div>
+            </div>
+            
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6">
+                    <div class="row f feature_label">
+                        <p><b>Stem</b></p>
+                    </div>
+                    <div class="row f compare_feature">
+                            <p class="feature" id="stem1"></p>
+                    </div>
+            </div>
+            <div class="col-md-6">
+                    <div class="row f feature_label">
+                        <p><b>Stem</b></p>
+                    </div>
+                    <div class="row f compare_feature">
+                            <p class="feature" id="stem2"></p>
+                    </div>
+            </div>
+            
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6">
+                    <div class="row f feature_label">
+                        <p><b>Gills</b></p>
+                    </div>
+                    <div class="row f compare_feature">
+                            <p class="feature" id="gills1"></p>
+                    </div>
+            </div>
+            <div class="col-md-6">
+                    <div class="row f feature_label">
+                        <p><b>Gills</b></p>
+                    </div>
+                    <div class="row f compare_feature">
+                            <p class="feature" id="gills2"></p>
+                    </div>
+            </div>
+            
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6">
+                    <div class="row f feature_label">
+                        <p><b>Outer Color</b></p>
+                    </div>
+                    <div class="row f compare_feature">
+                            <p class="feature" id="color1"></p>
+                    </div>
+            </div>
+            <div class="col-md-6">
+                    <div class="row f feature_label">
+                        <p><b>Outer Color</b></p>
+                    </div>
+                    <div class="row f compare_feature">
+                            <p class="feature" id="color2"></p>
+                    </div>
+            </div>
+        </div>
+            
+        <div class="row">
+                <div class="col-md-6">
+                        <div class="row f feature_label">
+                            <p><b>Inner Color</b></p>
+                        </div>
+                        <div class="row f compare_feature">
+                                <p class="feature" id="inner1"></p>
+                        </div>
+                </div>
+                <div class="col-md-6">
+                        <div class="row f feature_label">
+                            <p><b>Inner Color</b></p>
+                        </div>
+                        <div class="row f compare_feature">
+                                <p class="feature" id="inner2"></p>
+                        </div>
+                </div>
+            
+        </div>
+        
+        
     </div>
 
-    <div title="left_image_right" class='comparison_padding'>
-        <div class="row" id="row">
-            <div class='col-md-4'> </div>
-            <div id="name1" class='col-md-4'></div>
-            <div id="name2" class='col-md-4'></div>
-        </div>
-
-        <div class="row" id="row">
-            <div class='col-md-4'>Photo</div>
-            <div class='col-md-4'> <img id="img1" class='lesson_img' src=""></div>
-            <div class='col-md-4'> <img id="img2" class='lesson_img' src=""></div>
-        </div>
-
-        <div class="row" id="row">
-            <div class='col-md-4'>Toxicity</div>
-            <div id="edible1" class='col-md-4'></div>
-            <div id="edible2" class='col-md-4'></div>
-        </div>
-
-        <div class="row" id="row">
-            <div class='col-md-4'>Cap</div>
-            <div id="cap1" class='col-md-4'></div>
-            <div id="cap2" class='col-md-4'></div>
-        </div>
-
-        <div class="row" id="row">
-            <div class='col-md-4'>Stem</div>
-            <div id="stem1" class='col-md-4'></div>
-            <div id="stem2" class='col-md-4'></div>
-        </div>
-
-        <div class="row" id="row">
-            <div class='col-md-4'>Gills</div>
-            <div id="gills1" class='col-md-4'></div>
-            <div id="gills2" class='col-md-4'></div>
-        </div>
-
-         <div class="row" id="row">
-             <div class='col-md-4'>Smell/Taste</div>
-             <div id="taste1" class='col-md-4'></div>
-             <div id="taste2" class='col-md-4'></div>
-         </div>
-
-          <div class="row" id="row">
-              <div class='col-md-4'>Color</div>
-              <div id="color1" class='col-md-4'></div>
-              <div id="color2" class='col-md-4'></div>
-          </div>
-
-           <div class="row" id="row">
-               <div class='col-md-4'>Location</div>
-               <div id="location1" class='col-md-4'></div>
-               <div id="location2" class='col-md-4'></div>
-           </div>
-
-         <div class="row" id="row">
-             <div class='col-md-4'>Inner Color</div>
-             <div id="inner1" class='col-md-4'></div>
-             <div id="inner2" class='col-md-4'></div>
-         </div>
-    </div>
-         {% if data.complete %}
-         <a href="/game/start" class="button bg-green white"></a>
-         {% else %}
-         <a href="/lesson/{{ data.next }}" class="button bg-green white">Next Mushroom</a>
-         {% endif %}
 
 </body>
+
 
 </html>
 

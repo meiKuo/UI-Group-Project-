@@ -1,9 +1,13 @@
 //fill dynamically when data is filled
 $(document).ready(() => {
-    let lesson_name = lesson_params["lesson_name"]
-    let description = lesson_params["description"]
-    let mushroom1 = lesson_params["mushroom1"]
-
+    
+    
+   
+   let lesson_name = lesson_params["lesson_name"]
+   let description = lesson_params["description"]
+   let mushroom1 = lesson_params["mushroom1"] 
+    
+    
 
 
     if (mushroom1["edible"]){
@@ -33,10 +37,23 @@ $(document).ready(() => {
 
     document.getElementById("description").innerHTML = mushroom1["description"]
     
+    
     if (lesson_params["next"] == 100){
         document.getElementById("nextButton").innerHTML = "Play Game!"
     }
     
+    if ("mushroom2" in lesson_params) {
+        document.getElementById("compButton").innerHTML = "Compare to " + lesson_params["mushroom2"]["name"];
+        let compare = '"/lesson_compare/' + mushroom1["id"] +  '/' + lesson_params["mushroom2"]["id"] + '"'
+        document.getElementById("compButton").setAttribute('onclick','window.location.href = ' + compare)
 
+        
+    }
+    else{
+        var comp = document.getElementById('compButton');
+        comp.parentNode.removeChild(comp);
+    }
+    
+    
 
   })
