@@ -2,6 +2,7 @@
   --light-red: #F68780;
   --light-green: #96D365;
   --light-gray: #E4E4E4;
+  --dark-gray: #C4C4C4;
 
   --text-dark-gray: #4F4F4F;
   --xl-spacing: calc((100vw - 1140px) / 2)
@@ -36,10 +37,23 @@ h2 {
   background-color: var(--light-red)
 }
 
+.disabled {
+  background-color: var(--dark-gray);
+  color: white;
+}
+
 .button {
   padding: 10px 20px 10px 20px;
   border-radius: 15px;
   font-size: 25px;
+  border:none;
+  text-decoration: none;
+}
+
+.button:hover {
+  filter: brightness(95%);
+  color: white;
+  cursor: pointer;
 }
 
 .white {
@@ -59,6 +73,15 @@ h2 {
   padding: 80px 0 80px 0;
 }
 
+.label {
+  width: 30%;
+  text-align: right;
+  padding-right: 20px;
+  padding-top: 8px;
+  padding-bottom: 1px;
+  color: white;
+}
+
 /* homepage and lessons */
 .title {
   font-size: 60px;
@@ -66,7 +89,6 @@ h2 {
   padding-top: 30px;
   padding-bottom: 50px;
   font-weight: 900;
-
 }
 
 .subTitle {
@@ -389,7 +411,7 @@ td {
     margin-top: -5px;
 
 }
-.banner{
+.banner_edible{
     width: 175px;
     height: 30px;
     color: white;

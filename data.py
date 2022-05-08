@@ -3,8 +3,8 @@ mushrooms = {
         "id": "0",
         "name": "Black Morel",
         "edible": True,
-        "img_url": '/static/images/blackmorel.png',
-        "cut_img_url": "images/puffball_mushroom_open_1.png",
+        "img_url": '/static/images/blackMorel.png',
+        "cut_img_url": "/static/images/blackmorel_cut.png",
         "cap": "Scalloped, whitish-grey (sometimes tan) caps",
         "stem": "Pebbly texture",
         "gills": "Conical or oval Attached cap",
@@ -19,7 +19,7 @@ mushrooms = {
         "name": "False Morel",
         "edible": False,
         "img_url": '/static/images/False Morels.png',
-        "cut_img_url": "images/puffball_mushroom_open_1.png",
+        "cut_img_url": "/static/images/falseMorel_cut.png",
         "cap": "Brain-like or saddle-shaped structure",
         "stem": "Cotton-like white stem when sliced down the middle",
         "gills": "N/A",
@@ -34,7 +34,7 @@ mushrooms = {
         "name": "Destroying Angel",
         "edible": False,
         "img_url": '/static/images/destroyingangel.png',
-        "cut_img_url": "images/morel_1.png",
+        "cut_img_url": "/static/images/destroyingAngel_cut.png",
         "cap": "Pure white stalks cap",
         "stem": "Pure white stems",
         "gills": "Pure white gills",
@@ -49,7 +49,7 @@ mushrooms = {
         "name": "Giant Puffball",
         "edible": True,
         "img_url": '/static/images/giantpuffball.png',
-        "cut_img_url": "images/puffball_mushroom_open_1.png",
+        "cut_img_url": "/static/images/puffball_lesson_cut.png",
         "cap": "Pure white stalks cap",
         "stem": "Pure white stems",
         "gills": "N/A",
@@ -63,7 +63,7 @@ mushrooms = {
         "id": "4",
         "name": "Chanterelle",
         "img_url": "/static/images/chanterelle.png",
-        "cut_img_url": "",
+        "cut_img_url": "/static/images/chanterelle_cut.png",
         "edible": True,
         "cap": "Funnel shaped, wavy",
         "stem": "Full stem",
@@ -80,7 +80,7 @@ mushrooms = {
         "id": "5",
         "name": "Jack o Lantern",
         "img_url": "/static/images/jackolantern.png",
-        "cut_img_url": "",
+        "cut_img_url": "/static/images/jackolantern_cut.png",
         "edible": False,
         "cap": "Round, flat",
         "stem": "Hollow stem",
@@ -96,7 +96,7 @@ mushrooms = {
         "name": "Maitake Mushroom",
         "edible": True,
         "img_url": '/static/images/maitake.png',
-        "cut_img_url": "images/puffball_mushroom_open_1.png",
+        "cut_img_url": "/static/images/maitake_cut.png",
         "cap": "Distinctive shape that resembles mane of a male lion or a pom pom",
         "stem": "Woody stem",
         "gills": "No gills, but leave a white spore print",
@@ -112,7 +112,7 @@ mushrooms = {
         "name": "Oyster Mushroom",
         "edible": True,
         "img_url": '/static/images/oystermushroom.png',
-        "cut_img_url": "images/puffball_mushroom_open_1.png",
+        "cut_img_url": "/static/images/oyster_cut.png",
         "cap": "Scalloped, whitish-grey (sometimes tan) caps",
         "stem": "Woody stem",
         "gills": "White, decurrent gills",
@@ -127,7 +127,7 @@ mushrooms = {
         "name": "Lion's Mane",
         "edible": True,
         "img_url": '/static/images/lionsmane.png',
-        "cut_img_url": "images/puffball_mushroom_open_1.png",
+        "cut_img_url": "/static/images/lions_mane_lessonCut.png",
         "cap": "Distinctive shape that resembles mane of a male lion or a pom pom",
         "stem": "Pure white stems",
         "gills": "Instead of gills, this mushroom body has little teeth that the spores are released from.",
@@ -173,7 +173,7 @@ quiz = {
         "id": "5",
         "mushroom_id": "4",
         "img_url": 'images/chanterelle_1.jpeg',
-        "cut_img_url": "images/chanterell_open_1.png",
+        "cut_img_url": "images/chanterelle_quiz_open.png",
         "done": False
     },
     "6": {
@@ -208,7 +208,7 @@ quiz = {
         "id": "10",
         "mushroom_id": "7",
         "img_url": 'images/oyster_1.jpeg',
-        "cut_img_url": "images/oyster_1.jpeg",
+        "cut_img_url": "images/oyster_cut_lesson.png",
         "done": False
     },
     "11": {
@@ -229,76 +229,71 @@ quiz = {
 
 
 #lessons
-lessons = [
-    {
+lessons = {
+    "1": {
         "lesson_id": "1",
         "lesson_name": "True Morel",
-        "mushroom1": "0",
+        "mushroom": "0",
         "img_url": 'https://media.istockphoto.com/vectors/hand-drawn-colorful-morel-mushroom-vector-id1181276056?k=6&m=1181276056&s=612x612&w=0&h=_qqA5l8WiwQpR2mRJc0mnndmzgyky-EZs_nTwl21T0U=',
         "type": "indiv",
     },
-    {
+    "2": {
         "lesson_id": "2",
         "lesson_name": "Chanterelle",
-        "mushroom1": "4",
+        "mushroom": "4",
         "img_url": "/static/images/chanterelle.png",
         "type": "indiv"
     },
-    {
+    "3": {
         "lesson_id": "3",
         "lesson_name": "Puff Ball",
-        "mushroom1": "3",
+        "mushroom": "3",
         "img_url": '/static/images/giantpuffball.png',
         "type": "indiv",
     },
-    {
+    "4": {
         "lesson_id": "4",
         "lesson_name": "Maitake Mushroom",
-        "mushroom1": "6",
+        "mushroom": "6",
         "img_url": '/static/images/maitake.png',
         "type": "indiv",
     },
-    {
+    "5": {
         "lesson_id": "5",
         "lesson_name": "Oyster Mushroom",
-        "mushroom1": "7",
+        "mushroom": "7",
         "img_url": '/static/images/oystermushroom.png',
         "type": "indiv"
     },
-    {
+    "6": {
         "lesson_id": "6",
         "lesson_name": "Lion's Mane",
-        "mushroom1": "8",
+        "mushroom": "8",
         "img_url": '/static/images/lionsmane.png',
         "type": "indiv"
     },
-    {
+    "7": {
         "lesson_id": "7",
         "lesson_name": "False Morel",
-        "mushroom1": "1",
+        "mushroom": "1",
         "img_url": 'https://as1.ftcdn.net/v2/jpg/02/94/34/30/1000_F_294343087_4w1GR3vVswC4RoOslk9VxORUxiRb20Rw.jpg',
         "type": "indiv",
     },
-    {
+    "8": {
         "lesson_id": "8",
         "lesson_name": "Jack o Lantern",
-        "mushroom1": "5",
+        "mushroom": "5",
         "img_url": "https://healing-mushrooms.net/wp-content/uploads/2020/01/Jack-o-Lantern-Mushroom.jpg",
         "type": "indiv",
     },
-    {
+    "9": {
         "lesson_id": "9",
         "lesson_name": "Destroying Angel",
-        "mushroom1": "2",
+        "mushroom": "2",
         "img_url": "https://media.illustrationx.com/images/artist/LizPepperell/128015/watermark/1300/destroying-angel-toadstool.jpg",
         "type": "indiv",
     },
-]
-
-
-START_DIALOGUE = """"""
-
-ON_CHOICE_DIALOGUE = ""
+}
 
 def find_num_edible():
     return len([q for q in quiz.values() if mushrooms[q["mushroom_id"]]["edible"] ])
