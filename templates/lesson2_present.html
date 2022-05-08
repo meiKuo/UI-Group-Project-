@@ -94,26 +94,57 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-4"><img id="img1" class="lesson_img" src=""></div>
+            <div class="col-md-4">
+                <div class="img row">
+                    <img id="img1" class="lesson_img" src="">
+                    <button class="cutButton" onclick="cutMush()">Cut Open</button>
+                </div>
+            </div>
             <div class="col-md-8">
                 <p class="features row">Features</p>
                 <div class="row">
                     <div class="col-md-6">
                         <div id="features_list" class="f_list">
-                            <p class="row f"><b>Cap</b></p>
-                            <p class="row f"><b>Stem</b></p>
-                            <p class="row f"><b>Gills</b></p>
-                            <p class="row f"><b>Outer Color</b></p>
-                            <p class="row f"><b>Inner Color</b></p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div id="features_list" class="f_list2">
-                            <p class="row f" id="cap1">Cap</p>
-                            <p class="row f" id="stem1">Stem</p>
-                            <p class="row f" id="gills1">Gills</p>
-                            <p class="row f" id="color1">Outer Color</p>
-                            <p class="row f" id="inner1">Inner Color</p>
+                            <div class="row f">
+                                <p class="col-md-4"><b>Cap</b></p>
+                                <p class="col-md-4"></p>
+                                <div class="col-md-4">
+                                    <p class="feature" id="cap1"></p>
+                                </div>
+                            </div>
+                            
+                            <div class="row f">
+                                <p class="col-md-4"><b>Stem</b></p>
+                                <p class="col-md-4"></p>
+                                <div class="col-md-4">
+                                    <p class="feature" id="stem1"></p>
+                                </div>
+                            </div>
+                            <div class="row f">
+                                <p class="col-md-4"><b>Gills</b></p>
+                                <p class="col-md-4"></p>
+                                <div class="col-md-4">
+                                    <p class="feature" id="gills1"></p>
+                                </div>
+                            </div>
+                            <div class="row f">
+                                <div class="col-md-4">
+                                    <p class="feature"><b>Outer Color</b></p>
+                                </div>
+                                <p class="col-md-4"></p>
+                                <div class="col-md-4">
+                                    <p class="feature" id="color1"></p>
+                                </div>
+                            </div>
+                            <div class="row f">
+                                <div class="col-md-4">
+                                    <p class="feature"><b>Inner Color</b></p>
+                                </div>
+                                <p class="col-md-4"></p>
+                                <div class="col-md-4">
+                                    <p class="feature" id="inner1"></p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -121,13 +152,6 @@
 
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4" id="cut_open_button">
-                <button class="cutButton" onclick="cutMush()">Cut Open</button>
-            </div>
-
-        </div>
-
         <div class="popup" id="popup">
             <div>
                 <div class = "popup_imgShift"> <img src id="img2" class="lesson_img"></div>
@@ -151,11 +175,11 @@
         </div>
 
         <div class="row">
-            <div class="col-md-3"><a href="/lessonplans"><button class="backButton">Back</button></a></div>
+            <div class="col-md-3"><a><button class="back" id="back" onClick="window.location.href = '/lessonplans'">Back</button></a></div>
 
-            <div class="col-md-6"><a href="/"><button class="compButton">Compare to Jack-o-Lantern</button></a></div>
+            <div class="col-md-6"><a><button class="compButton" id="compButton">Compare to Jack-o-Lantern</button></a></div>
 
-            <div class="col-md-3"><a href="/"><button class="nextButton">Next</button></a></div>
+            <div class="col-md-3"><a ><button class="nextButton" id="nextButton" onClick="next()">Next</button></a></div>
 
         </div>
     </div>
@@ -171,6 +195,18 @@
 
     function closeMush() {
         popup.classList.remove("openPopup")
+    }
+    
+    function next() {
+        if (lesson_params["next"] == 100) {
+             window.location.href ='/game/start'
+        }
+        else{
+            window.location.href = '/lesson/' + lesson_params["next"]
+        
+        }
+    
+    
     }
 </script>
 
