@@ -234,28 +234,31 @@ lessons = {
         "lesson_name": "True Morel",
         "mushroom": "0",
         "img_url": '/static/images/black_morel.jpeg',
-        "type": "indiv",
+        "type": "compare",
+        "compare": "1"
     },
     "2": {
         "lesson_id": "2",
         "lesson_name": "Chanterelle",
         "mushroom": "4",
         "img_url": "/static/images/chanterelle.png",
-        "type": "indiv"
+        "type": "compare",
+        "compare": "5"
     },
     "3": {
         "lesson_id": "3",
         "lesson_name": "Puff Ball",
         "mushroom": "3",
         "img_url": '/static/images/giantpuffball.png',
-        "type": "indiv",
+        "type": "compare",
+        "compare": "2"
     },
     "4": {
         "lesson_id": "4",
         "lesson_name": "Maitake Mushroom",
         "mushroom": "6",
         "img_url": '/static/images/maitake.jpeg',
-        "type": "indiv",
+        "type": "indiv"
     },
     "5": {
         "lesson_id": "5",
@@ -276,21 +279,25 @@ lessons = {
         "lesson_name": "False Morel",
         "mushroom": "1",
         "img_url": '/static/images/falsemorel.jpeg',
-        "type": "indiv",
+        "type": "compare",
+        "compare": "0"
+        
     },
     "8": {
         "lesson_id": "8",
         "lesson_name": "Jack o Lantern",
         "mushroom": "5",
         "img_url": "/static/images/jackolantern.png",
-        "type": "indiv",
+        "type": "compare",
+        "compare": "4"
     },
     "9": {
         "lesson_id": "9",
         "lesson_name": "Destroying Angel",
         "mushroom": "2",
         "img_url": "static/images/destroying_angel.jpeg",
-        "type": "indiv",
+        "type": "compare",
+        "compare": "3"
     },
 }
 
