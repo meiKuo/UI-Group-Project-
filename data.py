@@ -7,7 +7,7 @@ mushrooms = {
         "cut_img_url": "/static/images/blackmorel_cut.png",
         "cap": "Scalloped, whitish-grey (sometimes tan) caps",
         "stem": "Pebbly texture",
-        "gills": "Conical or oval Attached cap",
+        "gills": "Conical or oval attached cap",
         "taste": "Earthy, woodsy, and nutty",
         "color": "Range in color: from cream to black",
         "location": "Found in moist areas and on specific trees like maple, conifers, and oak",

@@ -25,21 +25,27 @@ def lessonplans():
     def get_mushroom_edible(id):
         return mushrooms[id]["edible"]
 
-    def check_completion():
-        for lesson in lessons.values():
-            if not "complete" in lesson:
-                return False
-            else:
-                if not lesson["complete"]:
-                    return False
-        return True
+    def check_completion(lesson):
+        if not "complete" in lesson:
+            return False
+        
+        return lesson["complete"]
     
-    print(lessons)
+    def get_num_completed():
+        return len([lesson for lesson in lessons.values() if check_completion(lesson)])
+
+    complete = len(lessons) == get_num_completed()
+
     for lesson in lessons.values():
         lesson["edible"] = get_mushroom_edible(lesson["mushroom"])
 
-    return render_template('lesson_plans.html', lessons=lessons.values(), complete = check_completion())
+    params = {
+        "lessons": lessons.values(),
+        "complete": complete,
+        "num_completed": get_num_completed(),
+    }
 
+    return render_template('lesson_plans.html', **params)
 @app.route('/game/<path>')
 def game(path):
     global health
@@ -165,31 +171,34 @@ def lesson(id):
     cur_lesson = lessons[id]
     lessons[id]["complete"] = True
     
-    if lesson_id + 1  > len(lessons.values()):
-        n = 100
-    else:
-        n = lesson_id + 1
+    def check_completion(lesson):
+        if not "complete" in lesson:
+            return False
+        
+        return lesson["complete"]
 
-    
+    # Get remaining lessons
+    def get_next_lesson():
+        for lesson in lessons.values():
+            if not check_completion(lesson):
+                return lesson["lesson_id"]
+        
+        return "0"
+
+    lesson_params = {
+        "lesson_id": id,
+        "lesson_name": cur_lesson["lesson_name"],
+        "mushroom": mushrooms[cur_lesson["mushroom"]],
+        "next": get_next_lesson(),
+    }
+
     if cur_lesson["type"] == "compare":
-        lesson_params = {
-            "lesson_name": cur_lesson["lesson_name"],
-            "mushroom1": mushrooms[cur_lesson["mushroom"]],
-            "mushroom2": mushrooms[cur_lesson["compare"]],
-            "next": n,
-        }
-        return render_template('lesson2_present.html', data=lesson_params)
+        lesson_params["compare"] = mushrooms[cur_lesson["compare"]]
 
-    else:
-        lesson_params = {
-            "lesson_name": cur_lesson["lesson_name"],
-            "mushroom1": mushrooms[cur_lesson["mushroom"]],
-            "next": n,
-        }
-        return render_template('lesson2_present.html', data=lesson_params)
+    return render_template('lesson2_present.html', **lesson_params)
 
 
-@app.route('/lesson_compare/<id1>/<id2>')
+@app.route('/compare/<id1>/<id2>')
 def compare(id1, id2):
     global lessons
 
@@ -200,7 +209,7 @@ def compare(id1, id2):
         "mushroom1": mushroom1,
         "mushroom2" : mushroom2,
         "lessons" : lessons
-        }
+    }
     
     return render_template('lesson1_compare.html', data=lesson_params)
 
