@@ -1,218 +1,183 @@
 {% extends "layout.html" %}
 
-{% block content %}
-
-<html>
-
-<head>
-    <!--link js-->
-    <script type="text/javascript" src="{{ url_for('static', filename = 'lesson2_present.js') }}"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-        crossorigin="anonymous">
-
-    <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
-
-
-    <style>
-        .top_ofPage {
-            text-align: center;
-            font-size: 30px;
-        }
-
-        .lesson_img {
-            width: 300px;
-            height: auto;
-
-        }
-
-        .comparison_padding {
-            padding-top: 50px;
-        }
-
-
-        .container {
-            padding: 2px 16px;
-        }
-
-        .graph {
-            padding-top: 50px;
-        }
-
-        .coloring {
-            color: green;
-        }
-
-        .buttonFormat {
-            border-radius: 25px;
-            width: 200px;
-        }
-
-        .popup {
-            padding: 20px; 
-            width: 400px;
-            background: lightgray;
-            border-radius: 6px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            visibility: hidden;
-
-        }
-
-        .openPopup {
-            visibility: visible;
-        }
-
-        .popup_imgShift{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-    </style>
+{% block head %}
     <script>
-        let lesson_params = {{ data | tojson}}
-        
+        $(document).ready(() => {
+            $("#back").click(() => {
+                window.location.href = '/lessonplans'
+            })
 
+            $("#next").click(function() {
+                const next = $(this).data("id")
+                if (next == "0") {
+                    window.location.href = '/lessonplans'
+                } else {
+                    window.location.href = `/lesson/${next}`
+                } 
+            })
+
+            $("#compare").click(function() {
+                const id1 = $(this).data("id1")
+                const id2 = $(this).data("id2")
+                
+                window.location.href = `/compare/${id1}/${id2}`
+            })
+        })
     </script>
+    <style>
+        .lesson-img {
+            border-radius: 15px;
+            height: 280px;
+        }
+
+        .modal-img {
+            border-radius: 15px;
+            width: 100%;
+        }
+        .feature-box {
+            color: black !important;
+            font-size: 20px;
+        }
+
+        .feature-title {
+            font-size: 20px;
+        }
+
+        .col-9 {
+            color: var(--text-dark-gray) !important;
+        }
+
+        .description {
+            font-size: 20px;
+            margin-top: 0;
+            color: var(--text-dark-gray) !important;
+        }
+
+        .button-box {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 50px;
+        }
+
+        .lesson-title {
+            font-size: 40px;
+            color: black !important;
+        }
+    </style>
 </head>
+{% endblock %}
 
-<body>
-
-    <div class="container"></div>
-    <div class="header row">
-        <div class="col-md-6">
-            <p class="lesson_name" id="name1"></p>
-            <p class="desc">Read the information below to learn more. <br>Some mushrooms have easily confused and deadly
-                counterparts! </p>
+{% block game %}
+    <div class="w-100 banner">
+        <div class="container">
+            <h1>Lesson {{ lesson_id }}</h1>
+            <h2>Read the information below to learn more.</h2>
+            <h2>Some mushrooms have easily confused and deadly counterparts!</h2>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-3">
-            <p class="banner_edible" id="banner"></p>
-        </div>
+
+    {% if mushroom.edible %}
+    <div class="label mt-5 bg-green">
+        <h3>Edible</h3>
     </div>
+    {% else %}
+    <div class="label mt-5 bg-red">
+        <h3>Toxic</h3>
+    </div>
+    {% endif %}
 
     <div class="container">
+        <h2 class="lesson-title my-4">{{ lesson_name }}</h2>
         <div class="row">
             <div class="col-md-4">
-                <div class="img row">
-                    <img id="img1" class="lesson_img" src="">
-                    <button class="cutButton" onclick="cutMush()">Cut Open</button>
+                <div class="img-container">
+                    <img class="img-fluid lesson-img" src="{{ mushroom.img_url }}">
                 </div>
             </div>
             <div class="col-md-8">
-                <p class="features row">Features</p>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div id="features_list" class="f_list">
-                            <div class="row f">
-                                <p class="col-md-4"><b>Cap</b></p>
-                                <p class="col-md-4"></p>
-                                <div class="col-md-4">
-                                    <p class="feature" id="cap1"></p>
-                                </div>
-                            </div>
-                            
-                            <div class="row f">
-                                <p class="col-md-4"><b>Stem</b></p>
-                                <p class="col-md-4"></p>
-                                <div class="col-md-4">
-                                    <p class="feature" id="stem1"></p>
-                                </div>
-                            </div>
-                            <div class="row f">
-                                <p class="col-md-4"><b>Gills</b></p>
-                                <p class="col-md-4"></p>
-                                <div class="col-md-4">
-                                    <p class="feature" id="gills1"></p>
-                                </div>
-                            </div>
-                            <div class="row f">
-                                <div class="col-md-4">
-                                    <p class="feature"><b>Outer Color</b></p>
-                                </div>
-                                <p class="col-md-4"></p>
-                                <div class="col-md-4">
-                                    <p class="feature" id="color1"></p>
-                                </div>
-                            </div>
-                            <div class="row f">
-                                <div class="col-md-4">
-                                    <p class="feature"><b>Inner Color</b></p>
-                                </div>
-                                <p class="col-md-4"></p>
-                                <div class="col-md-4">
-                                    <p class="feature" id="inner1"></p>
-                                </div>
-                            </div>
+                <div class="container feature-box">
+                    <h2 class="black mb-4">Features</h2>
+                    <div class="row">
+                        <div class="col-3">
+                            <p>Cap</p>
+                        </div>
+                        <div class="col-9">
+                            <p>{{ mushroom.cap }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <p>Stem</p>
+                        </div>
+                        <div class="col-9">
+                            <p>{{ mushroom.stem }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <p>Gills</p>
+                        </div>
+                        <div class="col-9">
+                            <p>{{ mushroom.gills }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <p>Outer Color</p>
+                        </div>
+                        <div class="col-9">
+                            <p>{{ mushroom.color }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <p>Inner Color</p>
+                        </div>
+                        <div class="col-9">
+                            <p>{{ mushroom.inner }}</p>
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
-        <div class="popup" id="popup">
-            <div>
-                <div class = "popup_imgShift"> <img src id="img2" class="lesson_img"></div>
-                <p class = "popup_imgShift">This is the cut-open image</p>
-                <div class = "popup_imgShift "><button type="button" onclick="closeMush()" class = "cutButton"> OK </button></div>
-            </div>
 
+        <button type="button" class="mt-3 button" data-toggle="modal" data-target="#exampleModalCenter">Cut Open</button>
+
+        <div class="my-4">
+            <h2 class="black mb-4">Description</h2>
+            <p class="description">{{ mushroom.description }}</p>
+        </div>
+
+        <div class="button-box mb-5">
+            <button id="back" class="button">Back</button>
+            {% if compare %}
+            <button id="compare" class="button bg-red white" data-id1="{{ mushroom.id }}" data-id2="{{ compare.id }}">Compare to {{ compare.name }}</button>
+            {% endif %}
+            <button id="next" class="button bg-green white" data-id="{{ next }}">Next</button>
         </div>
     </div>
 
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <p class="description row">Description</p>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">{{ mushroom.name }}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <h5>Examine the cut image closely.</h5>
+                <img src="{{ mushroom.cut_img_url }}" alt="" class="modal-img">
+            </div>
+            <div class="modal-footer text-align-center">
+                <button type="button" class="button bg-green white" data-dismiss="modal">OK</button>
             </div>
         </div>
-        <div class="row">
-            <p class="mushroom_desc" id="description"></p>
-
-        </div>
-
-        <div class="row">
-            <div class="col-md-3"><a><button class="back" id="back" onClick="window.location.href = '/lessonplans'">Back</button></a></div>
-
-            <div class="col-md-6"><a><button class="compButton" id="compButton"></button></a></div>
-
-            <div class="col-md-3"><a ><button class="nextButton" id="nextButton" onClick="next()">Next</button></a></div>
-
         </div>
     </div>
 
-</body>
-
-<script>
-    let popup = document.getElementById("popup")
-
-    function cutMush() {
-        popup.classList.add("openPopup")
-    }
-
-    function closeMush() {
-        popup.classList.remove("openPopup")
-    }
-    
-    function next() {
-        if (lesson_params["next"] == 100) {
-             window.location.href ='/game/start'
-        }
-        else{
-            window.location.href = '/lesson/' + lesson_params["next"]
-        
-        }
-    
-    
-    }
-    
-</script>
-
-</html>
-
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 {% endblock %}
