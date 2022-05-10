@@ -207,7 +207,7 @@ quiz = {
         "id": "10",
         "mushroom_id": "7",
         "img_url": 'images/oyster_1.jpeg',
-        "cut_img_url": "images/oyster_1.jpeg",
+        "cut_img_url": "images/oyster_cut.jpeg",
         "done": False
     },
     "11": {
