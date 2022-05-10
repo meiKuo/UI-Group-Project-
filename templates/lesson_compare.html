@@ -1,17 +1,7 @@
 {% extends "layout.html" %}
 
-{% block content %}
-
-<html>
-
-<head>
-    <!--link js-->
-    <script type="text/javascript" src="{{ url_for('static', filename = 'lesson1_compare.js') }}"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-        crossorigin="anonymous">
-
-    <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
-
+{% block head %}
+    <script type="text/javascript" src="{{ url_for('static', filename = 'lesson_compare.js') }}"></script>
 
     <style>
         .top_ofPage {
@@ -42,33 +32,22 @@
             box-shadow: 0 4px 8px 0;
         }
 
-        .container {
-            padding: 2px 16px;
-        }
     </style>
     <script>
         let lesson_params = {{ data | tojson}}
-        
-
     </script>
-</head>
+{% endblock %}
 
-<body>
-
-    <div class="container"></div>
-    
-    
+{% block game %}
+    <div class="w-100 banner mb-5">
+        <div class="container">
+            <h1>Comparison</h1>
+        </div>
+    </div>
 
     <div class="container">
-        
-        <div class="compare_title row">
-            <div class="col-md-6">
-                <p class="lesson_name" id="title"></p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3"><a><button class="back" id="back">Back</button></a></div>
-        </div>
+        <a href="/lesson/{{ data.lesson_id }}" class="mt-5 button bg-gray black">Back</a>
+        <h2 class="lesson-title my-4">{{ data.mushroom1.name }} vs {{ data.mushroom2.name }}</h2>
         <div class="row">
             <div class="col-md-6">
                 <p class="compare_banner_edible" id="banner1"></p>
@@ -101,7 +80,7 @@
                         <p><b>Cap</b></p>
                     </div>
                     <div class="row f compare_feature">
-                            <p class="feature" id="cap2"></p>
+                        <p class="feature" id="cap2"></p>
                     </div>
             </div>
             
@@ -153,7 +132,7 @@
                         <p><b>Outer Color</b></p>
                     </div>
                     <div class="row f compare_feature">
-                            <p class="feature" id="color1"></p>
+                        <p class="feature" id="color1"></p>
                     </div>
             </div>
             <div class="col-md-6">
@@ -161,7 +140,7 @@
                         <p><b>Outer Color</b></p>
                     </div>
                     <div class="row f compare_feature">
-                            <p class="feature" id="color2"></p>
+                        <p class="feature" id="color2"></p>
                     </div>
             </div>
         </div>
@@ -180,7 +159,7 @@
                             <p><b>Inner Color</b></p>
                         </div>
                         <div class="row f compare_feature">
-                                <p class="feature" id="inner2"></p>
+                            <p class="feature" id="inner2"></p>
                         </div>
                 </div>
             
@@ -188,11 +167,4 @@
         
         
     </div>
-
-
-</body>
-
-
-</html>
-
 {% endblock %}

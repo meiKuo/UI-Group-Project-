@@ -195,11 +195,11 @@ def lesson(id):
     if cur_lesson["type"] == "compare":
         lesson_params["compare"] = mushrooms[cur_lesson["compare"]]
 
-    return render_template('lesson2_present.html', **lesson_params)
+    return render_template('lesson_present.html', **lesson_params)
 
 
-@app.route('/compare/<id1>/<id2>')
-def compare(id1, id2):
+@app.route('/lesson/<lesson_id>/compare/<id1>/<id2>')
+def compare(lesson_id, id1, id2):
     global lessons
 
     mushroom1 = mushrooms[id1]
@@ -208,10 +208,10 @@ def compare(id1, id2):
     lesson_params = {
         "mushroom1": mushroom1,
         "mushroom2" : mushroom2,
-        "lessons" : lessons
+        "lesson_id": lesson_id,
     }
     
-    return render_template('lesson1_compare.html', data=lesson_params)
+    return render_template('lesson_compare.html', data=lesson_params)
 
 
 if __name__ == '__main__':
