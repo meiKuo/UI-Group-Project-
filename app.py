@@ -214,5 +214,4 @@ def compare(lesson_id, id1, id2):
     return render_template('lesson_compare.html', data=lesson_params)
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
+
