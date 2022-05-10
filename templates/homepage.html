@@ -2,9 +2,6 @@
 
 {% block head %}
 <head>
-    <script>
-    </script>
-
     <style>
         .content {
             display: flex;
@@ -44,10 +41,6 @@
             margin: auto;
         }
 
-        .bottom {
-
-        }
-
         .play-section {
             position: relative;
             height: 550px;
@@ -70,6 +63,7 @@
             <div class="container l-spacing py-3">
                 <h1>Learn</h1>
                 <h2>Worry not! Learn the difference.</h2>
+                <img src="{{ url_for('static', filename='images/homepage_mushrooms.png') }}" alt="" class="img-fluid">
                 <div class="container align-bottom pb-5">
                     <a class="button bg-green white" href="/lessonplans">Learn</a>
                 </div>

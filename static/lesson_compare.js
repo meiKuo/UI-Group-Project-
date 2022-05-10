@@ -1,25 +1,6 @@
-//fill dynamically when data is filled
-
-
-
 $(document).ready(() => {
     let mushroom1 = lesson_params["mushroom1"]
     let mushroom2 = lesson_params["mushroom2"]
-    let lessons = lesson_params["lessons"]
-    
-    for (let value in lessons) {
-        if (lessons[value]["mushroom"] == mushroom1["id"]){
-            let back = '"/lesson/' + value + '"'
-            document.getElementById("back").setAttribute('onclick','window.location.href = ' + back)
-        }
-            
-    }
-    
-    
-
-    document.getElementById("title").innerHTML = mushroom1["name"] + " vs " + mushroom2["name"];
-    
-    
     
     if (mushroom1["edible"]){
         document.getElementById("banner1").style.backgroundColor = "#96D365";
@@ -27,7 +8,7 @@ $(document).ready(() => {
     }
     else{
         document.getElementById("banner1").style.backgroundColor = "#F68780";
-        document.getElementById("banner1").innerHTML = "Poisonous"
+        document.getElementById("banner1").innerHTML = "Toxic"
     }
     
     if (mushroom2["edible"]){
@@ -36,7 +17,7 @@ $(document).ready(() => {
     }
     else{
         document.getElementById("banner2").style.backgroundColor = "#F68780";
-        document.getElementById("banner2").innerHTML = "Poisonous"
+        document.getElementById("banner2").innerHTML = "Toxic"
     }
     
     
@@ -64,10 +45,5 @@ $(document).ready(() => {
     document.getElementById("inner1").innerHTML = mushroom1["inner"]
     
     document.getElementById("inner2").innerHTML = mushroom2["inner"]
-    
-    
-    
-    
-    
     
   })
